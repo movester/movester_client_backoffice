@@ -18,7 +18,20 @@
         "react"
     ],
     "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "comma-dangle": ["error", "never"]
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "linebreak-style": 0,
+        "requireForBlockBody": true
     }
 }
