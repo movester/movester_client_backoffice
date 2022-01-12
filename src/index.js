@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'; // * BrowserRouter 불러오�
 // import rootReducer from './modules';
 import App from './App';
 // import { Provider } from 'react-redux';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 // const store = createStore(rootReducer); // 스토어를 만듭니다.

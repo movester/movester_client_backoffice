@@ -1,9 +1,10 @@
 import React from 'react';
+import LoginContainer from './containers/LoginContainer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">hello world</header>
+      <LoginContainer />
     </div>
   );
 }
