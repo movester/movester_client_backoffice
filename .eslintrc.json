@@ -32,6 +32,19 @@
             "never"
         ],
         "linebreak-style": 0,
-        "requireForBlockBody": true
+        "react/function-component-definition": [
+            "enabled",
+            {
+                "namedComponents": [
+                    "function-declaration",
+                    "function-expression",
+                    "arrow-function"
+                ],
+                "unnamedComponents": [
+                    "function-expression",
+                    "arrow-function"
+                ]
+            }
+        ]
     }
 }
