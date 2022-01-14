@@ -4,7 +4,8 @@ import NavComponent from './components/utils/NavComponent';
 import MainComponent from './components/utils/MainComponent';
 import ContentComponent from './components/utils/ContentComponent';
 import ButtonComponent from './components/utils/ButtonComponent';
-import InputComponent from './components/utils/InputComponent'
+import InputComponent from './components/utils/InputComponent';
+import WhiteButtonComponent from './components/utils/WhiteButtonComponent';
 
 const ExampleContent = styled.div`
   width: 100%;
@@ -33,8 +34,11 @@ function App() {
         <MainComponent>
           <ContentComponent title="사용자 리스트">
             <ExampleContent />
+            {/* defaultProps = "90" */}
+            <WhiteButtonComponent />
+            <WhiteButtonComponent size="500" />
             <InputComponent />
-            <InputComponent label="제목"/>
+            <InputComponent label="제목" />
             {/* defaultProps = "제출하기" */}
             <ButtonComponent text="예시 텍스트" />
           </ContentComponent>
