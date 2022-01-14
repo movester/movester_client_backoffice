@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import NavComponent from './components/utils/NavComponent';
 import MainComponent from './components/utils/MainComponent';
 import ContentComponent from './components/utils/ContentComponent';
+import ButtonComponent from './components/utils/ButtonComponent'
 
 const ExampleContent = styled.div`
   width: 100%;
@@ -30,6 +31,7 @@ function App() {
         <MainComponent>
           <ContentComponent title="사용자 리스트">
             <ExampleContent />
+            <ButtonComponent>제출하기</ButtonComponent>
           </ContentComponent>
           <ContentComponent title="사용자 리스트">
             <ExampleContent />

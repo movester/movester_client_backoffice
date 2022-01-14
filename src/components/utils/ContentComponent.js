@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   position: relative;
   padding: 6% 3% 3% 3%;
   margin-bottom: 100px;
+  text-align: center;
 
   &:last-child {
     margin-bottom: 0;
