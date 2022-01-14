@@ -18,14 +18,16 @@ const StyledButton = styled.div`
   cursor: pointer;
 `;
 
-const WhiteButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;
+function WhiteButton({ text }) {
+  return <StyledButton>{text}</StyledButton>;
+}
 
-WhiteButtonComponent.propTypes = {
+WhiteButton.propTypes = {
   text: PropTypes.string,
 };
 
-WhiteButtonComponent.defaultProps = {
+WhiteButton.defaultProps = {
   text: '검색',
 };
 
-export default WhiteButtonComponent;
+export default WhiteButton;

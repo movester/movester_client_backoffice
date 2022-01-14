@@ -39,21 +39,23 @@ const Title = styled.div`
   left: 104px;
 `;
 
-const ContentComponent = ({ title, children }) => (
-  <Wrapper>
-    <DecoBox />
-    <Title>{title}</Title>
-    {children}
-  </Wrapper>
-);
+function Content({ title, children }) {
+  return (
+    <Wrapper>
+      <DecoBox />
+      <Title>{title}</Title>
+      {children}
+    </Wrapper>
+  );
+}
 
-ContentComponent.propTypes = {
+Content.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
 };
 
-ContentComponent.defaultProps = {
+Content.defaultProps = {
   title: '제목 없음',
 };
 
-export default ContentComponent;
+export default Content;

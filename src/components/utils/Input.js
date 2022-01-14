@@ -28,19 +28,21 @@ const StyledInput = styled.input`
   }
 `;
 
-const InputComponent = ({ label }) => (
-  <Wrapper>
-    <StyledLabel htmlFor={label}>{label}</StyledLabel>
-    <StyledInput id={label} />
-  </Wrapper>
-);
+function Input({ label }) {
+  return (
+    <Wrapper>
+      <StyledLabel htmlFor={label}>{label}</StyledLabel>
+      <StyledInput id={label} />
+    </Wrapper>
+  );
+}
 
-InputComponent.propTypes = {
+Input.propTypes = {
   label: PropTypes.string,
 };
 
-InputComponent.defaultProps = {
+Input.defaultProps = {
   label: 'example',
 };
 
-export default InputComponent;
+export default Input;

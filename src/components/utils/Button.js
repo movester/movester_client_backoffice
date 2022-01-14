@@ -18,14 +18,16 @@ const StyledButton = styled.div`
   cursor: pointer;
 `;
 
-const ButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;
+function Button({ text }) {
+  return <StyledButton>{text}</StyledButton>;
+}
 
-ButtonComponent.propTypes = {
+Button.propTypes = {
   text: PropTypes.string,
 };
 
-ButtonComponent.defaultProps = {
+Button.defaultProps = {
   text: '제출하기',
 };
 
-export default ButtonComponent;
+export default Button;

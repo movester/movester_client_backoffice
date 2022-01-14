@@ -50,22 +50,24 @@ const Logout = styled.div`
   margin-bottom: 10px;
 `;
 
-const NavComponent = ({ name }) => (
-  <Wrapper>
-    <UserContainer>
-      <LogoImage src={LogoSrc} alt="logo" />
-      <UserInfo>{name}</UserInfo>
-    </UserContainer>
-    <Logout>로그아웃</Logout>
-  </Wrapper>
-);
+function Nav({ name }) {
+  return (
+    <Wrapper>
+      <UserContainer>
+        <LogoImage src={LogoSrc} alt="logo" />
+        <UserInfo>{name}</UserInfo>
+      </UserContainer>
+      <Logout>로그아웃</Logout>
+    </Wrapper>
+  );
+}
 
-NavComponent.propTypes = {
+Nav.propTypes = {
   name: PropTypes.string,
 };
 
-NavComponent.defaultProps = {
+Nav.defaultProps = {
   name: '이름 없음',
 };
 
-export default NavComponent;
+export default Nav;

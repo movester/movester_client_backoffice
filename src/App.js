@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import NavComponent from './components/utils/NavComponent';
-import ExampleComponent from './components/utils/ExampleComponent';
-import HomeComponent from './components/utils/HomeComponent';
+import NavComponent from './components/utils/Nav';
+import ExampleComponent from './components/utils/Example';
+import HomeComponent from './components/utils/Home';
 import theme from './theme';
 
 function App() {

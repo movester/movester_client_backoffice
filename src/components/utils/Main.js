@@ -11,10 +11,12 @@ const Wrapper = styled.div`
   padding: 5%;
 `;
 
-const MainComponent = ({ children }) => <Wrapper>{children}</Wrapper>;
+function Main({ children }) {
+  return <Wrapper>{children}</Wrapper>;
+}
 
-MainComponent.propTypes = {
+Main.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MainComponent;
+export default Main;
