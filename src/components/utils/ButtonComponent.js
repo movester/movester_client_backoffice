@@ -16,10 +16,14 @@ const StyledButton = styled.div`
   text-align: center;
 `;
 
-const ButtonComponent = ({ children }) => <StyledButton>{children}</StyledButton>;
+const ButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;
 
 ButtonComponent.propTypes = {
-  children: PropTypes.node.isRequired,
+  text: PropTypes.string,
+};
+
+ButtonComponent.defaultProps = {
+  text: '제출하기',
 };
 
 export default ButtonComponent;
