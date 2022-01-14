@@ -24,7 +24,7 @@ const StyledInput = styled.input`
   padding: 0 10px;
 
   &:focus {
-    outline: 1px solid #2a1598;
+    outline: 1px solid ${({ theme }) => theme.darkPulple};
   }
 `;
 

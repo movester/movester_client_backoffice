@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   float: left;
   width: 15vw;
   min-height: 100vh;
-  background-color: #948fbf;
+  background-color: ${({ theme }) => theme.lightPurple};
   position: relative;
 `;
 
@@ -24,8 +24,8 @@ const LogoImage = styled.img`
 `;
 
 const UserInfo = styled.div`
-  border-top: 1px solid #2a1598;
-  border-bottom: 1px solid #2a1598;
+  border-top: 1px solid ${({ theme }) => theme.darkPulple};
+  border-bottom: 1px solid ${({ theme }) => theme.darkPulple};
   width: 100%;
   height: 40px;
   line-height: 40px;

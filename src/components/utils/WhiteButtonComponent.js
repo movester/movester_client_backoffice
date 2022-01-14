@@ -11,10 +11,10 @@ const StyledButton = styled.div`
   background-color: #ffffff;
   border-radius: 10px;
   font-size: 18px;
-  color: #2a1598;
+  color: ${({ theme }) => theme.darkPulple};
   font-weight: 700;
   text-align: center;
-  border: 2px solid #2a1598;
+  border: 2px solid ${({ theme }) => theme.darkPulple};
   cursor: pointer;
 `;
 

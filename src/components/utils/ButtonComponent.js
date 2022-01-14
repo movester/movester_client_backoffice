@@ -8,7 +8,7 @@ const StyledButton = styled.div`
   height: 40px;
   line-height: 40px;
   display: inline-block;
-  background-color: #948fbf;
+  background-color: ${({ theme }) => theme.lightPurple};
   border-radius: 10px;
   font-size: 20px;
   color: #ffffff;

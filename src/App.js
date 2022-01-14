@@ -1,42 +1,19 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import NavComponent from './components/utils/NavComponent';
-import MainComponent from './components/utils/MainComponent';
-import ContentComponent from './components/utils/ContentComponent';
-import ButtonComponent from './components/utils/ButtonComponent';
-import InputComponent from './components/utils/InputComponent';
-import WhiteButtonComponent from './components/utils/WhiteButtonComponent';
+import ExampleComponent from './components/utils/ExampleComponent';
+import HomeComponent from './components/utils/HomeComponent';
+import theme from './theme';
 
-// TODO: palette 적용
 function App() {
   return (
-    <ThemeProvider
-      theme={{
-        palette: {
-          lightPurple: '#948fbf',
-          darkPulple: '#2a1598',
-          lightGray: '#efefef',
-          darkGray: '#c4c4c4',
-          black: '#000000',
-        },
-      }}
-    >
-      <div className="App">
-        {/* util 컴포넌트 사용 예시 */}
-        <NavComponent />
-        <MainComponent>
-          <ContentComponent title="사용자 리스트">
-            {/* defaultProps = "90" */}
-            <WhiteButtonComponent />
-            <WhiteButtonComponent size="500" />
-            <InputComponent />
-            <InputComponent label="제목" />
-            {/* defaultProps = "제출하기" */}
-            <ButtonComponent text="예시 텍스트" />
-          </ContentComponent>
-          <ContentComponent title="사용자 리스트"/>
-        </MainComponent>
-      </div>
+    <ThemeProvider theme={theme}>
+      <NavComponent />
+      <Routes>
+        <Route path="/" element={<HomeComponent />} />
+        <Route path="/test" element={<ExampleComponent />} />
+      </Routes>
     </ThemeProvider>
   );
 }

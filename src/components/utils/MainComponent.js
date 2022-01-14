@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   width: 83vw;
   min-height: 100vh;
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.lightGray};
   display: inline-block;
   padding: 5%;
 `;

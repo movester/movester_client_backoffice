@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const DecoBox = styled.div`
   width: 60px;
   height: 60px;
-  background-color: #c4c4c4;
+  background-color: ${({ theme }) => theme.darkGray};
   border-radius: 17px;
   position: absolute;
   top: -30px;
@@ -32,7 +32,7 @@ const Title = styled.div`
   max-width: 50%;
   height: auto;
   font-size: 24px;
-  color: #2a1598;
+  color: ${({ theme }) => theme.darkPulple};
   font-weight: 900;
   position: absolute;
   top: 16px;
