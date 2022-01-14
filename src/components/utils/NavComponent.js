@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import LogoSrc from '../../assets/logo.png';
 
+// TODO: height MainComponent height과 동일해야함
 const Wrapper = styled.div`
   float: left;
   width: 15vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #948fbf;
   position: relative;
 `;

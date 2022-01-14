@@ -9,6 +9,11 @@ const Wrapper = styled.div`
   border-radius: 17px;
   position: relative;
   padding: 6% 3% 3% 3%;
+  margin-bottom: 100px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 // TODO: width값 변수로 변경(반응형)
@@ -33,7 +38,7 @@ const Title = styled.div`
   left: 104px;
 `;
 
-const ContentContainer = ({ title, children }) => (
+const ContentComponent = ({ title, children }) => (
   <Wrapper>
     <DecoBox />
     <Title>{title}</Title>
@@ -41,13 +46,13 @@ const ContentContainer = ({ title, children }) => (
   </Wrapper>
 );
 
-ContentContainer.propTypes = {
+ContentComponent.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
 };
 
-ContentContainer.defaultProps = {
+ContentComponent.defaultProps = {
   title: '제목 없음',
 };
 
-export default ContentContainer;
+export default ContentComponent;

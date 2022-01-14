@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NavComponent from './components/utils/NavComponent';
 import MainComponent from './components/utils/MainComponent';
-import ContentContainer from './components/utils/ContentContainer';
+import ContentComponent from './components/utils/ContentComponent';
 
 const ExampleContent = styled.div`
   width: 100%;
@@ -25,11 +25,15 @@ function App() {
       }}
     >
       <div className="App">
+        {/* util 컴포넌트 사용 예시 */}
         <NavComponent />
         <MainComponent>
-          <ContentContainer title="사용자 리스트">
+          <ContentComponent title="사용자 리스트">
             <ExampleContent />
-          </ContentContainer>
+          </ContentComponent>
+          <ContentComponent title="사용자 리스트">
+            <ExampleContent />
+          </ContentComponent>
         </MainComponent>
       </div>
     </ThemeProvider>
