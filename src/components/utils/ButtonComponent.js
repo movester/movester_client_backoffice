@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledButton = styled.div`
+  box-sizing: border-box;
   width: 33%;
   height: 40px;
   line-height: 40px;
@@ -14,6 +15,7 @@ const StyledButton = styled.div`
   font-weight: 700;
   margin-top: 40px;
   text-align: center;
+  cursor: pointer;
 `;
 
 const ButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;

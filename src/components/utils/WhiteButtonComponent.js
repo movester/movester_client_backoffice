@@ -15,6 +15,7 @@ const StyledButton = styled.div`
   font-weight: 700;
   text-align: center;
   border: 2px solid #2a1598;
+  cursor: pointer;
 `;
 
 const WhiteButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;
