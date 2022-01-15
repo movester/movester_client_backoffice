@@ -5,6 +5,7 @@ import NavComponent from './components/utils/NavComponent';
 import ExampleComponent from './components/utils/ExampleComponent';
 import HomeComponent from './components/utils/HomeComponent';
 import theme from './theme';
+import UserList from './components/UserListComponent';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path="/test" element={<ExampleComponent />} />
+        <Route path="/userList" element={<UserList />} />
       </Routes>
     </ThemeProvider>
   );
