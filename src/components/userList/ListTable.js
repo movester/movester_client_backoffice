@@ -13,10 +13,12 @@ const StyledListTable = styled.section`
     background-color: gray;
   }
   ul li:first-child {
-    width: 5%;
+    padding: 15px 5px;
+    width: 7%;
+    flex-grow: 0;
   }
   ul li:nth-child(2) {
-    width: 15%;
+    width: 13%;
     flex-grow: 2;
   }
 
@@ -24,7 +26,7 @@ const StyledListTable = styled.section`
     flex-grow: 1;
     width: 10%;
     padding: 15px 5px;
-    text-align: center;
+    text-align: left;
   }
   div {
     margin-top: 15px;
@@ -68,7 +70,3 @@ ListTable.propTypes = {
 };
 
 export default ListTable;
-
-//  {/*  */}
-
-//  {/* </StyledTableNumbering> */}

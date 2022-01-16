@@ -29,7 +29,7 @@ function ListSearch({ options }) {
   return (
     <StyledListSearch>
       <form>
-        <SelectBox options={options} />
+        <SelectBox color="white" options={options} />
         <input />
         <WhiteButtonComponent text="검색" />
       </form>
