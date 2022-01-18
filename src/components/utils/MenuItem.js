@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 // import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
@@ -36,21 +37,24 @@ const Li = styled.li`
   padding-left: 42px;
   cursor: pointer;
 
-  &.strong {
+  &.active {
     font-weight: 800;
   }
 `;
 
 function MenuItem({ title, list, active, setActiveIndex, idx }) {
   const [activeSubIndex, setActiveSubIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setActiveIndex(idx);
     setActiveSubIndex(0);
+    navigate(`/${title}`);
   };
 
-  const handleLink = (_, subIndex) => {
+  const handleLink = (_, subIndex, menu) => {
     setActiveSubIndex(subIndex);
+    navigate(`/${title}/${menu.replace(/ /gi,"")}`);
   };
 
   return (
@@ -58,7 +62,7 @@ function MenuItem({ title, list, active, setActiveIndex, idx }) {
       <Menu onClick={handleClick}>{title}</Menu>
       <SubMenu className={active}>
         {list?.map((menu, subIndex) => (
-          <Li className={activeSubIndex === subIndex ? 'strong' : ''} onClick={e => handleLink(e, subIndex)}>
+          <Li key={menu} className={activeSubIndex === subIndex ? 'active' : ''} onClick={e => handleLink(e, subIndex, menu)}>
             {menu}
           </Li>
         ))}

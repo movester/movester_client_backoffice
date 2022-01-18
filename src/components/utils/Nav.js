@@ -30,7 +30,7 @@ const UserInfo = styled.div`
   width: 100%;
   height: 40px;
   line-height: 40px;
-  margin: 25px 0;
+  margin-top: 25px;
   font-size: 20px;
   color: #2a1598;
   font-weight: 900;
@@ -77,6 +77,7 @@ function Nav({ name }) {
 
           return (
             <MenuItem
+              key={item.title}
               title={item.title}
               idx={idx}
               list={item.list}
