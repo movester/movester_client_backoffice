@@ -12,7 +12,7 @@ function App() {
       <NavComponent />
       <Routes>
         <Route path="/" element={<HomeComponent />} />
-        <Route path="/test" element={<ExampleComponent />} />
+        <Route path="/user" element={<ExampleComponent />} />
       </Routes>
     </ThemeProvider>
   );
