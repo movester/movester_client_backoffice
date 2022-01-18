@@ -37,12 +37,14 @@ const UserInfo = styled.div`
   cursor: pointer;
 `;
 
-const Logout = styled.div`
+const Logout = styled.button`
   width: auto;
   height: auto;
   position: absolute;
   bottom: 0;
   left: 50%;
+  background: none;
+  border: none;
   font-size: 20px;
   color: #ffffff;
   font-weight: 600;
