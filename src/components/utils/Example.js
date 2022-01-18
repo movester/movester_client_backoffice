@@ -17,7 +17,6 @@ function Example() {
         {/* defaultProps = "제출하기" */}
         <Button text="예시 텍스트" />
       </Content>
-      <Content title="사용자 리스트" />
     </Main>
   );
 }

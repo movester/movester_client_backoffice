@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import MenuItem from './MenuItem';
 import LogoSrc from '../../assets/logo.png';
 
 // TODO: height MainComponent height과 동일해야함
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
 const UserContainer = styled.div`
   padding: 10% 8%;
   width: 100%;
-  height: 300px;
+  height: auto;
 `;
 
 const LogoImage = styled.img`
@@ -52,13 +53,40 @@ const Logout = styled.button`
   margin-bottom: 10px;
 `;
 
+const MenuContainer = styled.ul`
+  width: 100%;
+`;
+
 function Nav({ name }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const MENU_LIST = [
+    { title: '사용자', list: ['사용자 리스트'] },
+    { title: '스트레칭', list: ['스트레칭 리스트', '스트레칭 등록', '일주일 추천 리스트', '일주일 추천 등록'] },
+    { title: '이벤트', list: ['이벤트 리스트', '이벤트 등록'] },
+  ];
+
   return (
     <Wrapper>
       <UserContainer>
         <LogoImage src={LogoSrc} alt="logo" />
         <UserInfo>{name}</UserInfo>
       </UserContainer>
+      <MenuContainer>
+        {MENU_LIST.map((item, idx) => {
+          const active = idx === activeIndex ? 'active' : '';
+
+          return (
+            <MenuItem
+              title={item.title}
+              idx={idx}
+              list={item.list}
+              active={active}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+            />
+          );
+        })}
+      </MenuContainer>
       <Logout>로그아웃</Logout>
     </Wrapper>
   );
