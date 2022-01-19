@@ -10,6 +10,7 @@ import StretchingComponent from './components/StretchingComponent';
 import EventComponent from './components/EventComponent';
 import Detail from './components/UserSpecificity';
 import StretchingCreate from './components/StretchingCreate';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Example />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/Detail" element={<Detail />} />
