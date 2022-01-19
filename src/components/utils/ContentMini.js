@@ -2,39 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Content({ title, children }) {
-  return (
-    <Wrapper>
-      <DecoBox />
-      <Title>{title}</Title>
-      {children}
-    </Wrapper>
-  );
-}
+const ContentMini = ({ title, children }) => (
+  <Wrapper>
+    <DecoBox />
+    <Title>{title}</Title>
+    {children}
+  </Wrapper>
+);
 
-Content.propTypes = {
+ContentMini.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
 };
 
-Content.defaultProps = {
+ContentMini.defaultProps = {
   title: '제목 없음',
 };
 
-export default Content;
+export default ContentMini;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 50%;
   height: auto;
   background-color: #ffffff;
   border-radius: 17px;
   position: relative;
-  padding: 6% 3% 3% 3%;
-  margin-bottom: 100px;
+  padding: 20px 50px 20px 50px;
+  margin-bottom: 80px;
+  text-align: center;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
 `;
 
 // TODO: width값 변수로 변경(반응형)
@@ -48,13 +47,12 @@ const DecoBox = styled.div`
   left: 30px;
 `;
 
-const Title = styled.div`
-  max-width: 50%;
+const Title = styled.p`
+  // max-width: 50%;
+  padding-left: 70px;
   height: auto;
   font-size: 24px;
   color: ${({ theme }) => theme.darkPulple};
   font-weight: 900;
-  position: absolute;
-  top: 16px;
-  left: 104px;
+  text-align: left;
 `;
