@@ -32,21 +32,7 @@
       2,
       "always-multiline"
     ],
-    "rules": {
-      "react/jsx-filename-extension": [
-        1,
-        {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
-        }
-      ],
-      "comma-dangle": [
-        0
-      ],
-      "linebreak-style": 0,
-      "react/function-component-definition": "off"
-    }
+    "linebreak-style": 0,
+    "react/function-component-definition": "off"
   }
 }
