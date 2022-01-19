@@ -7,13 +7,12 @@ const StyledListTable = styled.section`
   ul {
     display: flex;
     border-bottom: 1px solid #c4c4c4;
-    cursor: pointer;
+    // cursor: pointer;
   }
   ul:hover {
     background-color: gray;
   }
   ul li:first-child {
-    padding: 15px 5px;
     width: 7%;
     flex-grow: 0;
   }
@@ -25,7 +24,7 @@ const StyledListTable = styled.section`
   li {
     flex-grow: 1;
     width: 10%;
-    padding: 15px 5px;
+    padding: 10px 5px;
     text-align: left;
   }
   div {
@@ -37,6 +36,10 @@ const StyledListTable = styled.section`
     cursor: pointer;
   }
 `;
+
+// 데이터 타입 확인 후 다시 작성해야 함
+// 값이 중복되면
+
 function ListTable({ headers, users }) {
   return (
     <StyledListTable>
@@ -46,21 +49,12 @@ function ListTable({ headers, users }) {
         ))}
       </ul>
       {users.map(user => (
-        <ul key={user.id}>
+        <ul key={user.id ? user.id : user.month}>
           {Object.values(user).map(item => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       ))}
-      <div>
-        <span>&lt;</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-        <span>&gt;</span>
-      </div>
     </StyledListTable>
   );
 }

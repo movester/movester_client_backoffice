@@ -5,6 +5,7 @@ import MainComponent from './utils/MainComponent';
 import ContentMini from './utils/ContentMini';
 import ContentComponent from './utils/ContentComponent';
 import UserCount from './userList/UserCount';
+import TableNumbering from './userList/TableNumbering';
 
 const users = [
   {
@@ -90,6 +91,7 @@ function UserList() {
       <ContentComponent title="사용자 리스트">
         <ListSearch options={userListOptions} />
         <ListTable headers={UserHeaders} users={users} />
+        <TableNumbering />
       </ContentComponent>
     </MainComponent>
   );
