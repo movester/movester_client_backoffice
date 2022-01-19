@@ -2,6 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+function Content({ title, children }) {
+  return (
+    <Wrapper>
+      <DecoBox />
+      <Title>{title}</Title>
+      {children}
+    </Wrapper>
+  );
+}
+
+Content.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string,
+};
+
+Content.defaultProps = {
+  title: '제목 없음',
+};
+
+export default Content;
+
 const Wrapper = styled.div`
   width: 100%;
   height: auto;
@@ -38,22 +59,3 @@ const Title = styled.div`
   top: 16px;
   left: 104px;
 `;
-
-const ContentComponent = ({ title, children }) => (
-  <Wrapper>
-    <DecoBox />
-    <Title>{title}</Title>
-    {children}
-  </Wrapper>
-);
-
-ContentComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string,
-};
-
-ContentComponent.defaultProps = {
-  title: '제목 없음',
-};
-
-export default ContentComponent;

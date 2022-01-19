@@ -2,6 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+function WhiteButton({ text }) {
+  return <StyledButton>{text}</StyledButton>;
+}
+
+WhiteButton.propTypes = {
+  text: PropTypes.string,
+};
+
+WhiteButton.defaultProps = {
+  text: '검색',
+};
+
+export default WhiteButton;
+
 // TODO: props.size 적용 안됨
 const StyledButton = styled.div`
   width: ${props => props.size || 90}px;
@@ -17,15 +31,3 @@ const StyledButton = styled.div`
   border: 2px solid ${({ theme }) => theme.darkPulple};
   cursor: pointer;
 `;
-
-const WhiteButtonComponent = ({ text }) => <StyledButton>{text}</StyledButton>;
-
-WhiteButtonComponent.propTypes = {
-  text: PropTypes.string,
-};
-
-WhiteButtonComponent.defaultProps = {
-  text: '검색',
-};
-
-export default WhiteButtonComponent;

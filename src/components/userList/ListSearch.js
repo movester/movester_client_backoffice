@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SelectBox from './SelectBox';
-import WhiteButtonComponent from '../utils/WhiteButtonComponent';
+import WhiteButtonComponent from '../utils/WhiteButton';
 
 const StyledListSearch = styled.section`
   form {

@@ -9,11 +9,13 @@ const Wrapper = styled.div`
   padding: 5%;
 `;
 
-const HomeComponent = () => (
-  <Wrapper>
-    <h1>홈</h1>
-    <p>이곳은 홈이에요. 가장 먼저 보여지는 페이지죠.</p>
-  </Wrapper>
-);
+function Home() {
+  return (
+    <Wrapper>
+      <h1>홈</h1>
+      <p>이곳은 홈이에요. 가장 먼저 보여지는 페이지죠.</p>
+    </Wrapper>
+  );
+}
 
-export default HomeComponent;
+export default Home;

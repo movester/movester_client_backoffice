@@ -1,9 +1,9 @@
 import React from 'react';
 import ListSearch from './userList/ListSearch';
 import ListTable from './userList/ListTable';
-import MainComponent from './utils/MainComponent';
+import MainComponent from './utils/Main';
 import ContentMini from './utils/ContentMini';
-import ContentComponent from './utils/ContentComponent';
+import ContentComponent from './utils/Content';
 import UserCount from './userList/UserCount';
 import TableNumbering from './userList/TableNumbering';
 
