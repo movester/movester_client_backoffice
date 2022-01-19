@@ -12,9 +12,8 @@ Main.propTypes = {
 
 export default Main;
 
-// TODO: width 85vw 주면 스크롤 시에 스크롤 width랑 오버나서 컴포넌트가 아래로 밀림
 const Wrapper = styled.div`
-  width: 83vw;
+  width: 85vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.lightGray};
   display: inline-block;
