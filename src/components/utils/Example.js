@@ -24,6 +24,14 @@ function Example() {
         <Button text="예시 텍스트" />
         <ModalPortal>{modalOn && <DeleteModal onClose={handleModal} title="계정 삭제" />}</ModalPortal>
       </Content>
+
+      <Content title="사용자 리스트">
+        <WhiteButton />
+        <WhiteButton size="500" />
+        <Input />
+        <Input label="제목" />
+        <Button text="예시 텍스트" />
+      </Content>
     </Main>
   );
 }

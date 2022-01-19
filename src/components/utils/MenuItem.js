@@ -1,8 +1,61 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+
+function MenuItem({ title, path, list, active, setActiveIndex, idx }) {
+  const [activeSubIndex, setActiveSubIndex] = useState(0);
+  const navigate = useNavigate();
+
+  const handleClick = (_, menuPath) => {
+    setActiveIndex(idx);
+    setActiveSubIndex(0);
+    navigate(menuPath);
+  };
+
+  const handleLink = (_, subIndex, subPath) => {
+    setActiveSubIndex(subIndex);
+    navigate(`${path}${subPath}`);
+  };
+
+  return (
+    <MenuContainer className={active}>
+      <Menu onClick={e => handleClick(e, path)}>{title}</Menu>
+      <SubMenu className={active}>
+        {list?.map(([menu, subPath], subIndex) => (
+          <Li
+            key={menu}
+            className={activeSubIndex === subIndex ? 'active' : ''}
+            onClick={e => handleLink(e, subIndex, subPath)}
+          >
+            {menu}
+          </Li>
+        ))}
+      </SubMenu>
+    </MenuContainer>
+  );
+}
+
+MenuItem.propTypes = {
+  title: PropTypes.string,
+  path: PropTypes.string,
+  list: PropTypes.arrayOf(PropTypes.array),
+  active: PropTypes.string,
+  setActiveIndex: PropTypes.func,
+  idx: PropTypes.number,
+};
+
+MenuItem.defaultProps = {
+  title: '이름 없음',
+  path: '/',
+  list: [[]],
+  active: null,
+  setActiveIndex: () => {},
+  idx: 0,
+};
+
+export default MenuItem;
 
 const MenuContainer = styled.li`
   &.active {
@@ -41,50 +94,3 @@ const Li = styled.li`
     font-weight: 800;
   }
 `;
-
-function MenuItem({ title, list, active, setActiveIndex, idx }) {
-  const [activeSubIndex, setActiveSubIndex] = useState(0);
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    setActiveIndex(idx);
-    setActiveSubIndex(0);
-    navigate(`/${title}`);
-  };
-
-  const handleLink = (_, subIndex, menu) => {
-    setActiveSubIndex(subIndex);
-    navigate(`/${title}/${menu.replace(/ /gi,"")}`);
-  };
-
-  return (
-    <MenuContainer className={active}>
-      <Menu onClick={handleClick}>{title}</Menu>
-      <SubMenu className={active}>
-        {list?.map((menu, subIndex) => (
-          <Li key={menu} className={activeSubIndex === subIndex ? 'active' : ''} onClick={e => handleLink(e, subIndex, menu)}>
-            {menu}
-          </Li>
-        ))}
-      </SubMenu>
-    </MenuContainer>
-  );
-}
-
-MenuItem.propTypes = {
-  title: PropTypes.string,
-  list: PropTypes.arrayOf(PropTypes.string),
-  active: PropTypes.string,
-  setActiveIndex: PropTypes.func,
-  idx: PropTypes.number,
-};
-
-MenuItem.defaultProps = {
-  title: '이름 없음',
-  list: ['a', 'b'],
-  active: null,
-  setActiveIndex: () => {},
-  idx: 0,
-};
-
-export default MenuItem;

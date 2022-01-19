@@ -2,6 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+function Input({ label }) {
+  return (
+    <Wrapper>
+      <StyledLabel htmlFor={label}>{label}</StyledLabel>
+      <StyledInput id={label} />
+    </Wrapper>
+  );
+}
+
+Input.propTypes = {
+  label: PropTypes.string,
+};
+
+Input.defaultProps = {
+  label: 'example',
+};
+
+export default Input;
+
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
@@ -27,22 +46,3 @@ const StyledInput = styled.input`
     outline: 1px solid ${({ theme }) => theme.darkPulple};
   }
 `;
-
-function Input({ label }) {
-  return (
-    <Wrapper>
-      <StyledLabel htmlFor={label}>{label}</StyledLabel>
-      <StyledInput id={label} />
-    </Wrapper>
-  );
-}
-
-Input.propTypes = {
-  label: PropTypes.string,
-};
-
-Input.defaultProps = {
-  label: 'example',
-};
-
-export default Input;

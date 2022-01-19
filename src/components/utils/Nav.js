@@ -4,13 +4,74 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import LogoSrc from '../../assets/logo.png';
 
-// TODO: height MainComponent height과 동일해야함
+function Nav({ name }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const MENU_LIST = [
+    { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
+    {
+      title: '스트레칭',
+      path: '/stretching',
+      list: [
+        ['스트레칭 리스트', ''],
+        ['스트레칭 등록', '/create'],
+        ['일주일 추천 리스트', '/weekly'],
+        ['일주일 추천 등록', '/weekly/create'],
+      ],
+    },
+    {
+      title: '이벤트',
+      path: '/event',
+      list: [
+        ['이벤트 리스트', ''],
+        ['이벤트 등록', '/create'],
+      ],
+    },
+  ];
+
+  return (
+    <Wrapper>
+      <UserContainer>
+        <LogoImage src={LogoSrc} alt="logo" />
+        <UserInfo>{name}</UserInfo>
+      </UserContainer>
+      <MenuContainer>
+        {MENU_LIST.map((item, idx) => {
+          const active = idx === activeIndex ? 'active' : '';
+
+          return (
+            <MenuItem
+              key={item.title}
+              title={item.title}
+              path={item.path}
+              idx={idx}
+              list={item.list}
+              active={active}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+            />
+          );
+        })}
+      </MenuContainer>
+      <Logout>로그아웃</Logout>
+    </Wrapper>
+  );
+}
+
+Nav.propTypes = {
+  name: PropTypes.string,
+};
+
+Nav.defaultProps = {
+  name: '이름 없음',
+};
+
+export default Nav;
+
 const Wrapper = styled.div`
-  float: left;
   width: 15vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.lightPurple};
-  position: relative;
+  position: fixed;
 `;
 
 const UserContainer = styled.div`
@@ -56,49 +117,3 @@ const Logout = styled.button`
 const MenuContainer = styled.ul`
   width: 100%;
 `;
-
-function Nav({ name }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const MENU_LIST = [
-    { title: '사용자', list: ['사용자 리스트'] },
-    { title: '스트레칭', list: ['스트레칭 리스트', '스트레칭 등록', '일주일 추천 리스트', '일주일 추천 등록'] },
-    { title: '이벤트', list: ['이벤트 리스트', '이벤트 등록'] },
-  ];
-
-  return (
-    <Wrapper>
-      <UserContainer>
-        <LogoImage src={LogoSrc} alt="logo" />
-        <UserInfo>{name}</UserInfo>
-      </UserContainer>
-      <MenuContainer>
-        {MENU_LIST.map((item, idx) => {
-          const active = idx === activeIndex ? 'active' : '';
-
-          return (
-            <MenuItem
-              key={item.title}
-              title={item.title}
-              idx={idx}
-              list={item.list}
-              active={active}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          );
-        })}
-      </MenuContainer>
-      <Logout>로그아웃</Logout>
-    </Wrapper>
-  );
-}
-
-Nav.propTypes = {
-  name: PropTypes.string,
-};
-
-Nav.defaultProps = {
-  name: '이름 없음',
-};
-
-export default Nav;
