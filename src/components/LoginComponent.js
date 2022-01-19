@@ -1,10 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const LoginComponent = () => (
+  <StyledLoginBackground>
+    <StyledLoginBlock>
+      <img src="../assets/images/movester-background.png" alt="logo" className="logo" />
+      <h2>로그인</h2>
+      <input type="email" name="email" placeholder="이메일" />
+      <input tpye="password" name="password" placeholder="비밀번호" />
+      <button type="button">로그인 하기</button>
+    </StyledLoginBlock>
+  </StyledLoginBackground>
+);
+
+export default LoginComponent;
+
 const StyledLoginBackground = styled.div`
   height: 100vh;
-  background-image: url('/assets/images/movester-background.png');
-  background-size: 25%;
   background-color: #6d66aa;
   opacity: 0.7;
   display: flex;
@@ -22,10 +34,15 @@ const StyledLoginBlock = styled.div`
   justify-content: center;
   align-items: center;
 
+  .logo {
+    width: 250px;
+  }
+
   h2 {
     color: #fff;
     font-size: 2rem;
     font-weight: 700;
+    margin: 20px;
   }
 
   input {
@@ -53,16 +70,3 @@ const StyledLoginBlock = styled.div`
     cursor: pointer;
   }
 `;
-
-const LoginComponent = () => (
-  <StyledLoginBackground>
-    <StyledLoginBlock>
-      <h2>로그인</h2>
-      <input type="email" name="email" placeholder="이메일" />
-      <input tpye="password" name="password" placeholder="비밀번호" />
-      <button type="button">로그인 하기</button>
-    </StyledLoginBlock>
-  </StyledLoginBackground>
-);
-
-export default LoginComponent;

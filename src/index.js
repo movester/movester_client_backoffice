@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'; // * BrowserRouter 불러오기
+import { BrowserRouter } from 'react-router-dom';
 // import { createStore } from 'redux';
 // import rootReducer from './modules';
 import App from './App';
@@ -17,7 +17,7 @@ ReactDOM.render(
     <App />
   </BrowserRouter>,
   // </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 reportWebVitals();
