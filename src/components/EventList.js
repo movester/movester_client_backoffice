@@ -38,7 +38,7 @@ const stretchingListOptions = [
 
 const UserHeaders = ['#', '제목', '기간', '당첨자'];
 
-function EventComponent() {
+function EventList() {
   return (
     <MainComponent>
       <ContentComponent title="이벤트 리스트">
@@ -54,4 +54,4 @@ function EventComponent() {
   );
 }
 
-export default EventComponent;
+export default EventList;

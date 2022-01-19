@@ -105,7 +105,7 @@ const userListOptions = [
 ];
 const UserHeaders = ['#', '제목', '부위', '자세', '효과', '난이도'];
 
-function StretchingComponent() {
+function StretchingList() {
   return (
     <MainComponent>
       <ContentComponent title="스트레칭 리스트">
@@ -124,4 +124,4 @@ function StretchingComponent() {
   );
 }
 
-export default StretchingComponent;
+export default StretchingList;
