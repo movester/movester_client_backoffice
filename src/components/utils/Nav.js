@@ -67,13 +67,11 @@ Nav.defaultProps = {
 
 export default Nav;
 
-// TODO: height MainComponent height과 동일해야함
 const Wrapper = styled.div`
-  float: left;
   width: 15vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.lightPurple};
-  position: relative;
+  position: fixed;
 `;
 
 const UserContainer = styled.div`

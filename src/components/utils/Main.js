@@ -13,6 +13,7 @@ Main.propTypes = {
 export default Main;
 
 const Wrapper = styled.div`
+  margin-left: 15vw;
   width: 85vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.lightGray};
