@@ -4,6 +4,24 @@ import PropTypes from 'prop-types';
 import SelectBox from './SelectBox';
 import WhiteButtonComponent from '../utils/WhiteButton';
 
+function ListSearch({ options }) {
+  return (
+    <StyledListSearch>
+      <form>
+        <SelectBox color="white" options={options} />
+        <input />
+        <WhiteButtonComponent text="검색" />
+      </form>
+    </StyledListSearch>
+  );
+}
+
+ListSearch.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default ListSearch;
+
 const StyledListSearch = styled.section`
   form {
     width: 100%;
@@ -24,21 +42,3 @@ const StyledListSearch = styled.section`
     outline: 1px solid ${({ theme }) => theme.darkPulple};
   }
 `;
-
-function ListSearch({ options }) {
-  return (
-    <StyledListSearch>
-      <form>
-        <SelectBox color="white" options={options} />
-        <input />
-        <WhiteButtonComponent text="검색" />
-      </form>
-    </StyledListSearch>
-  );
-}
-
-ListSearch.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-export default ListSearch;
