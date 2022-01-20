@@ -19,6 +19,7 @@ export default TableNumbering;
 
 const StyledTableNumbering = styled.section`
   margin-top: 15px;
+  text-align: center;
   span {
     color: ${({ theme }) => theme.darkPulple};
     margin-right: 10px;

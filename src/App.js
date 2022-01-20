@@ -6,10 +6,10 @@ import Nav from './components/utils/Nav';
 import Example from './components/utils/Example';
 import Home from './components/utils/Home';
 import UserList from './components/UserListComponent';
-import StretchingList from './components/StretchingList';
-import EventList from './components/EventList';
-import Detail from './components/UserSpecificity';
-import StretchingCreate from './components/StretchingCreate';
+import StretchingList from './components/StretchingListComponent';
+import EventList from './components/EventListComponent';
+import UserDetail from './components/UserDetailComponent';
+import StretchingCreate from './components/StretchingCreateComponent';
 import Login from './pages/Login';
 import RegisterStretching from './components/stretching/RegisterStretching';
 import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Example />} />
         <Route path="/user" element={<UserList />} />
-        <Route path="/user/Detail" element={<Detail />} />
+        <Route path="/user/Detail" element={<UserDetail />} />
         <Route path="/stretching" element={<StretchingList />} />
         <Route path="/stretching/create" element={<RegisterStretching />} />
         <Route path="/stretching/weekly" element={<WeeklyStretchingList />} />

@@ -1,11 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import MainComponent from './utils/Main';
 import ContentComponent from './utils/Content';
-import ListTable from './userList/ListTable';
-import EventSearch from './event/EventSearch';
-import SelectBox from './userList/SelectBox';
+import ListTable from './utils/ListTable';
+import SelectBox from './utils/SelectBox';
 import Button from './utils/Button';
-import TableNumbering from './userList/TableNumbering';
+import TableNumbering from './utils/ListTableNumbering';
+import { EventListHeaders } from '../dataList/listTableHeaders';
+import { eventListSearch1, eventListSearch2 } from '../dataList/selectboxOptions';
 
 const users = [
   {
@@ -28,26 +30,16 @@ const users = [
   },
 ];
 
-const stretchingListOptions = [
-  { value: 'name', name: '당첨자 유무' },
-  { value: 'title', name: '부위-소분류' },
-  { value: 'part', name: '부위-자세' },
-  { value: 'posture', name: '효과' },
-  { value: 'efect', name: '도구' },
-];
-
-const UserHeaders = ['#', '제목', '기간', '당첨자'];
-
 function EventList() {
   return (
     <MainComponent>
       <ContentComponent title="이벤트 리스트">
-        <EventSearch>
-          <SelectBox options={stretchingListOptions} />
-          <SelectBox options={stretchingListOptions} />
+        <StyledEventSearch>
+          <SelectBox options={eventListSearch1} />
+          <SelectBox options={eventListSearch2} />
           <Button text="검색" type="search" />
-        </EventSearch>
-        <ListTable headers={UserHeaders} users={users} />
+        </StyledEventSearch>
+        <ListTable headers={EventListHeaders} bodies={users} />
         <TableNumbering />
       </ContentComponent>
     </MainComponent>
@@ -55,3 +47,13 @@ function EventList() {
 }
 
 export default EventList;
+
+const StyledEventSearch = styled.section`
+  display: flex;
+  select {
+    margin-right: 30px;
+    :last-child {
+      margin-right: 0;
+    }
+  }
+`;
