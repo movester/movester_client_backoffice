@@ -4,7 +4,7 @@ import ContentComponent from './utils/Content';
 import ListTable from './userList/ListTable';
 import EventSearch from './event/EventSearch';
 import SelectBox from './userList/SelectBox';
-import WhiteButtonComponent from './utils/WhiteButton';
+import Button from './utils/Button';
 import TableNumbering from './userList/TableNumbering';
 
 const users = [
@@ -45,7 +45,7 @@ function EventList() {
         <EventSearch>
           <SelectBox options={stretchingListOptions} />
           <SelectBox options={stretchingListOptions} />
-          <WhiteButtonComponent text="검색" />
+          <Button text="검색" type="search" />
         </EventSearch>
         <ListTable headers={UserHeaders} users={users} />
         <TableNumbering />

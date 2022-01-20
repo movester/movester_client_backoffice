@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SelectBox from './SelectBox';
-import WhiteButtonComponent from '../utils/WhiteButton';
+import Button from '../utils/Button';
 
 function ListSearch({ options }) {
   return (
@@ -10,7 +10,7 @@ function ListSearch({ options }) {
       <form>
         <SelectBox color="white" options={options} />
         <input />
-        <WhiteButtonComponent text="검색" />
+        <Button text="검색" type="search"/>
       </form>
     </StyledListSearch>
   );
