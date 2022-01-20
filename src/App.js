@@ -12,6 +12,7 @@ import Detail from './components/UserSpecificity';
 import StretchingCreate from './components/StretchingCreate';
 import Login from './pages/Login';
 import RegisterStretching from './components/stretching/RegisterStretching';
+import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/user/Detail" element={<Detail />} />
         <Route path="/stretching" element={<StretchingList />} />
         <Route path="/stretching/create" element={<RegisterStretching />} />
+        <Route path="/stretching/weekly" element={<WeeklyStretchingList />} />
         <Route path="/stretching/weekly/create" element={<StretchingCreate />} />
         <Route path="/event" element={<EventList />} />
       </Routes>
