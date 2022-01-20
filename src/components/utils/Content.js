@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Content({ title, children }) {
+function Content({ title, children, type }) {
   return (
-    <Wrapper>
-      <DecoBox />
+    <Wrapper className={type}>
+      <DecoBox className={type} />
       <Title>{title}</Title>
       {children}
     </Wrapper>
@@ -15,10 +15,12 @@ function Content({ title, children }) {
 Content.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
+  type: PropTypes.string,
 };
 
 Content.defaultProps = {
   title: '제목 없음',
+  type: '',
 };
 
 export default Content;
@@ -29,11 +31,16 @@ const Wrapper = styled.div`
   background-color: #ffffff;
   border-radius: 17px;
   position: relative;
-  padding: 6% 3% 3% 3%;
+  padding: 80px 3% 3% 3%;
   margin-bottom: 100px;
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  &.half {
+    width: 50%;
+    text-align: center;
   }
 `;
 

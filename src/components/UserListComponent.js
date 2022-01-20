@@ -1,9 +1,8 @@
 import React from 'react';
 import ListSearch from './userList/ListSearch';
 import ListTable from './userList/ListTable';
-import MainComponent from './utils/Main';
-import ContentMini from './utils/ContentMini';
-import ContentComponent from './utils/Content';
+import Main from './utils/Main';
+import Content from './utils/Content';
 import UserCount from './userList/UserCount';
 import TableNumbering from './userList/TableNumbering';
 
@@ -84,16 +83,16 @@ const userListOptions = [
 
 function UserList() {
   return (
-    <MainComponent>
-      <ContentMini title="총 사용자 수">
+    <Main>
+      <Content title="총 사용자 수" type="half">
         <UserCount list={users} />
-      </ContentMini>
-      <ContentComponent title="사용자 리스트">
+      </Content>
+      <Content title="사용자 리스트">
         <ListSearch options={userListOptions} />
         <ListTable headers={UserHeaders} users={users} />
         <TableNumbering />
-      </ContentComponent>
-    </MainComponent>
+      </Content>
+    </Main>
   );
 }
 

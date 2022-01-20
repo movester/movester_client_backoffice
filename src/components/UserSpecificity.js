@@ -1,7 +1,6 @@
 import React from 'react';
 import ListTable from './userList/ListTable';
 import Main from './utils/Main';
-import ContentMini from './utils/ContentMini';
 import Content from './utils/Content';
 import UserDetail from './userList/UserDetail';
 import Year from './userList/Year';
@@ -62,14 +61,14 @@ function UserSpecificity() {
           <ListTable headers={UserHeaders} users={users} />
         </Content>
         <UserDetail>
-          <ContentMini title="출석 포인트">
+          <Content title="출석 포인트" type="half">
             <Year Date="2021" />
             <ListTable headers={check} users={point} />
-          </ContentMini>
-          <ContentMini title="기록">
+          </Content>
+          <Content title="기록" type="half">
             <Year Date="2021" />
             <ListTable headers={recordHeader} users={record} />
-          </ContentMini>
+          </Content>
         </UserDetail>
         <Center>
           <Button text="계정 삭제" />
