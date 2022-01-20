@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 function Button({ text, type }) {
-  return (
-    <StyledButton className={type}>
-      {text}
-    </StyledButton>
-  );
+  return <StyledButton className={type}>{text}</StyledButton>;
 }
 
 Button.propTypes = {
@@ -37,10 +33,6 @@ const StyledButton = styled.div`
   text-align: center;
   cursor: pointer;
 
-  & + & {
-    margin-left: 10%;
-  }
-
   &.search {
     width: 90px;
     height: 30px;
@@ -63,5 +55,7 @@ const StyledButton = styled.div`
     margin: 0;
   }
 
-
+  & + & {
+    margin-left: 10%;
+  }
 `;
