@@ -30,4 +30,8 @@ const StyledButton = styled.div`
   margin-top: 40px;
   text-align: center;
   cursor: pointer;
+
+  & + & {
+    margin-left: 10%;;
+  }
 `;
