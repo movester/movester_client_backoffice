@@ -1,11 +1,12 @@
 import React from 'react';
-import ListTable from './userList/ListTable';
+import styled from 'styled-components';
+import ListTable from './utils/ListTable';
 import Main from './utils/Main';
 import Content from './utils/Content';
-import UserDetail from './userList/UserDetail';
-import Year from './userList/Year';
+import Year from './user/Year';
 import Button from './utils/Button';
 import Center from './utils/Center';
+import { UserListHeaders, UserDetailRecord, UserDetailAttendance } from '../dataList/listTableHeaders';
 
 const users = [
   {
@@ -18,9 +19,6 @@ const users = [
   },
 ];
 
-const UserHeaders = ['#', '이메일', '이름', '출석포인트', '성별', '나이'];
-
-const check = ['월', '포인트'];
 const point = [
   { month: '1월', point: '10' },
   { month: '2월', point: '20' },
@@ -35,8 +33,6 @@ const point = [
   { month: '11월', point: '110' },
   { month: '12월', point: '120' },
 ];
-
-const recordHeader = ['월', '어깨', '다리'];
 
 const record = [
   { month: '1월', sholder: '10', leg: '11' },
@@ -53,23 +49,23 @@ const record = [
   { month: '12월', sholder: '120', leg: '121' },
 ];
 
-function UserSpecificity() {
+function UserDetail() {
   return (
     <div>
       <Main>
         <Content title="사용자 상세#543333">
-          <ListTable headers={UserHeaders} users={users} />
+          <ListTable headers={UserListHeaders} bodies={users} />
         </Content>
-        <UserDetail>
+        <StyledUserDetail>
           <Content title="출석 포인트" type="half">
             <Year Date="2021" />
-            <ListTable headers={check} users={point} />
+            <ListTable ratio="half" headers={UserDetailRecord} bodies={point} />
           </Content>
           <Content title="기록" type="half">
             <Year Date="2021" />
-            <ListTable headers={recordHeader} users={record} />
+            <ListTable headers={UserDetailAttendance} bodies={record} />
           </Content>
-        </UserDetail>
+        </StyledUserDetail>
         <Center>
           <Button text="계정 삭제" />
         </Center>
@@ -78,4 +74,26 @@ function UserSpecificity() {
   );
 }
 
-export default UserSpecificity;
+export default UserDetail;
+
+const StyledUserDetail = styled.section`
+  display: flex;
+  div {
+    margin-bottom: 0;
+  }
+  div:nth-child(1) {
+    margin-right: 50px;
+  }
+  li {
+    flex-grow: 1;
+    text-align: center;
+  }
+  ul li:nth-child(1) {
+    width: auto;
+    flex-grow: 1;
+  }
+  ul li:nth-child(2) {
+    width: auto;
+    flex-grow: 1;
+  }
+`;

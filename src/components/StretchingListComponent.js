@@ -1,11 +1,20 @@
 import React from 'react';
-import MainComponent from './utils/Main';
-import ContentComponent from './utils/Content';
-import ListSearch from './userList/ListSearch';
-import ListTable from './userList/ListTable';
-import StetchingOptionsWrap from './stretching/StetchingOptions';
-import SelectBox from './userList/SelectBox';
-import TableNumbering from './userList/TableNumbering';
+import styled from 'styled-components';
+import Main from './utils/Main';
+import Content from './utils/Content';
+import ListTable from './utils/ListTable';
+import SelectBox from './utils/SelectBox';
+import TableNumbering from './utils/ListTableNumbering';
+import Button from './utils/Button';
+import {
+  stretchingMainCatrgory,
+  stretchingSearchOptions,
+  stretchingSubCatrgory,
+  stretchingEffect,
+  stretchingPosture,
+  stretchingTool,
+} from '../dataList/selectboxOptions';
+import { stretchingListHeaders } from '../dataList/listTableHeaders';
 
 const users = [
   {
@@ -90,38 +99,59 @@ const users = [
   },
 ];
 
-const stretchingListOptions = [
-  { value: 'name', name: '부위-대분류' },
-  { value: 'title', name: '부위-소분류' },
-  { value: 'part', name: '부위-자세' },
-  { value: 'posture', name: '효과' },
-  { value: 'efect', name: '도구' },
-];
-
-const userListOptions = [
-  { value: 'name', name: '이름' },
-  { value: 'number', name: '번호' },
-  { value: 'email', name: '이메일' },
-];
-const UserHeaders = ['#', '제목', '부위', '자세', '효과', '난이도'];
-
 function StretchingList() {
   return (
-    <MainComponent>
-      <ContentComponent title="스트레칭 리스트">
-        <StetchingOptionsWrap>
-          <SelectBox options={stretchingListOptions} />
-          <SelectBox options={stretchingListOptions} />
-          <SelectBox options={stretchingListOptions} />
-          <SelectBox options={stretchingListOptions} />
-          <SelectBox options={stretchingListOptions} />
-        </StetchingOptionsWrap>
-        <ListSearch options={userListOptions} />
-        <ListTable headers={UserHeaders} users={users} />
+    <Main>
+      <Content title="스트레칭 리스트">
+        <StyledStretchingOptionsWrap>
+          <SelectBox options={stretchingMainCatrgory} />
+          <SelectBox options={stretchingSubCatrgory} />
+          <SelectBox options={stretchingEffect} />
+          <SelectBox options={stretchingPosture} />
+          <SelectBox options={stretchingTool} />
+        </StyledStretchingOptionsWrap>
+        <StyledListSearch>
+          <SelectBox color="white" options={stretchingSearchOptions} />
+          <input />
+          <Button text="검색" type="search" />
+        </StyledListSearch>
+        <ListTable headers={stretchingListHeaders} bodies={users} />
         <TableNumbering />
-      </ContentComponent>
-    </MainComponent>
+      </Content>
+    </Main>
   );
 }
 
 export default StretchingList;
+
+const StyledListSearch = styled.section`
+  width: 100%;
+  display: flex;
+  * {
+    margin-right: 40px;
+  }
+
+  input {
+    padding: 5px 30px 5px 10px;
+    width: 40%;
+    border-radius: 10px;
+    outline: 0 none;
+    border: 2px solid #615b5b;
+  }
+  input:focus {
+    outline: 1px solid ${({ theme }) => theme.darkPulple};
+  }
+`;
+
+const StyledStretchingOptionsWrap = styled.section`
+  display: flex;
+  margin-bottom: 20px;
+
+  select {
+    margin-right: 10px;
+    flex-grow: 1;
+    :last-child {
+      margin-right: 0;
+    }
+  }
+`;

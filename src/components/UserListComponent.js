@@ -1,10 +1,15 @@
 import React from 'react';
-import ListSearch from './userList/ListSearch';
-import ListTable from './userList/ListTable';
+import styled from 'styled-components';
 import Main from './utils/Main';
 import Content from './utils/Content';
-import UserCount from './userList/UserCount';
-import TableNumbering from './userList/TableNumbering';
+import SelectBox from './utils/SelectBox';
+import Button from './utils/Button';
+import ListTable from './utils/ListTable';
+import TableNumbering from './utils/ListTableNumbering';
+import UserCount from './user/UserCount';
+import { userListOptions } from '../dataList/selectboxOptions';
+import Input from './utils/Input';
+import { UserListHeaders } from '../dataList/listTableHeaders';
 
 const users = [
   {
@@ -73,14 +78,6 @@ const users = [
   },
 ];
 
-const UserHeaders = ['#', '이메일', '이름', '출석포인트', '성별', '나이'];
-
-const userListOptions = [
-  { value: 'name', name: '이름' },
-  { value: 'number', name: '번호' },
-  { value: 'email', name: '이메일' },
-];
-
 function UserList() {
   return (
     <Main>
@@ -88,8 +85,12 @@ function UserList() {
         <UserCount list={users} />
       </Content>
       <Content title="사용자 리스트">
-        <ListSearch options={userListOptions} />
-        <ListTable headers={UserHeaders} users={users} />
+        <StyledListSearch>
+          <SelectBox color="white" options={userListOptions} />
+          <Input />
+          <Button text="검색" type="search" />
+        </StyledListSearch>
+        <ListTable headers={UserListHeaders} bodies={users} />
         <TableNumbering />
       </Content>
     </Main>
@@ -97,3 +98,22 @@ function UserList() {
 }
 
 export default UserList;
+
+const StyledListSearch = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  * {
+    margin-right: 40px;
+  }
+  input {
+    padding: 5px 30px 5px 10px;
+    width: 40%;
+    border-radius: 10px;
+    outline: 0 none;
+    border: 2px solid #615b5b;
+  }
+  input:focus {
+    outline: 1px solid ${({ theme }) => theme.darkPulple};
+  }
+`;

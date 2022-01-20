@@ -5,27 +5,22 @@ import Button from './utils/Button';
 import Center from './utils/Center';
 import InputTitle from './utils/InputTitle';
 import Input from './utils/Input';
+import SearchStretching from './stretching/SearchStretching';
 
 function StretchingCreate() {
   return (
     <div>
       <Main>
         <Content title="일주일 스트레칭 등록">
-          <InputTitle text="월" />
-          <Button text="스트레칭 검색" type="stretching"/>
+          <InputTitle text="제목" />
           <Input />
-          <InputTitle text="화" />
-          <Input />
-          <InputTitle text="수" />
-          <Input />
-          <InputTitle text="목" />
-          <Input />
-          <InputTitle text="금" />
-          <Input />
-          <InputTitle text="토" />
-          <Input />
-          <InputTitle text="일" />
-          <Input />
+          <SearchStretching day="월" />
+          <SearchStretching day="화" />
+          <SearchStretching day="수" />
+          <SearchStretching day="목" />
+          <SearchStretching day="금" />
+          <SearchStretching day="토" />
+          <SearchStretching day="일" />
           <Center>
             <Button text="등록 하기" />
           </Center>

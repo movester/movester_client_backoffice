@@ -16,7 +16,6 @@ Year.defaultProps = {
 export default Year;
 
 const StyledYear = styled.p`
-  margin-top: 20px;
   font-weight: bold;
   font-size: 24px;
 `;
