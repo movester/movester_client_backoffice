@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TableNumbering from '../userList/TableNumbering';
+import TableNumbering from '../utils/ListTableNumbering';
 import Button from '../utils/Button';
 import Content from '../utils/Content';
 import Main from '../utils/Main';

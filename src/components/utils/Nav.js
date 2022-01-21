@@ -26,6 +26,14 @@ function Nav({ name }) {
         ['이벤트 등록', '/create'],
       ],
     },
+    {
+      title: '관리자 계정',
+      path: '/admin',
+      list: [
+        ['관리자 계정 리스트', ''],
+        ['관리자 계정 등록', '/create'],
+      ],
+    },
   ];
 
   return (
