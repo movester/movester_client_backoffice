@@ -78,18 +78,16 @@ const users = [
   },
 ];
 
-function UserList() {
+function AdminListComponent() {
   return (
     <Main>
-      <Content title="총 사용자 수" type="half">
+      <Content title="총 관리자 수" type="half">
         <UserCount list={users} />
       </Content>
-      <Content title="사용자 리스트">
+      <Content title="관리자 리스트">
         <StyledListSearch>
           <SelectBox color="white" options={userListOptions} />
           <Input />
-          <SelectBox options={userListOptions} />
-          <SelectBox options={userListOptions} />
           <Button text="검색" type="search" />
         </StyledListSearch>
         <ListTable headers={UserListHeaders} bodies={users} />
@@ -99,7 +97,7 @@ function UserList() {
   );
 }
 
-export default UserList;
+export default AdminListComponent;
 
 const StyledListSearch = styled.section`
   width: 100%;
