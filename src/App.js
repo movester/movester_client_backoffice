@@ -15,6 +15,8 @@ import RegisterStretching from './components/stretching/RegisterStretching';
 import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
 import RegisterEventPage from './pages/event/RegisterEventPage';
 import EventDetail from './components/event/EventDetail';
+import AdminList from './components/AdminListComponent';
+import AdminCreate from './components/AdminCreateComponent';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/event" element={<EventList />} />
         <Route path="/event/create" element={<RegisterEventPage />} />
         <Route path="/event/1" element={<EventDetail />} />
+        <Route path="/admin" element={<AdminList />} />
+        <Route path="/admin/create" element={<AdminCreate />} />
       </Routes>
     </ThemeProvider>
   );
