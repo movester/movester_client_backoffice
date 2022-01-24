@@ -13,6 +13,8 @@ import StretchingCreate from './components/StretchingCreateComponent';
 import Login from './pages/Login';
 import RegisterStretching from './components/stretching/RegisterStretching';
 import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
+import RegisterEventPage from './pages/event/RegisterEventPage';
+import EventDetail from './components/event/EventDetail';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/stretching/weekly" element={<WeeklyStretchingList />} />
         <Route path="/stretching/weekly/create" element={<StretchingCreate />} />
         <Route path="/event" element={<EventList />} />
+        <Route path="/event/create" element={<RegisterEventPage />} />
+        <Route path="/event/1" element={<EventDetail />} />
       </Routes>
     </ThemeProvider>
   );
