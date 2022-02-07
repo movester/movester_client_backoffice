@@ -5,7 +5,7 @@ import theme from './theme';
 import Nav from './components/common/Nav';
 import Example from './components/common/Example';
 import Home from './components/common/Home';
-import Login from './pages/Login';
+import Login from './components/login/LoginComponent';
 import UserList from './components/user/UserListComponent';
 import UserDetail from './components/user/UserDetailComponent';
 import StretchingList from './components/stretching/StretchingListComponent';
