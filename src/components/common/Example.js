@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Main from './Main';
 import Content from './Content';
-import Button from './Button';
-import Input from './OldInput';
-import WhiteButton from './WhiteButton';
+import Button from './elements/Button';
+import Input from './elements/OldInput';
+import WhiteButton from './elements/WhiteButton';
 import ModalPortal from './Modal/ModalPortal';
 import DeleteModal from './Modal/DeleteModal';
 

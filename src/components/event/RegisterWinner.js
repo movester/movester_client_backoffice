@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Button from '../utils/Button';
-import Content from '../utils/Content';
-import InputBox from '../utils/InputBox';
-import Main from '../utils/Main';
-import SelectBox from '../utils/SelectBox';
+import Button from '../common/elements/Button';
+import Content from '../common/Content';
+import InputBox from '../common/elements/InputBox';
+import Main from '../common/Main';
+import SelectBox from '../common/elements/SelectBox';
 
 function RegisterWinner() {
   return (

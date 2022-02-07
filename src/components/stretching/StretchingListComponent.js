@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Main from './utils/Main';
-import Content from './utils/Content';
-import ListTable from './utils/ListTable';
-import SelectBox from './utils/SelectBox';
-import TableNumbering from './utils/ListTableNumbering';
-import Button from './utils/Button';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import ListTable from '../common/elements/ListTable';
+import SelectBox from '../common/elements/SelectBox';
+import TableNumbering from '../common/elements/ListTableNumbering';
+import Button from '../common/elements/Button';
 import {
   stretchingMainCatrgory,
   stretchingSearchOptions,
@@ -13,8 +13,8 @@ import {
   stretchingEffect,
   stretchingPosture,
   stretchingTool,
-} from '../dataList/selectboxOptions';
-import { stretchingListHeaders } from '../dataList/listTableHeaders';
+} from '../../dataList/selectboxOptions';
+import { stretchingListHeaders } from '../../dataList/listTableHeaders';
 
 const users = [
   {

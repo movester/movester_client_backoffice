@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TableNumbering from '../utils/ListTableNumbering';
-import Button from '../utils/Button';
-import Content from '../utils/Content';
-import Main from '../utils/Main';
+import TableNumbering from '../common/elements/ListTableNumbering';
+import Button from '../common/elements/Button';
+import Content from '../common/Content';
+import Main from '../common/Main';
 
 function WeeklyStretchingList() {
   const headers = ['#', '제목', '등록일'];

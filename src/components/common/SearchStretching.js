@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import InputTitle from '../utils/InputTitle';
-import Input from '../utils/Input';
-import Button from '../utils/Button';
+import InputTitle from './elements/InputTitle';
+import Input from './elements/Input';
+import Button from './elements/Button';
 
 function SearchStretching({ day }) {
   return (

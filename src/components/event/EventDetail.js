@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '../utils/Button';
-import Main from '../utils/Main';
-import Content from '../utils/Content';
-import InputTitle from '../utils/InputTitle';
-import Winner from './Winner';
+import Button from '../common/elements/Button';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import InputTitle from '../common/elements/InputTitle';
+import Winner from '../common/Winner';
 import RegisterWinner from './RegisterWinner';
-import SelectBox from '../utils/SelectBox';
-import InputBox from '../utils/InputBox';
-import ContentBox from '../utils/ContentBox';
+import SelectBox from '../common/elements/SelectBox';
+import InputBox from '../common/elements/InputBox';
+import ContentBox from '../common/elements/ContentBox';
 
 function EventDetail() {
   return (

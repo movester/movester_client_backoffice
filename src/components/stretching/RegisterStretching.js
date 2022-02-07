@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Main from '../utils/Main';
-import Content from '../utils/Content';
-import Button from '../utils/Button';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import Button from '../common/elements/Button';
 
 function RegisterStretching() {
   return (

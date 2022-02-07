@@ -2,21 +2,21 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
-import Nav from './components/utils/Nav';
-import Example from './components/utils/Example';
-import Home from './components/utils/Home';
-import UserList from './components/UserListComponent';
-import StretchingList from './components/StretchingListComponent';
-import EventList from './components/EventListComponent';
-import UserDetail from './components/UserDetailComponent';
-import StretchingCreate from './components/StretchingCreateComponent';
+import Nav from './components/common/Nav';
+import Example from './components/common/Example';
+import Home from './components/common/Home';
 import Login from './pages/Login';
+import UserList from './components/user/UserListComponent';
+import UserDetail from './components/user/UserDetailComponent';
+import StretchingList from './components/stretching/StretchingListComponent';
+import StretchingCreate from './components/stretching/StretchingCreateComponent';
 import RegisterStretching from './components/stretching/RegisterStretching';
 import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
 import RegisterEventPage from './pages/event/RegisterEventPage';
+import EventList from './components/event/EventListComponent';
 import EventDetail from './components/event/EventDetail';
-import AdminList from './components/AdminListComponent';
-import AdminCreate from './components/AdminCreateComponent';
+import AdminList from './components/admin/AdminListComponent';
+import AdminCreate from './components/admin/AdminCreateComponent';
 
 function App() {
   return (

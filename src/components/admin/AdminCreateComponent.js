@@ -1,11 +1,11 @@
 import React from 'react';
 // import styled from 'styled-components';
-import Main from './utils/Main';
-import Content from './utils/Content';
-import Button from './utils/Button';
-import Input from './utils/Input';
-import InputTitle from './utils/InputTitle';
-import Center from './utils/Center';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import Button from '../common/elements/Button';
+import Input from '../common/elements/Input';
+import InputTitle from '../common/elements/InputTitle';
+import Center from '../common/elements/Center';
 
 function AdminCreateComponent() {
   return (
