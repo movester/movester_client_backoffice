@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import fetchAdminLogin from '../../store/admin/adminThunk';
 
-const LoginComponent = () => (
-  <StyledLoginBackground>
-    <StyledLoginBlock>
-      <img src="../assets/images/movester-background.png" alt="logo" className="logo" />
-      <h2>로그인</h2>
-      <input type="email" name="email" placeholder="이메일" />
-      <input tpye="password" name="password" placeholder="비밀번호" />
-      <button type="button">로그인 하기</button>
-    </StyledLoginBlock>
-  </StyledLoginBackground>
-);
+const LoginComponent = () => {
+  const dispatch = useDispatch();
+  const [err, setErr] = useState('');
+
+  const onClick = async () => {
+    try {
+      const originalPromiseResult = await dispatch(
+        fetchAdminLogin({
+          id: 'admin1',
+          password: 'admin12',
+        }),
+      ).unwrap();
+      console.log(originalPromiseResult);
+    } catch ({ error }) {
+      setErr(error);
+    }
+  };
+  return (
+    <StyledLoginBackground>
+      {err ? (
+        <h1>{err}</h1>
+      ) : (
+        <StyledLoginBlock>
+          <img src="../assets/images/movester-background.png" alt="logo" className="logo" />
+          <h2>로그인</h2>
+          <input type="text" name="id" placeholder="아이디" />
+          <input type="password" name="password" placeholder="비밀번호" />
+          <button type="button" onClick={onClick}>
+            로그인 하기
+          </button>
+        </StyledLoginBlock>
+      )}
+    </StyledLoginBackground>
+  );
+};
 
 export default LoginComponent;
 
