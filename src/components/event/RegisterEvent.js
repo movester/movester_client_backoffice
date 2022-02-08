@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import Button from '../utils/Button';
 
-import Content from '../utils/Content';
-import Input from '../utils/Input';
-import InputTitle from '../utils/InputTitle';
-import Main from '../utils/Main';
-import SelectBox from '../utils/SelectBox';
+import Main from '../common/Main';
+import Button from '../common/elements/Button';
+import Content from '../common/Content';
+import Input from '../common/elements/Input';
+import InputTitle from '../common/elements/InputTitle';
+import SelectBox from '../common/elements/SelectBox';
 
 function RegisterEvent() {
   const [selectedImages, setSelectedImages] = useState([]);

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListTable from './utils/ListTable';
-import Main from './utils/Main';
-import Content from './utils/Content';
-import Year from './user/Year';
-import Button from './utils/Button';
-import Center from './utils/Center';
-import { UserListHeaders, UserDetailRecord, UserDetailAttendance } from '../dataList/listTableHeaders';
+import ListTable from '../common/elements/ListTable';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import Year from '../common/elements/Year';
+import Button from '../common/elements/Button';
+import Center from '../common/elements/Center';
+import { UserListHeaders, UserDetailRecord, UserDetailAttendance } from '../../dataList/listTableHeaders';
 
 const users = [
   {

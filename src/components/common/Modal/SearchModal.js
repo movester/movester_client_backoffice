@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ModalPortal from './ModalPortal';
-import SelectBox from '../SelectBox';
-import ListTable from '../ListTable';
-import ListTableNumbering from '../ListTableNumbering';
-import Button from '../Button';
-import Input from '../Input';
+import SelectBox from '../elements/SelectBox';
+import ListTable from '../elements/ListTable';
+import ListTableNumbering from '../elements/ListTableNumbering';
+import Button from '../elements/Button';
+import Input from '../elements/Input';
 import { stretchingListHeaders } from '../../../dataList/listTableHeaders';
 import { stretchingMainCatrgory, stretchingSubCatrgory, stretchingPosture } from '../../../dataList/selectboxOptions';
 

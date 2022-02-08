@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import Main from './utils/Main';
-import Content from './utils/Content';
-import SelectBox from './utils/SelectBox';
-import Button from './utils/Button';
-import ListTable from './utils/ListTable';
-import TableNumbering from './utils/ListTableNumbering';
-import UserCount from './user/UserCount';
-import { userListOptions } from '../dataList/selectboxOptions';
-import Input from './utils/Input';
-import { UserListHeaders } from '../dataList/listTableHeaders';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import SelectBox from '../common/elements/SelectBox';
+import Button from '../common/elements/Button';
+import ListTable from '../common/elements/ListTable';
+import TableNumbering from '../common/elements/ListTableNumbering';
+import UserCount from '../common/elements/UserCount';
+import { userListOptions } from '../../dataList/selectboxOptions';
+import Input from '../common/elements/Input';
+import { UserListHeaders } from '../../dataList/listTableHeaders';
 
 const users = [
   {

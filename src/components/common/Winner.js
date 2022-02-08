@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Main from '../utils/Main';
-import Content from '../utils/Content';
-import Button from '../utils/Button';
+import Main from './Main';
+import Content from './Content';
+import Button from './elements/Button';
 
 function Winner() {
   return (

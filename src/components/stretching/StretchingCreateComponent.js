@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Main from './utils/Main';
-import Content from './utils/Content';
-import Button from './utils/Button';
-import Center from './utils/Center';
-import InputTitle from './utils/InputTitle';
-import Input from './utils/Input';
-import SearchStretching from './stretching/SearchStretching';
-import ModalPortal from './utils/Modal/ModalPortal';
-import SearchModal from './utils/Modal/SearchModal';
+import Main from '../common/Main';
+import Content from '../common/Content';
+import Button from '../common/elements/Button';
+import Center from '../common/elements/Center';
+import InputTitle from '../common/elements/InputTitle';
+import Input from '../common/elements/Input';
+import SearchStretching from '../common/SearchStretching';
+import ModalPortal from '../common/Modal/ModalPortal';
+import SearchModal from '../common/Modal/SearchModal';
 
 function StretchingCreate() {
   const [modalOn, setModalOn] = useState(true);
