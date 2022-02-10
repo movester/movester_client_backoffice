@@ -2,12 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function Input({ text = '' }) {
-  return <StyledInput placeholder={text} />;
+function Input({ text = '', onKeyPress, name }) {
+  return <StyledInput name={name} onKeyPress={onKeyPress} placeholder={text} />;
 }
 
 Input.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  onKeyPress: PropTypes.func,
+  name: PropTypes.string,
+};
+Input.defaultProps = {
+  text: '',
+  onKeyPress: () => {},
+  name: '',
 };
 
 export default Input;

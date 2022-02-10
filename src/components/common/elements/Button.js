@@ -2,18 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Button({ text, type }) {
-  return <StyledButton className={type}>{text}</StyledButton>;
+function Button({ text, type, click }) {
+  return (
+    <StyledButton onClick={click} className={type}>
+      {text}
+    </StyledButton>
+  );
 }
 
 Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
+  click: PropTypes.func,
 };
 
 Button.defaultProps = {
   text: '제출하기',
   type: '',
+  click: () => {},
 };
 
 export default Button;

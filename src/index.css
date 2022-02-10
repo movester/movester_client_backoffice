@@ -157,3 +157,9 @@ button {
   cursor: pointer;
   padding: 0;
 }
+
+a {
+  color: #222;
+  text-decoration: none;
+  outline: none;
+}

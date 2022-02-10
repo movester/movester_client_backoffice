@@ -27,7 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Example />} />
         <Route path="/user" element={<UserList />} />
-        <Route path="/user/Detail" element={<UserDetail />} />
+        <Route path="/user/:no" element={<UserDetail />} />
         <Route path="/stretching" element={<StretchingList />} />
         <Route path="/stretching/create" element={<RegisterStretching />} />
         <Route path="/stretching/weekly" element={<WeeklyStretchingList />} />
