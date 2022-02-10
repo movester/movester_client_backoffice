@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -10,6 +12,12 @@ const Wrapper = styled.div`
 `;
 
 function Home() {
+  const { admin } = useSelector(({ admin }) => admin);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!admin) navigate('/login');
+  }, [admin]);
   return (
     <Wrapper>
       <h1>홈</h1>
