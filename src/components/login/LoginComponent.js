@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import fetchAdminLogin from '../../store/admin/adminThunk';
+import { fetchAdminLogin } from '../../store/admin/adminThunk';
 import useInputs from '../../hooks/useInputs';
 
 const LoginComponent = () => {
