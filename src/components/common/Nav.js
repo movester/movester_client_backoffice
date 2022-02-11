@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
 import MenuItem from './MenuItem';
 import LogoSrc from '../../assets/logo.png';
 
-function Nav({ name }) {
+function Nav() {
+  const { admin } = useSelector(({ admin }) => admin);
   const [activeIndex, setActiveIndex] = useState(0);
   const MENU_LIST = [
     { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
@@ -40,7 +42,7 @@ function Nav({ name }) {
     <Wrapper>
       <UserContainer>
         <LogoImage src={LogoSrc} alt="logo" />
-        <UserInfo>{name}</UserInfo>
+        <UserInfo>{admin.name}</UserInfo>
       </UserContainer>
       <MenuContainer>
         {MENU_LIST.map((item, idx) => {
@@ -64,14 +66,6 @@ function Nav({ name }) {
     </Wrapper>
   );
 }
-
-Nav.propTypes = {
-  name: PropTypes.string,
-};
-
-Nav.defaultProps = {
-  name: '이름 없음',
-};
 
 export default Nav;
 

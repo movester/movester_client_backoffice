@@ -17,11 +17,16 @@ export const adminSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(fetchAdminLogin.pending, state => {
+        state.isAuth = false;
+      })
       .addCase(fetchAdminLogin.fulfilled, (state, action) => {
         state.isAuth = true;
         state.admin = action.payload.data;
       })
-      .addCase(fetchAdminLogin.rejected, state => state);
+      .addCase(fetchAdminLogin.rejected, state => {
+        state.isAuth = false;
+      });
   },
 });
 
