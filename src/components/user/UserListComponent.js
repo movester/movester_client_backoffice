@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
@@ -11,6 +11,7 @@ import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
 import Pagination from '../common/Pagination';
 import { listHeaders } from '../../dataList/listTableHeaders';
+import axios from '../../lib/defaultClient';
 
 function UserList() {
   const [users, setUser] = useState([]);
@@ -26,7 +27,7 @@ function UserList() {
   const offset = (page - 1) * limit;
 
   const getUser = async () => {
-    const userList = await (await axios.get('http://localhost:8000/api/users', { withCredentials: true })).data.data;
+    const userList = await (await axios.get('/users')).data.data;
     setUser(userList);
     setSearchKeyword(userList);
   };
