@@ -9,14 +9,27 @@ const initialState = {
 export const adminSlice = createSlice({
   name: 'admin',
   initialState,
-  reducers: {},
+  reducers: {
+    checkAdmin(state, data) {
+      state.isAuth = true;
+      state.admin = data.payload;
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(fetchAdminLogin.fulfilled, (state, action) => ({ ...state, admin: action.payload.data }))
-      .addCase(fetchAdminLogin.rejected, state => state);
+      .addCase(fetchAdminLogin.pending, state => {
+        state.isAuth = false;
+      })
+      .addCase(fetchAdminLogin.fulfilled, (state, action) => {
+        state.isAuth = true;
+        state.admin = action.payload.data;
+      })
+      .addCase(fetchAdminLogin.rejected, state => {
+        state.isAuth = false;
+      });
   },
 });
 
-export const { login } = adminSlice.actions;
+export const { checkAdmin } = adminSlice.actions;
 
 export default adminSlice.reducer;

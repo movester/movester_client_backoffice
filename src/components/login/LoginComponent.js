@@ -1,25 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import fetchAdminLogin from '../../store/admin/adminThunk';
+import useInputs from '../../hooks/useInputs';
 
 const LoginComponent = () => {
+  const { admin } = useSelector(({ admin }) => admin);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [{ id, password }, onChange, reset] = useInputs({
+    id: '',
+    password: '',
+  });
   const [err, setErr] = useState('');
 
-  const onClick = async () => {
+  const onClick = () => {
     try {
-      const originalPromiseResult = await dispatch(
+      dispatch(
         fetchAdminLogin({
-          id: 'admin1',
-          password: 'admin12',
+          id,
+          password,
         }),
       ).unwrap();
-      console.log(originalPromiseResult);
+      reset();
     } catch ({ error }) {
       setErr(error);
     }
   };
+
+  useEffect(() => {
+    if (admin) {
+      navigate('/');
+      try {
+        localStorage.setItem('admin', JSON.stringify(admin));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [navigate, admin]);
+
   return (
     <StyledLoginBackground>
       {err ? (
@@ -28,8 +50,8 @@ const LoginComponent = () => {
         <StyledLoginBlock>
           <img src="../assets/images/movester-background.png" alt="logo" className="logo" />
           <h2>로그인</h2>
-          <input type="text" name="id" placeholder="아이디" />
-          <input type="password" name="password" placeholder="비밀번호" />
+          <input type="text" name="id" value={id} placeholder="아이디" onChange={onChange} />
+          <input type="password" name="password" value={password} placeholder="비밀번호" onChange={onChange} />
           <button type="button" onClick={onClick}>
             로그인 하기
           </button>
