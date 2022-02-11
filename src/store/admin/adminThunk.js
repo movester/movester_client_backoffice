@@ -1,13 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { login } from '../../lib/api/auth';
 
 const fetchAdminLogin = createAsyncThunk('admins/login', async (payload, thunkAPI) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/admins/login', {
-      email: payload.id,
-      password: payload.password,
-    });
-
+    const response = await login(payload)
     return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.data);
