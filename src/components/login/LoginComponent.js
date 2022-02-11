@@ -17,9 +17,9 @@ const LoginComponent = () => {
   });
   const [err, setErr] = useState('');
 
-  const onClick = async () => {
+  const onClick = () => {
     try {
-      await dispatch(
+      dispatch(
         fetchAdminLogin({
           id,
           password,
