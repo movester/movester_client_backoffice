@@ -42,7 +42,7 @@ function Nav() {
     <Wrapper>
       <UserContainer>
         <LogoImage src={LogoSrc} alt="logo" />
-        <UserInfo>{admin.name}</UserInfo>
+        <UserInfo>{admin?.name || '이름없음'}</UserInfo>
       </UserContainer>
       <MenuContainer>
         {MENU_LIST.map((item, idx) => {
