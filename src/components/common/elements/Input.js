@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function Input({ text = '' }) {
-  return <StyledInput placeholder={text} />;
+function Input({ text = '', ...rest }) {
+  return <StyledInput placeholder={text} {...rest} />;
 }
 
 Input.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
+};
+Input.defaultProps = {
+  text: '',
 };
 
 export default Input;

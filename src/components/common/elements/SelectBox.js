@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-function SelectBox({ options, color }) {
+function SelectBox({ options, color, name }) {
   return (
-    <StyledSelectBox color={color}>
+    <StyledSelectBox name={name} color={color}>
       {options.map(option => (
         <option key={option.value} value={option.value}>
           {option.name}
@@ -17,9 +17,11 @@ function SelectBox({ options, color }) {
 SelectBox.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   color: PropTypes.string,
+  name: PropTypes.string,
 };
 SelectBox.defaultProps = {
   color: 'darkGray',
+  name: '',
 };
 
 export default SelectBox;

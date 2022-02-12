@@ -90,7 +90,7 @@ function AdminListComponent() {
           <Input />
           <Button text="검색" type="search" />
         </StyledListSearch>
-        <ListTable headers={UserListHeaders} bodies={users} />
+        <ListTable headers={UserListHeaders} columns={users} />
         <TableNumbering />
       </Content>
     </Main>

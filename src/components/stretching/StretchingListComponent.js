@@ -115,7 +115,7 @@ function StretchingList() {
           <input />
           <Button text="검색" type="search" />
         </StyledListSearch>
-        <ListTable headers={stretchingListHeaders} bodies={users} />
+        <ListTable headers={stretchingListHeaders} columns={users} />
         <TableNumbering />
       </Content>
     </Main>

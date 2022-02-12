@@ -39,7 +39,7 @@ function EventList() {
           <SelectBox options={eventListSearch2} />
           <Button text="검색" type="search" />
         </StyledEventSearch>
-        <ListTable headers={EventListHeaders} bodies={users} />
+        <ListTable headers={EventListHeaders} columns={users} />
         <TableNumbering />
       </ContentComponent>
     </MainComponent>
