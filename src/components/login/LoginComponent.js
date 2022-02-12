@@ -15,6 +15,7 @@ const LoginComponent = () => {
     id: '',
     password: '',
   });
+
   const [err, setErr] = useState('');
 
   const onClick = () => {
@@ -25,7 +26,6 @@ const LoginComponent = () => {
           password,
         }),
       ).unwrap();
-      reset();
     } catch ({ error }) {
       setErr(error);
     }
@@ -41,6 +41,8 @@ const LoginComponent = () => {
       }
     }
   }, [navigate, admin]);
+
+  useEffect(() => reset(), []);
 
   return (
     <StyledLoginBackground>
