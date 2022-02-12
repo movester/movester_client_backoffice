@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import fetchAdminLogin from './adminThunk';
+import { fetchAdminLogin, fetchAdminLogout } from './adminThunk';
 
 const initialState = {
   isAuth: false,
@@ -26,6 +26,17 @@ export const adminSlice = createSlice({
       })
       .addCase(fetchAdminLogin.rejected, state => {
         state.isAuth = false;
+      })
+      .addCase(fetchAdminLogout.pending, state => {
+        state.isAuth = true;
+      })
+      .addCase(fetchAdminLogout.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.isAuth = false;
+        state.admin = null;
+      })
+      .addCase(fetchAdminLogout.rejected, state => {
+        state.isAuth = true;
       });
   },
 });

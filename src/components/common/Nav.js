@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
 import LogoSrc from '../../assets/logo.png';
+import { fetchAdminLogout } from '../../store/admin/adminThunk';
 
 function Nav() {
   const { admin } = useSelector(({ admin }) => admin);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [activeIndex, setActiveIndex] = useState(0);
   const MENU_LIST = [
     { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
@@ -38,6 +43,25 @@ function Nav() {
     },
   ];
 
+  const onLogout = () => {
+    try {
+      dispatch(fetchAdminLogout()).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!admin) {
+      navigate('/login');
+      try {
+        localStorage.removeItem('admin');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [admin]);
+
   return (
     <Wrapper>
       <UserContainer>
@@ -62,7 +86,7 @@ function Nav() {
           );
         })}
       </MenuContainer>
-      <Logout>로그아웃</Logout>
+      <Logout onClick={onLogout}>로그아웃</Logout>
     </Wrapper>
   );
 }

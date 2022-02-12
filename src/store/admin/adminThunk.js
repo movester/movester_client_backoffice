@@ -1,13 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { login } from '../../lib/api/auth';
+import { login, logout } from '../../lib/api/auth';
 
-const fetchAdminLogin = createAsyncThunk('admins/login', async (payload, thunkAPI) => {
+export const fetchAdminLogin = createAsyncThunk('admins/login', async (payload, thunkAPI) => {
   try {
-    const response = await login(payload)
+    const response = await login(payload);
     return response.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.response.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
-export default fetchAdminLogin;
+export const fetchAdminLogout = createAsyncThunk('admins/logout', async (_, thunkAPI) => {
+  try {
+    const response = await logout();
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
