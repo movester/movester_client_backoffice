@@ -1,3 +1,12 @@
+const selectboxOptions = {
+  userListOptions: [
+    { value: 'user_idx', name: '번호' },
+    { value: 'name', name: '이름' },
+    { value: 'email', name: '이메일' },
+    { value: 'kakao_id', name: '카카오아이디' },
+  ],
+};
+
 const userListOptions = [
   { value: 'name', name: '이름' },
   { value: 'email', name: '이메일' },
@@ -79,4 +88,5 @@ export {
   stretchingSearchOptions,
   eventListSearch1,
   eventListSearch2,
+  selectboxOptions,
 };
