@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import axios from '../../lib/defaultClient';
@@ -27,14 +27,13 @@ function AdminCreateComponent() {
         password,
         rank: 0,
       });
+      reset();
       alert('새로운 admin 사용자가 등록되었습니다.');
       navigate('/admin');
     } catch (error) {
       setErr(error);
     }
   };
-
-  useEffect(() => reset(), []);
 
   return (
     <Main>
