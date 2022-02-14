@@ -28,8 +28,8 @@ function UserTable({ headers, columns, link }) {
             <li>{name || '없음'}</li>
             <li>{email || '없음'}</li>
             <li>{kakao_id || '없음'}</li>
-            <li>{isEmailVerify || '없음'}</li>
-            <li>{createAt || '없음'}</li>
+            <li>{isEmailVerify ? '인증 확인' : '인증 필요'}</li>
+            <li>{createAt}</li>
           </ul>
         );
       })}
