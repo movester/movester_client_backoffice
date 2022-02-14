@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function Pagination({ total, limit, page, setPage }) {
-  const numPages = Math.ceil(total / limit);
-  const lastNumber = Math.floor(Math.floor(total / limit) / 5) * 5;
+function Pagination({ total, page, setPage }) {
+  const numPages = Math.ceil(total / 10);
+  const lastNumber = Math.floor(Math.floor(total / 10) / 5) * 5;
 
   const [pageCnt, setPageCnt] = useState(1);
   const [pageRange] = useState(5);
@@ -39,7 +39,6 @@ function Pagination({ total, limit, page, setPage }) {
 
 Pagination.propTypes = {
   total: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
 };

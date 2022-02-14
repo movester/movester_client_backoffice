@@ -1,9 +1,9 @@
 const selectboxOptions = {
   userListOptions: [
-    { value: 'user_idx', name: '번호' },
-    { value: 'name', name: '이름' },
-    { value: 'email', name: '이메일' },
-    { value: 'kakao_id', name: '카카오아이디' },
+    { value: 'JOIN', name: '번호순' },
+    { value: 'ATTEND_POINT', name: '출석 포인트순' },
+    // { value: 'email', name: '이메일' },
+    // { value: 'kakao_id', name: '카카오아이디' },
   ],
 };
 

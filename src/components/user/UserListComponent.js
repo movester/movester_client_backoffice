@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
@@ -16,52 +15,55 @@ import axios from '../../lib/defaultClient';
 function UserList() {
   const [users, setUser] = useState([]);
   const [page, setPage] = useState(1);
-  const [searchKeyword, setSearchKeyword] = useState([]);
-  const [keyWord, setKeyWord] = useState({
-    input: '',
-    selectBox: 'user_idx',
-  });
+  const [sort, setSort] = useState('JOIN');
 
-  const [limit] = useState(10);
+  const [cnt, setCnt] = useState(0);
 
-  const offset = (page - 1) * limit;
+  // const [keyWord, setKeyWord] = useState({
+  //   input: '',
+  //   selectBox: 'user_idx',
+  // });
 
   const getUser = async () => {
-    const userList = await (await axios.get('/users')).data.data;
+    const userList = await (await axios.get(`/users/list?page=${page}&sort=${sort}`)).data.data;
+    console.log(userList);
     setUser(userList);
-    setSearchKeyword(userList);
+  };
+  const getUserCnt = async () => {
+    const userCnt = await (await axios.get('/users/count')).data.data[0].count;
+    setCnt(userCnt);
   };
 
   useEffect(() => {
-    getUser();
+    getUserCnt();
   }, []);
 
   useEffect(() => {
-    setSearchKeyword([...users.filter(user => `${user[keyWord.selectBox]}`.includes(keyWord.input))]);
-  }, [keyWord]);
+    getUser();
+  }, [page]);
+
+  useEffect(() => {
+    getUser();
+  }, [sort]);
 
   const searchClick = async e => {
-    const $form = e.target.closest('form');
-    setKeyWord({
-      ...keyWord,
-      input: $form.keyword.value,
-      selectBox: $form.test.options[$form.test.selectedIndex].value,
-    });
+    // const $form = e.target.closest('form');
+    // setKeyWord({
+    //   ...keyWord,
+    //   input: $form.keyword.value,
+    //   selectBox: $form.test.options[$form.test.selectedIndex].value,
+    // });
+    console.log(e.target);
   };
-  // 테스트
-  // useEffect(() => {
-  //   fetch('https://jsonplaceholder.typicode.com/posts')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUser(data);
-  //       setSearchKeyword(data);
-  //     });
-  // }, []);
 
+  const handleSelect = e => {
+    setSort(e.target.value);
+  };
+  // console.log(cnt);
   return (
     <Main>
       <Content title="총 사용자 수" type="half">
-        <UserCount list={users} />
+        <UserCount cnt={cnt} />
       </Content>
       <Content title="사용자 리스트">
         <StyledListSearch onSubmit={e => e.preventDefault()}>
@@ -72,7 +74,7 @@ function UserList() {
               if (e.key === 'Enter') searchClick(e);
             }}
           />
-          <SelectBox options={selectboxOptions.userListOptions} />
+          <SelectBox options={selectboxOptions.userListOptions} onChange={handleSelect} value={sort} />
           <Button click={searchClick} text="검색" type="search" />
         </StyledListSearch>
 
@@ -82,33 +84,22 @@ function UserList() {
               <li key={header}>{header}</li>
             ))}
           </ul>
-          {/* 테스트 */}
-          {/* {users.slice(offset, offset + limit).map(({ id, title, body }) => (
-            <Link key={id} to={`/user/${id}`}>
-              <ul key={id} className="column">
-                <li>{id}</li>
-                <li>{title}</li>
-                <li>{body}</li>
-              </ul>
-            </Link>
-          ))} */}
-          {searchKeyword.slice(offset, offset + limit).map(keyword => {
-            const { user_idx, email, name, kakao_id, create_at, is_email_verify } = keyword;
+          {users.map(keyword => {
+            const { userIdx, email, name, attendPoint, attendCnt } = keyword;
             return (
-              <Link key={user_idx} to={`/user/${user_idx}`}>
-                <ul key={user_idx} className="column">
-                  <li>{user_idx}</li>
+              <Link key={userIdx} to={`/user/${userIdx}`}>
+                <ul key={userIdx} className="column">
+                  <li>{userIdx}</li>
                   <li>{name}</li>
                   <li>{email || '없음'}</li>
-                  <li>{kakao_id || '없음'}</li>
-                  <li>{is_email_verify ? 'O' : 'X'}</li>
-                  <li>{create_at ? create_at.slice(0, 10) : '없음'}</li>
+                  <li>{attendPoint}</li>
+                  <li>{attendCnt}</li>
                 </ul>
               </Link>
             );
           })}
         </StyledListTable>
-        <Pagination total={searchKeyword.length} limit={limit} page={page} setPage={setPage} />
+        <Pagination total={cnt} page={page} setPage={setPage} />
       </Content>
     </Main>
   );
