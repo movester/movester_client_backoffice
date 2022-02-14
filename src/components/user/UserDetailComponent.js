@@ -1,23 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import UserTable from '../common/elements/UserTable';
 import ListTable from '../common/elements/ListTable';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Year from '../common/elements/Year';
 import Button from '../common/elements/Button';
 import Center from '../common/elements/Center';
-import { UserListHeaders, UserDetailRecord, UserDetailAttendance } from '../../dataList/listTableHeaders';
-
-const users = [
-  {
-    id: '1',
-    email: 'ysh1111@gmail.com',
-    name: '유송현1',
-    age: '9',
-    sholder: '22.5',
-    legs: '10',
-  },
-];
+import { UserDetailRecord, UserDetailAttendance, listHeaders } from '../../dataList/listTableHeaders';
+import defaultClient from '../../lib/defaultClient';
 
 const point = [
   { month: '1월', point: '10' },
@@ -50,27 +42,37 @@ const record = [
 ];
 
 function UserDetail() {
+  const { no } = useParams();
+  const [user, setUser] = useState([]);
+  const getUser = async () => {
+    const userInfo = await (await defaultClient.get(`/users/info/${no}`)).data.data[0];
+
+    setUser([userInfo]);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
-    <div>
-      <Main>
-        <Content title="사용자 상세#543333">
-          <ListTable headers={UserListHeaders} bodies={users} />
+    <Main>
+      <Content title={`사용자자 상세 #${user[0]?.userIdx}`}>
+        <UserTable headers={listHeaders.userHeader} columns={user} />
+      </Content>
+      <StyledUserDetail>
+        <Content title="출석 포인트" type="half">
+          <Year Date="2021" />
+          <ListTable ratio="half" headers={UserDetailRecord} columns={point} />
         </Content>
-        <StyledUserDetail>
-          <Content title="출석 포인트" type="half">
-            <Year Date="2021" />
-            <ListTable ratio="half" headers={UserDetailRecord} bodies={point} />
-          </Content>
-          <Content title="기록" type="half">
-            <Year Date="2021" />
-            <ListTable headers={UserDetailAttendance} bodies={record} />
-          </Content>
-        </StyledUserDetail>
-        <Center>
-          <Button text="계정 삭제" />
-        </Center>
-      </Main>
-    </div>
+        <Content title="기록" type="half">
+          <Year Date="2021" />
+          <ListTable headers={UserDetailAttendance} columns={record} />
+        </Content>
+      </StyledUserDetail>
+      <Center>
+        <Button text="계정 삭제" />
+      </Center>
+    </Main>
   );
 }
 
