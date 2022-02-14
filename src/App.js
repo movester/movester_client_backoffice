@@ -17,6 +17,7 @@ import EventList from './components/event/EventListComponent';
 import EventDetail from './components/event/EventDetail';
 import AdminList from './components/admin/AdminListComponent';
 import AdminCreate from './components/admin/AdminCreateComponent';
+import UpdatePassword from './components/admin/UpdatePassword';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/event/1" element={<EventDetail />} />
         <Route path="/admin" element={<AdminList />} />
         <Route path="/admin/create" element={<AdminCreate />} />
+        <Route path="/admin/update" element={<UpdatePassword />} />
       </Routes>
     </ThemeProvider>
   );
