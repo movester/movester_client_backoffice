@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { login, logout } from '../../lib/api/auth';
+import { login, logout, updatePassword } from '../../lib/api/auth';
 
 export const fetchAdminLogin = createAsyncThunk('admins/login', async (payload, thunkAPI) => {
   try {
@@ -16,6 +16,16 @@ export const fetchAdminLogout = createAsyncThunk('admins/logout', async (_, thun
     return response.data;
   } catch (error) {
     console.log(error);
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
+
+export const fetchEditPassword = createAsyncThunk('admins/edit', async (payload, thunkAPI) => {
+  console.log(payload.adminIdx);
+  try {
+    const response = await updatePassword(payload, payload.adminIdx);
+    return response.data;
+  } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
