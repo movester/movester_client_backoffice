@@ -6,6 +6,7 @@ const stretchingListHeaders = ['#', '제목', '부위', '자세', '효과', '난
 
 const listHeaders = {
   userHeader: ['#', '이름', '이메일', '카카오 아이디', '이메일 인증 여부', '가입 날짜'],
+  userlistHeader: ['#', '이름', '이메일', '가입 날짜', '출석 포인트'],
 };
 
 export {
