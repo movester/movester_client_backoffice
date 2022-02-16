@@ -23,7 +23,7 @@ Content.defaultProps = {
   type: '',
 };
 
-export default Content;
+export default React.memo(Content);
 
 const Wrapper = styled.div`
   width: 100%;

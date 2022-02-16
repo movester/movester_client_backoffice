@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeField, clearField } from '../../store/stretching/wirteSlice';
+
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Button from '../common/elements/Button';
+import Editor from '../editor/Editor';
+
+// useMemo : 컴포넌트 최적화
 
 function RegisterStretching() {
+  const dispatch = useDispatch();
+  const { title, content } = useSelector(({ write }) => ({
+    title: write.title,
+    content: write.content,
+  }));
+
+  const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
+
+  const onChangeInput = e => {
+    dispatch(onChangeField({ key: 'title', value: e.target.value }));
+  };
+
+  useEffect(
+    () => () => {
+      dispatch(clearField());
+    },
+    [dispatch],
+  );
+
   return (
     <Main>
       <Content title="스트레칭 등록">
         <div>
           <StyledTitle>제목</StyledTitle>
-          <StyledInput type="text" />
+          <StyledInput type="text" value={title} onChange={onChangeInput} />
         </div>
         <div>
           <StyledTitle>부위</StyledTitle>
@@ -57,8 +82,7 @@ function RegisterStretching() {
         </div>
         <div>
           <StyledTitle>설명</StyledTitle>
-          {/* 에디터 */}
-          <textarea style={{ width: '90%', height: '400px' }} />
+          <Editor content={content} onChangeField={onChangeField} />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button text="등록하기" />
@@ -68,7 +92,7 @@ function RegisterStretching() {
   );
 }
 
-export default RegisterStretching;
+export default React.memo(RegisterStretching);
 
 const StyledSelect = styled.select`
   width: 150px;

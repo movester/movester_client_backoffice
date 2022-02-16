@@ -79,6 +79,7 @@ const users = [
 ];
 
 function AdminListComponent() {
+  // TODO: adminIdx가 1인 admin만 admin 삭제 버튼 보이도록, 본인 제외하고
   return (
     <Main>
       <Content title="총 관리자 수" type="half">
