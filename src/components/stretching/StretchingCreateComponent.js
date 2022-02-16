@@ -21,7 +21,7 @@ function StretchingCreate() {
         <Content title="일주일 스트레칭 등록">
           <InputTitle text="제목" />
           <Input />
-          <SearchStretching day="월" />
+          <SearchStretching day="월" modal={handleModal} />
           <SearchStretching day="화" />
           <SearchStretching day="수" />
           <SearchStretching day="목" />

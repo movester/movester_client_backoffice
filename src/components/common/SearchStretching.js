@@ -5,12 +5,12 @@ import InputTitle from './elements/InputTitle';
 import Input from './elements/Input';
 import Button from './elements/Button';
 
-function SearchStretching({ day }) {
+function SearchStretching({ day, modal }) {
   return (
     <>
       <InputTitle text={day} />
       <StyledStretchingSearch>
-        <Button text="스트레칭 검색" type="stretching" />
+        <Button text="스트레칭 검색" type="stretching" click={modal} />
         <Input />
       </StyledStretchingSearch>
     </>
@@ -19,6 +19,11 @@ function SearchStretching({ day }) {
 
 SearchStretching.propTypes = {
   day: PropTypes.string.isRequired,
+  modal: PropTypes.func,
+};
+
+SearchStretching.defaultProps = {
+  modal: () => {},
 };
 
 export default SearchStretching;
