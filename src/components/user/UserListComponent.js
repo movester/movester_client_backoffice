@@ -80,20 +80,20 @@ function UserList() {
 
         <StyledListTable>
           <ul>
-            {listHeaders.userHeader.map(header => (
+            {listHeaders.userlistHeader.map(header => (
               <li key={header}>{header}</li>
             ))}
           </ul>
           {users.map(keyword => {
-            const { userIdx, email, name, attendPoint, attendCnt } = keyword;
+            const { userIdx, email, name, attendPoint, createAt } = keyword;
             return (
               <Link key={userIdx} to={`/user/${userIdx}`}>
                 <ul key={userIdx} className="column">
                   <li>{userIdx}</li>
                   <li>{name}</li>
-                  <li>{email || '없음'}</li>
+                  <li>{email}</li>
                   <li>{attendPoint}</li>
-                  <li>{attendCnt}</li>
+                  <li>{createAt}</li>
                 </ul>
               </Link>
             );
