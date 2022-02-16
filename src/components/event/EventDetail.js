@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import InputTitle from '../common/elements/InputTitle';

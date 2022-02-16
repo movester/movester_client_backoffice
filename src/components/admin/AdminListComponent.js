@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import ListTable from '../common/elements/ListTable';
 import TableNumbering from '../common/elements/ListTableNumbering';
 import UserCount from '../common/elements/UserCount';

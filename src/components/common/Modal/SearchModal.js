@@ -5,7 +5,7 @@ import ModalPortal from './ModalPortal';
 import SelectBox from '../elements/SelectBox';
 import ListTable from '../elements/ListTable';
 import ListTableNumbering from '../elements/ListTableNumbering';
-import Button from '../elements/Button';
+import Button from '../button/Button';
 import Input from '../elements/Input';
 import { stretchingListHeaders } from '../../../dataList/listTableHeaders';
 import { stretchingMainCatrgory, stretchingSubCatrgory, stretchingPosture } from '../../../dataList/selectboxOptions';

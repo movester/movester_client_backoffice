@@ -5,7 +5,7 @@ import Content from '../common/Content';
 import ListTable from '../common/elements/ListTable';
 import SelectBox from '../common/elements/SelectBox';
 import TableNumbering from '../common/elements/ListTableNumbering';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import {
   stretchingMainCatrgory,
   stretchingSearchOptions,

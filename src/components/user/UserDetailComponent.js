@@ -4,7 +4,7 @@ import ListTable from '../common/elements/ListTable';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Year from '../common/elements/Year';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Center from '../common/elements/Center';
 import { UserListHeaders, UserDetailRecord, UserDetailAttendance } from '../../dataList/listTableHeaders';
 

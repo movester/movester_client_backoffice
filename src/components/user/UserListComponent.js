@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import UserCount from '../common/elements/UserCount';
 import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
