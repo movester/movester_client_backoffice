@@ -5,7 +5,6 @@ import theme from './theme';
 import Nav from './components/common/Nav';
 import Example from './components/common/Example';
 import Home from './components/common/Home';
-import Login from './components/login/LoginComponent';
 import UserList from './components/user/UserListComponent';
 import UserDetail from './components/user/UserDetailComponent';
 import StretchingList from './components/stretching/StretchingListComponent';
@@ -15,9 +14,11 @@ import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
 import RegisterEventPage from './pages/event/RegisterEventPage';
 import EventList from './components/event/EventListComponent';
 import EventDetail from './components/event/EventDetail';
-import AdminList from './components/admin/AdminListComponent';
+
 import AdminCreate from './components/admin/AdminCreateComponent';
 import UpdatePassword from './components/admin/UpdatePassword';
+import AdminListPage from './pages/admin/AdminListPage';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path="/event" element={<EventList />} />
         <Route path="/event/create" element={<RegisterEventPage />} />
         <Route path="/event/1" element={<EventDetail />} />
-        <Route path="/admin" element={<AdminList />} />
+        <Route path="/admin" element={<AdminListPage />} />
         <Route path="/admin/create" element={<AdminCreate />} />
         <Route path="/admin/update" element={<UpdatePassword />} />
       </Routes>
