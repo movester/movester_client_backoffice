@@ -16,6 +16,10 @@ export const adminSlice = createSlice({
       state.isAuth = true;
       state.admin = data.payload;
     },
+    checkOutAdmin(state) {
+      state.isAuth = false;
+      state.admin = null;
+    },
   },
   extraReducers: builder => {
     builder
@@ -60,6 +64,6 @@ export const adminSlice = createSlice({
   },
 });
 
-export const { checkAdmin } = adminSlice.actions;
+export const { checkAdmin, checkOutAdmin } = adminSlice.actions;
 
 export default adminSlice.reducer;

@@ -12,7 +12,6 @@ import Pagination from '../common/Pagination';
 
 function AdminListComponent() {
   const { admin } = useSelector(({ admin }) => admin);
-  const { rank, adminIdx } = admin;
   const [admins, setAdmins] = useState([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
@@ -22,7 +21,6 @@ function AdminListComponent() {
   const getAdminList = async () => {
     try {
       const result = await axios.get('/admins');
-      console.log(result.data);
 
       setAdmins([...result.data.data]);
     } catch (err) {
@@ -57,18 +55,18 @@ function AdminListComponent() {
               <li key={header}>{header}</li>
             ))}
           </ul>
-          {admins.slice(offset, offset + limit).map(admin => (
-            <ul key={admin.adminIdx}>
-              <li>{admin.adminIdx}</li>
-              <li>{admin.id}</li>
-              <li>{admin.name}</li>
-              <li>{admin.rank}</li>
-              <li>{admin.createAt}</li>
-              {rank === 1 ? (
-                adminIdx === admin.adminIdx ? null : (
+          {admins.slice(offset, offset + limit).map(adm => (
+            <ul key={adm.adminIdx}>
+              <li>{adm.adminIdx}</li>
+              <li>{adm.id}</li>
+              <li>{adm.name}</li>
+              <li>{adm.rank}</li>
+              <li>{adm.createAt}</li>
+              {admin?.rank === 1 ? (
+                admin?.adminIdx === adm.adminIdx ? null : (
                   <DeleteIcon
                     style={{ cursor: 'pointer', color: 'tomato' }}
-                    onClick={() => removeAdmin(admin.adminIdx)}
+                    onClick={() => removeAdmin(adm.adminIdx)}
                   />
                 )
               ) : null}
