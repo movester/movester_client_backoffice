@@ -5,6 +5,7 @@ import styled from 'styled-components';
 function Pagination({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
   const lastNumber = Math.floor(Math.floor(total / limit) / 5) * 5;
+  // console.log(lastNumber, total, limit);
 
   const [pageCnt, setPageCnt] = useState(1);
   const [pageRange] = useState(5);

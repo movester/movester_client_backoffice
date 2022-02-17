@@ -11,7 +11,7 @@ import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
 import Pagination from '../common/Pagination';
 import { listHeaders } from '../../dataList/listTableHeaders';
-import axios from '../../lib/defaultClient';
+import axios from '../../services/defaultClient';
 
 function UserList() {
   const [users, setUser] = useState([]);

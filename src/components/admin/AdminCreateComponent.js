@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import axios from '../../lib/defaultClient';
+import axios from '../../services/defaultClient';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Button from '../common/elements/Button';
