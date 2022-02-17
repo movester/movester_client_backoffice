@@ -22,12 +22,25 @@ function AdminListComponent() {
   const getAdminList = async () => {
     try {
       const result = await axios.get('/admins');
+      console.log(result.data);
 
-      setAdmins([...admins, ...result.data.data]);
+      setAdmins([...result.data.data]);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const removeAdmin = async idx => {
+    try {
+      if (!window.confirm('해당 관리자를 삭제하시겠습니까?')) return;
+      await axios.delete(`/admins/${idx}`);
+      alert('삭제가 완료되었습니다.');
+      getAdminList();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     getAdminList();
   }, []);
@@ -53,7 +66,10 @@ function AdminListComponent() {
               <li>{admin.createAt}</li>
               {rank === 1 ? (
                 adminIdx === admin.adminIdx ? null : (
-                  <DeleteIcon style={{ cursor: 'pointer', color: 'tomato' }} />
+                  <DeleteIcon
+                    style={{ cursor: 'pointer', color: 'tomato' }}
+                    onClick={() => removeAdmin(admin.adminIdx)}
+                  />
                 )
               ) : null}
             </ul>

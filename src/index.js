@@ -9,13 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import { checkAdmin } from './store/admin/adminSlice';
 
 function loadAuth() {
-  try {
-    const admin = JSON.parse(localStorage.getItem('admin'));
-    if (!admin) return;
-    store.dispatch(checkAdmin(admin));
-  } catch (error) {
-    console.error(error);
-  }
+  const admin = JSON.parse(localStorage.getItem('admin'));
+  if (!admin) return;
+  store.dispatch(checkAdmin(admin));
 }
 
 loadAuth();
