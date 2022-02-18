@@ -1,9 +1,12 @@
 const selectboxOptions = {
-  userListOptions: [
+  userListSort: [
     { value: 'JOIN', name: '번호순' },
     { value: 'ATTEND_POINT', name: '출석 포인트순' },
-    // { value: 'email', name: '이메일' },
-    // { value: 'kakao_id', name: '카카오아이디' },
+  ],
+  userListSearch: [
+    { value: 'USER_IDX', name: '번호' },
+    { value: 'EMAIL', name: '이메일' },
+    { value: 'NAME', name: '이름' },
   ],
 };
 
