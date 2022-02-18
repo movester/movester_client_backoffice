@@ -16,13 +16,7 @@ function UserList() {
   const [users, setUser] = useState([]);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('JOIN');
-
   const [cnt, setCnt] = useState(0);
-
-  // const [keyWord, setKeyWord] = useState({
-  //   input: '',
-  //   selectBox: 'user_idx',
-  // });
 
   const getUser = async () => {
     const userList = await (await axios.get(`/users/list?page=${page}&sort=${sort}`)).data.data;
@@ -34,32 +28,29 @@ function UserList() {
     setCnt(userCnt);
   };
 
+  // const getSearch = async () => {
+  //   const userCnt = await (await axios.get(`/users/search/?type=${}&value=${}`)).data.data[0].count;
+  //   setCnt(userCnt);
+  // };
+
   useEffect(() => {
     getUserCnt();
   }, []);
 
   useEffect(() => {
     getUser();
-  }, [page]);
-
-  useEffect(() => {
-    getUser();
-  }, [sort]);
+  }, [sort, page]);
 
   const searchClick = async e => {
+    console.log('hi');
     // const $form = e.target.closest('form');
-    // setKeyWord({
-    //   ...keyWord,
-    //   input: $form.keyword.value,
-    //   selectBox: $form.test.options[$form.test.selectedIndex].value,
-    // });
-    console.log(e.target);
+    // console.log($form.name);
+    // console.log($form.keyword);
   };
 
   const handleSelect = e => {
     setSort(e.target.value);
   };
-  // console.log(cnt);
   return (
     <Main>
       <Content title="총 사용자 수" type="half">
@@ -67,16 +58,17 @@ function UserList() {
       </Content>
       <Content title="사용자 리스트">
         <StyledListSearch onSubmit={e => e.preventDefault()}>
-          <SelectBox color="white" options={selectboxOptions.userListOptions} name="test" />
+          <SelectBox color="white" options={selectboxOptions.userListSearch} name="test" />
           <Input
             name="keyword"
             onKeyPress={e => {
               if (e.key === 'Enter') searchClick(e);
             }}
           />
-          <SelectBox options={selectboxOptions.userListOptions} onChange={handleSelect} value={sort} />
           <Button click={searchClick} text="검색" type="search" />
         </StyledListSearch>
+
+        <SelectBox options={selectboxOptions.userListSort} onChange={handleSelect} value={sort} />
 
         <StyledListTable>
           <ul>
@@ -92,8 +84,8 @@ function UserList() {
                   <li>{userIdx}</li>
                   <li>{name}</li>
                   <li>{email}</li>
-                  <li>{attendPoint}</li>
                   <li>{createAt}</li>
+                  <li>{attendPoint}</li>
                 </ul>
               </Link>
             );
