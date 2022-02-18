@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from '../../services/defaultClient';
 import Main from '../common/Main';
 import Content from '../common/Content';
+import Pagination from '../common/Pagination';
 import SelectBox from '../common/elements/SelectBox';
 import Button from '../common/elements/Button';
 import UserCount from '../common/elements/UserCount';
 import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
-import Pagination from '../common/Pagination';
+
 import { listHeaders } from '../../dataList/listTableHeaders';
-import axios from '../../lib/defaultClient';
 
 function UserList() {
   const [users, setUser] = useState([]);

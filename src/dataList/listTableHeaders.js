@@ -9,6 +9,7 @@ const listHeaders = {
   userlistHeader: ['#', '이름', '이메일', '가입 날짜', '출석 포인트'],
   recordHeader: ['월', '포인트'],
   attendHeader: ['월', '어깨', '다리'],
+  adminHeader: ['#', 'id', '이름', 'rank', '등록일'],
 };
 
 export {

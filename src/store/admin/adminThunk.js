@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { login, logout, updatePassword } from '../../lib/api/auth';
+import { login, logout, updatePassword } from '../../services/auth';
 
 export const fetchAdminLogin = createAsyncThunk('admins/login', async (payload, thunkAPI) => {
   try {
