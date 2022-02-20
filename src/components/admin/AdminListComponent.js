@@ -35,7 +35,7 @@ function AdminListComponent() {
   return (
     <Main>
       <Content title="총 관리자 수" type="half">
-        <UserCount list={admins} />
+        <UserCount cnt={admins.length} />
       </Content>
       <Content title="관리자 리스트">
         <StyledListTable>

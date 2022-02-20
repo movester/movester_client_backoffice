@@ -1,114 +1,123 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from '../../services/defaultClient';
 import Main from '../common/Main';
 import Content from '../common/Content';
+import Pagination from '../common/Pagination';
 import SelectBox from '../common/elements/SelectBox';
 import Button from '../common/elements/Button';
 import UserCount from '../common/elements/UserCount';
 import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
-import Pagination from '../common/Pagination';
+
 import { listHeaders } from '../../dataList/listTableHeaders';
-import axios from '../../services/defaultClient';
 
 function UserList() {
   const [users, setUser] = useState([]);
+  const [total, setTotal] = useState(0);
+
   const [page, setPage] = useState(1);
-  const [searchKeyword, setSearchKeyword] = useState([]);
-  const [keyWord, setKeyWord] = useState({
-    input: '',
-    selectBox: 'user_idx',
-  });
-
-  const [limit] = useState(10);
-
-  const offset = (page - 1) * limit;
+  const [sort, setSort] = useState('JOIN');
+  const [cnt, setCnt] = useState(0);
+  const [type, setType] = useState('USER_IDX');
+  const [value, setValue] = useState('');
+  const [check, setCheck] = useState(true);
 
   const getUser = async () => {
-    const userList = await (await axios.get('/users')).data.data;
+    const userList = await (await axios.get(`/users/list?page=${page}&sort=${sort}`)).data.data;
     setUser(userList);
-    setSearchKeyword(userList);
+    setCnt(total);
+  };
+
+  const getUserSearch = async () => {
+    const userSearch = await (await axios.get(`/users/search/?type=${type}&value=${value}&page=${page}`)).data.data;
+    const { searchCnt, users: searchUser } = userSearch;
+    setCnt(searchCnt);
+    setUser(searchUser);
+  };
+
+  const getUserCnt = async () => {
+    const userCnt = await (await axios.get('/users/count')).data.data[0].count;
+    setTotal(userCnt);
+    setCnt(userCnt);
   };
 
   useEffect(() => {
-    getUser();
+    getUserCnt();
   }, []);
 
   useEffect(() => {
-    setSearchKeyword([...users.filter(user => `${user[keyWord.selectBox]}`.includes(keyWord.input))]);
-  }, [keyWord]);
+    setPage(1);
+    getUser();
+  }, [sort]);
 
-  const searchClick = async e => {
-    const $form = e.target.closest('form');
-    setKeyWord({
-      ...keyWord,
-      input: $form.keyword.value,
-      selectBox: $form.test.options[$form.test.selectedIndex].value,
-    });
+  useEffect(() => {
+    if (check) getUserSearch();
+    else getUser();
+  }, [page]);
+
+  const searchClick = async () => {
+    setPage(1);
+    setCheck(true);
+    getUserSearch();
   };
-  // 테스트
-  // useEffect(() => {
-  //   fetch('https://jsonplaceholder.typicode.com/posts')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUser(data);
-  //       setSearchKeyword(data);
-  //     });
-  // }, []);
+
+  const sortSelect = e => {
+    setCheck(false);
+    setSort(e.target.value);
+  };
+
+  const inputChange = e => {
+    setValue(e.target.value);
+  };
+
+  const selectOnChange = e => {
+    setType(e.target.value);
+  };
 
   return (
     <Main>
       <Content title="총 사용자 수" type="half">
-        <UserCount list={users} />
+        <UserCount cnt={total} />
       </Content>
       <Content title="사용자 리스트">
         <StyledListSearch onSubmit={e => e.preventDefault()}>
-          <SelectBox color="white" options={selectboxOptions.userListOptions} name="test" />
+          <SelectBox color="white" options={selectboxOptions.userListSearch} value={type} onChange={selectOnChange} />
           <Input
             name="keyword"
+            value={value}
+            onChange={inputChange}
             onKeyPress={e => {
               if (e.key === 'Enter') searchClick(e);
             }}
           />
-          <SelectBox options={selectboxOptions.userListOptions} />
           <Button click={searchClick} text="검색" type="search" />
+          <SelectBox options={selectboxOptions.userListSort} onChange={sortSelect} value={sort} />
         </StyledListSearch>
 
         <StyledListTable>
           <ul>
-            {listHeaders.userHeader.map(header => (
+            {listHeaders.userlistHeader.map(header => (
               <li key={header}>{header}</li>
             ))}
           </ul>
-          {/* 테스트 */}
-          {/* {users.slice(offset, offset + limit).map(({ id, title, body }) => (
-            <Link key={id} to={`/user/${id}`}>
-              <ul key={id} className="column">
-                <li>{id}</li>
-                <li>{title}</li>
-                <li>{body}</li>
-              </ul>
-            </Link>
-          ))} */}
-          {searchKeyword.slice(offset, offset + limit).map(keyword => {
-            const { user_idx, email, name, kakao_id, create_at, is_email_verify } = keyword;
+          {users.map(keyword => {
+            const { userIdx, email, name, attendPoint, createAt } = keyword;
             return (
-              <Link key={user_idx} to={`/user/${user_idx}`}>
-                <ul key={user_idx} className="column">
-                  <li>{user_idx}</li>
+              <Link key={userIdx} to={`/user/${userIdx}`}>
+                <ul key={userIdx} className="column">
+                  <li>{userIdx}</li>
                   <li>{name}</li>
-                  <li>{email || '없음'}</li>
-                  <li>{kakao_id || '없음'}</li>
-                  <li>{is_email_verify ? 'O' : 'X'}</li>
-                  <li>{create_at ? create_at.slice(0, 10) : '없음'}</li>
+                  <li>{email}</li>
+                  <li>{createAt}</li>
+                  <li>{attendPoint}</li>
                 </ul>
               </Link>
             );
           })}
         </StyledListTable>
-        <Pagination total={searchKeyword.length} limit={limit} page={page} setPage={setPage} />
+        <Pagination total={cnt} page={page} setPage={setPage} />
       </Content>
     </Main>
   );
@@ -132,6 +141,9 @@ const StyledListSearch = styled.form`
   }
   input:focus {
     outline: 1px solid ${({ theme }) => theme.darkPulple};
+  }
+  .search {
+    margin-right: 40px;
   }
 `;
 const StyledListTable = styled.section`

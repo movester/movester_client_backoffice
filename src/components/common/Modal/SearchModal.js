@@ -108,7 +108,7 @@ function SearchModal({ title, onClose }) {
             <Input />
             <Button type="search" text="검색" />
           </StyledListSearch>
-          <ListTable headers={stretchingListHeaders} bodies={users} />
+          <ListTable headers={stretchingListHeaders} columns={users} />
           <ListTableNumbering />
         </Content>
       </Container>

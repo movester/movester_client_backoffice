@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function UserCount({ list }) {
-  return <StyleduserCount>{list.length}명</StyleduserCount>;
+function UserCount({ cnt }) {
+  return <StyleduserCount>{cnt}명</StyleduserCount>;
 }
 
 UserCount.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cnt: PropTypes.number.isRequired,
 };
 
 export default UserCount;
