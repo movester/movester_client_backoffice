@@ -7,7 +7,7 @@ import Main from '../common/Main';
 import Content from '../common/Content';
 import Year from '../common/elements/Year';
 import { listHeaders } from '../../dataList/listTableHeaders';
-import axios from '../../lib/defaultClient';
+import axios from '../../services/defaultClient';
 
 function UserDetail() {
   const month = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];

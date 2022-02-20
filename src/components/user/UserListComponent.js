@@ -15,61 +15,86 @@ import { listHeaders } from '../../dataList/listTableHeaders';
 
 function UserList() {
   const [users, setUser] = useState([]);
+  const [total, setTotal] = useState(0);
+
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('JOIN');
   const [cnt, setCnt] = useState(0);
+  const [type, setType] = useState('USER_IDX');
+  const [value, setValue] = useState('');
+  const [check, setCheck] = useState(true);
 
   const getUser = async () => {
     const userList = await (await axios.get(`/users/list?page=${page}&sort=${sort}`)).data.data;
-    console.log(userList);
     setUser(userList);
-  };
-  const getUserCnt = async () => {
-    const userCnt = await (await axios.get('/users/count')).data.data[0].count;
-    setCnt(userCnt);
+    setCnt(total);
   };
 
-  // const getSearch = async () => {
-  //   const userCnt = await (await axios.get(`/users/search/?type=${}&value=${}`)).data.data[0].count;
-  //   setCnt(userCnt);
-  // };
+  const getUserSearch = async () => {
+    const userSearch = await (await axios.get(`/users/search/?type=${type}&value=${value}&page=${page}`)).data.data;
+    const { searchCnt, users: searchUser } = userSearch;
+    setCnt(searchCnt);
+    setUser(searchUser);
+  };
+
+  const getUserCnt = async () => {
+    const userCnt = await (await axios.get('/users/count')).data.data[0].count;
+    setTotal(userCnt);
+    setCnt(userCnt);
+  };
 
   useEffect(() => {
     getUserCnt();
   }, []);
 
   useEffect(() => {
+    setPage(1);
     getUser();
-  }, [sort, page]);
+  }, [sort]);
 
-  const searchClick = async e => {
-    console.log('hi');
-    // const $form = e.target.closest('form');
-    // console.log($form.name);
-    // console.log($form.keyword);
+  useEffect(() => {
+    if (check) getUserSearch();
+    else getUser();
+  }, [page]);
+
+  const searchClick = async () => {
+    setPage(1);
+    setCheck(true);
+    getUserSearch();
   };
 
-  const handleSelect = e => {
+  const sortSelect = e => {
+    setCheck(false);
     setSort(e.target.value);
   };
+
+  const inputChange = e => {
+    setValue(e.target.value);
+  };
+
+  const selectOnChange = e => {
+    setType(e.target.value);
+  };
+
   return (
     <Main>
       <Content title="총 사용자 수" type="half">
-        <UserCount cnt={cnt} />
+        <UserCount cnt={total} />
       </Content>
       <Content title="사용자 리스트">
         <StyledListSearch onSubmit={e => e.preventDefault()}>
-          <SelectBox color="white" options={selectboxOptions.userListSearch} name="test" />
+          <SelectBox color="white" options={selectboxOptions.userListSearch} value={type} onChange={selectOnChange} />
           <Input
             name="keyword"
+            value={value}
+            onChange={inputChange}
             onKeyPress={e => {
               if (e.key === 'Enter') searchClick(e);
             }}
           />
           <Button click={searchClick} text="검색" type="search" />
+          <SelectBox options={selectboxOptions.userListSort} onChange={sortSelect} value={sort} />
         </StyledListSearch>
-
-        <SelectBox options={selectboxOptions.userListSort} onChange={handleSelect} value={sort} />
 
         <StyledListTable>
           <ul>
@@ -116,6 +141,9 @@ const StyledListSearch = styled.form`
   }
   input:focus {
     outline: 1px solid ${({ theme }) => theme.darkPulple};
+  }
+  .search {
+    margin-right: 40px;
   }
 `;
 const StyledListTable = styled.section`
