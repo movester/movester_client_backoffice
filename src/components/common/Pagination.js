@@ -4,25 +4,25 @@ import styled from 'styled-components';
 
 function Pagination({ total, page, setPage }) {
   const numPages = Math.ceil(total / 10);
-  const lastNumber = Math.floor(Math.floor(total / 10) / 5) * 5;
-
   const [pageCnt, setPageCnt] = useState(1);
   const [pageRange] = useState(5);
+  console.log(numPages, '나야');
 
   const prev = () => {
-    setPage(pageCnt - pageRange);
-    setPageCnt(pageCnt - pageRange);
+    if ((page - 1) % 5 === 0) setPageCnt(pageCnt - pageRange);
+    setPage(page - 1);
   };
 
   const next = () => {
-    setPage(pageCnt + pageRange);
-    setPageCnt(pageCnt + pageRange);
+    if (page % 5 === 0) setPageCnt(pageCnt + pageRange);
+    setPage(page + 1);
   };
+
   const pageArr = [];
   for (let i = 0; i <= numPages; i += 1) pageArr.push(i);
   return (
     <StyledPageWrap>
-      <StyledPageButton onClick={prev} disabled={page < 6}>
+      <StyledPageButton onClick={prev} disabled={page === 1}>
         &lt;
       </StyledPageButton>
       {pageArr.slice(pageCnt, pageCnt + pageRange).map(index => (
@@ -30,7 +30,7 @@ function Pagination({ total, page, setPage }) {
           {index}
         </StyledPageButton>
       ))}
-      <StyledPageButton onClick={next} disabled={page + 5 > lastNumber}>
+      <StyledPageButton onClick={next} disabled={page === numPages}>
         &gt;
       </StyledPageButton>
     </StyledPageWrap>
