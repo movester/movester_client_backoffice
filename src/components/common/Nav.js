@@ -55,11 +55,6 @@ function Nav() {
   useEffect(() => {
     if (!admin) {
       navigate('/login');
-      try {
-        localStorage.removeItem('admin');
-      } catch (error) {
-        console.error(error);
-      }
     }
   }, [admin]);
 

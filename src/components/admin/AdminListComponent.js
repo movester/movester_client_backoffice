@@ -12,7 +12,6 @@ import Pagination from '../common/Pagination';
 
 function AdminListComponent() {
   const { admin } = useSelector(({ admin }) => admin);
-  const { rank, adminIdx } = admin;
   const [admins, setAdmins] = useState([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
@@ -23,11 +22,23 @@ function AdminListComponent() {
     try {
       const result = await axios.get('/admins');
 
-      setAdmins([...admins, ...result.data.data]);
+      setAdmins([...result.data.data]);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const removeAdmin = async idx => {
+    try {
+      if (!window.confirm('해당 관리자를 삭제하시겠습니까?')) return;
+      await axios.delete(`/admins/${idx}`);
+      alert('삭제가 완료되었습니다.');
+      getAdminList();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     getAdminList();
   }, []);
@@ -44,16 +55,19 @@ function AdminListComponent() {
               <li key={header}>{header}</li>
             ))}
           </ul>
-          {admins.slice(offset, offset + limit).map(admin => (
-            <ul key={admin.adminIdx}>
-              <li>{admin.adminIdx}</li>
-              <li>{admin.id}</li>
-              <li>{admin.name}</li>
-              <li>{admin.rank}</li>
-              <li>{admin.createAt}</li>
-              {rank === 1 ? (
-                adminIdx === admin.adminIdx ? null : (
-                  <DeleteIcon style={{ cursor: 'pointer', color: 'tomato' }} />
+          {admins.slice(offset, offset + limit).map(adm => (
+            <ul key={adm.adminIdx}>
+              <li>{adm.adminIdx}</li>
+              <li>{adm.id}</li>
+              <li>{adm.name}</li>
+              <li>{adm.rank}</li>
+              <li>{adm.createAt}</li>
+              {admin?.rank === 1 ? (
+                admin?.adminIdx === adm.adminIdx ? null : (
+                  <DeleteIcon
+                    style={{ cursor: 'pointer', color: 'tomato' }}
+                    onClick={() => removeAdmin(adm.adminIdx)}
+                  />
                 )
               ) : null}
             </ul>

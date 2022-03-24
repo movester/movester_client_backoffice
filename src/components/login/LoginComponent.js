@@ -34,13 +34,8 @@ const LoginComponent = () => {
   useEffect(() => {
     if (admin) {
       navigate('/');
-      try {
-        localStorage.setItem('admin', JSON.stringify(admin));
-      } catch (error) {
-        console.error(error);
-      }
     }
-  }, [navigate, admin]);
+  }, [admin]);
 
   useEffect(() => reset(), []);
 
