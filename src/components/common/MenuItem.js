@@ -55,7 +55,7 @@ MenuItem.defaultProps = {
   idx: 0,
 };
 
-export default MenuItem;
+export default React.memo(MenuItem);
 
 const MenuContainer = styled.li`
   &.active {

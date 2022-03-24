@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import InputTitle from './elements/InputTitle';
 import Input from './elements/Input';
-import Button from './elements/Button';
+import Button from './button/Button';
 
 function SearchStretching({ day, modal }) {
   return (

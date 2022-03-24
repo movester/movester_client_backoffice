@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import TableNumbering from '../common/elements/ListTableNumbering';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Content from '../common/Content';
 import Main from '../common/Main';
 

@@ -10,7 +10,7 @@ Main.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Main;
+export default React.memo(Main);
 
 const Wrapper = styled.div`
   margin-left: 15vw;

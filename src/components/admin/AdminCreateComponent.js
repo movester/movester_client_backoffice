@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 import Main from '../common/Main';
 import Content from '../common/Content';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Input from '../common/elements/Input';
 import InputTitle from '../common/elements/InputTitle';
 import Center from '../common/elements/Center';

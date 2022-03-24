@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import ModalPortal from './ModalPortal';
 
 function UpdatePasswordModal({ title, content, onClose }) {
-  console.log('모달');
   return (
     <ModalPortal>
       <Container>

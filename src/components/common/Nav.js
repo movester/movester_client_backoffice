@@ -7,6 +7,9 @@ import MenuItem from './MenuItem';
 import LogoSrc from '../../assets/logo.png';
 import { fetchAdminLogout } from '../../store/admin/adminThunk';
 
+// NavLink 적용
+// 이벤트 관련 네비게이션 X
+
 function Nav() {
   const { admin } = useSelector(({ admin }) => admin);
   const dispatch = useDispatch();
@@ -87,7 +90,7 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default React.memo(Nav);
 
 const Wrapper = styled.div`
   width: 15vw;

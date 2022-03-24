@@ -4,7 +4,7 @@ import MainComponent from '../common/Main';
 import ContentComponent from '../common/Content';
 import ListTable from '../common/elements/ListTable';
 import SelectBox from '../common/elements/SelectBox';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import TableNumbering from '../common/elements/ListTableNumbering';
 import { EventListHeaders } from '../../dataList/listTableHeaders';
 import { eventListSearch1, eventListSearch2 } from '../../dataList/selectboxOptions';

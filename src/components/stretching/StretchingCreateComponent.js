@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Main from '../common/Main';
 import Content from '../common/Content';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Center from '../common/elements/Center';
 import InputTitle from '../common/elements/InputTitle';
 import Input from '../common/elements/Input';

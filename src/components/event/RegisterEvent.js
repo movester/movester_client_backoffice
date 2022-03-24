@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Main from '../common/Main';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Content from '../common/Content';
 import Input from '../common/elements/Input';
 import InputTitle from '../common/elements/InputTitle';

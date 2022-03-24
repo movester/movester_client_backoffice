@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useInputs from '../../hooks/useInputs';
 import { fetchEditPassword } from '../../store/admin/adminThunk';
-import Button from '../common/elements/Button';
+import Button from '../common/button/Button';
 import Main from '../common/Main';
 import UpdatePasswordModal from '../common/Modal/UpdatePasswordModal';
 

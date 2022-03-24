@@ -65,3 +65,7 @@ const StyledButton = styled.div`
     margin-left: 10%;
   }
 `;
+
+export const CancelButton = styled(Button)`
+  width: 50%;
+`;
