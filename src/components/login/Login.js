@@ -10,8 +10,8 @@ function Login({ onChange, onSubmit, id, password, errModalOn, handleErrModal, e
       <StyledLoginBlock onSubmit={onSubmit}>
         <img src="/assets/images/movester-background.png" alt="logo" className="logo" />
         <h2>로그인</h2>
-        <input type="text" name="id" value={id} placeholder="아이디" onChange={onChange} />
-        <input type="password" name="password" value={password} placeholder="비밀번호" onChange={onChange} />
+        <input type="text" name="id" value={id} placeholder="아이디" autoComplete="on" onChange={onChange} />
+        <input type="password" name="password" value={password} placeholder="비밀번호" autoComplete="on" onChange={onChange} />
         <button type="submit">로그인 하기</button>
       </StyledLoginBlock>
       <ModalPortal>

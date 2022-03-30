@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
-import LogoSrc from '../../assets/logo.png';
-import { fetchAdminLogout } from '../../store/admin/adminThunk';
-
-// NavLink 적용
-// 이벤트 관련 네비게이션 X
+import ModalPortal from './Modal/ModalPortal';
+import LogoutModal from './Modal/LogoutModal';
 
 function Nav() {
-  const { admin } = useSelector(({ admin }) => admin);
-  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const name = useSelector(state => state.auth.admin?.name);
+
   const navigate = useNavigate();
+
+  const [modalOn, setModalOn] = useState(false);
+
+  const handleModal = () => {
+    setModalOn(prev => !prev);
+  };
+
+  const OnModal = () => {
+    setModalOn(prev => !prev);
+  };
 
   const [activeIndex, setActiveIndex] = useState(0);
   const MENU_LIST = [
@@ -47,27 +55,20 @@ function Nav() {
     },
   ];
 
-  const onLogout = () => {
-    try {
-      dispatch(fetchAdminLogout()).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    if (!admin) {
+    if (!isAuth) {
       navigate('/login');
     }
-  }, [admin]);
+    setModalOn(false);
+  }, [isAuth]);
 
   if (window.location.pathname === '/login') return null;
 
   return (
     <Wrapper>
       <UserContainer>
-        <LogoImage src={LogoSrc} alt="logo" />
-        <UserInfo>{admin?.name || '이름없음'}</UserInfo>
+        <LogoImage src="/assets/images/logo.png" alt="logo" />
+        <UserInfo>{name}</UserInfo>
       </UserContainer>
       <MenuContainer>
         {MENU_LIST.map((item, idx) => {
@@ -87,7 +88,12 @@ function Nav() {
           );
         })}
       </MenuContainer>
-      <Logout onClick={onLogout}>로그아웃</Logout>
+      <Logout onClick={OnModal}>로그아웃</Logout>
+      {modalOn && (
+        <ModalPortal>
+          <LogoutModal onClose={handleModal} />
+        </ModalPortal>
+      )}
     </Wrapper>
   );
 }

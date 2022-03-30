@@ -12,12 +12,14 @@ const Wrapper = styled.div`
 `;
 
 function Home() {
-  const { admin } = useSelector(({ admin }) => admin);
+  const { isAuth } = useSelector(({ auth }) => ({
+    isAuth: auth.isAuth,
+  }));
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!admin) navigate('/login');
-  }, [admin]);
+    if (!isAuth) navigate('/login');
+  }, [isAuth]);
   return (
     <Wrapper>
       <h1>홈</h1>

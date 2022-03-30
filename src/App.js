@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import Nav from './components/common/Nav';
-import Home from './components/common/Home';
 import UserList from './components/user/UserListComponent';
 import UserDetail from './components/user/UserDetailComponent';
 import StretchingList from './components/stretching/StretchingListComponent';
@@ -24,7 +23,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<UserList />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/:no" element={<UserDetail />} />
