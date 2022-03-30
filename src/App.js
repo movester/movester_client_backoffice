@@ -17,7 +17,7 @@ import EventDetail from './components/event/EventDetail';
 import AdminCreate from './components/admin/AdminCreateComponent';
 import UpdatePassword from './components/admin/UpdatePassword';
 import AdminListPage from './pages/admin/AdminListPage';
-import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/:no" element={<UserDetail />} />
         <Route path="/stretching" element={<StretchingList />} />

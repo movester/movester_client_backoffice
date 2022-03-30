@@ -61,6 +61,8 @@ function Nav() {
     }
   }, [admin]);
 
+  if (window.location.pathname === '/login') return null;
+
   return (
     <Wrapper>
       <UserContainer>
