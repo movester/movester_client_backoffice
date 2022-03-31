@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import MenuItem from './MenuItem';
 import ModalPortal from './Modal/ModalPortal';
 import LogoutModal from './Modal/LogoutModal';
+import ConfirmModal from './Modal/ConfirmModal';
 
 function Nav() {
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -13,14 +14,14 @@ function Nav() {
 
   const navigate = useNavigate();
 
-  const [modalOn, setModalOn] = useState(false);
-
-  const handleModal = () => {
-    setModalOn(prev => !prev);
+  const [errModalOn, setErrModalOn] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+  const handleErrModal = () => {
+    setErrModalOn(!errModalOn);
   };
-
-  const OnModal = () => {
-    setModalOn(prev => !prev);
+  const [logoutModalOn, setLogoutModalOn] = useState(false);
+  const handleLogoutModal = () => {
+    setLogoutModalOn(prev => !prev);
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -58,7 +59,7 @@ function Nav() {
     if (!isAuth) {
       navigate('/login');
     }
-    setModalOn(false);
+    setLogoutModalOn(false);
   }, [isAuth]);
 
   if (window.location.pathname === '/login') return null;
@@ -91,10 +92,15 @@ function Nav() {
           );
         })}
       </MenuContainer>
-      <Logout onClick={OnModal}>로그아웃</Logout>
-      {modalOn && (
+      <Logout onClick={handleLogoutModal}>로그아웃</Logout>
+      {logoutModalOn && (
         <ModalPortal>
-          <LogoutModal onClose={handleModal} />
+          <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal}/>
+        </ModalPortal>
+      )}
+      {errModalOn && (
+        <ModalPortal>
+          <ConfirmModal onClose={handleErrModal} title="로그아웃 실패" content={errMsg} />
         </ModalPortal>
       )}
     </Wrapper>

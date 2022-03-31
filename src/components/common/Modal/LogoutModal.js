@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ModalPortal from './ModalPortal';
 import { fetchLogoutThunk } from '../../../store/auth/authAsyncThunk';
 
-function LogoutModal({ onClose }) {
+function LogoutModal({ onClose, setErrMsg, handleErrModal }) {
   const isError = useSelector(state => state.auth.error);
 
   const dispatch = useDispatch();
@@ -15,7 +15,10 @@ function LogoutModal({ onClose }) {
 
   const onLogout = () => {
     dispatch(fetchLogoutThunk());
-    if (!isError) {
+    if (isError) {
+      setErrMsg(isError);
+      handleErrModal()
+    } else {
       navigate('/login');
     }
   };
@@ -41,6 +44,8 @@ function LogoutModal({ onClose }) {
 
 LogoutModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  setErrMsg: PropTypes.func.isRequired,
+  handleErrModal: PropTypes.func.isRequired,
 };
 
 export default LogoutModal;

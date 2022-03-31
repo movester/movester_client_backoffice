@@ -6,7 +6,6 @@ function Pagination({ total, page, setPage }) {
   const numPages = Math.ceil(total / 10);
   const [pageCnt, setPageCnt] = useState(1);
   const [pageRange] = useState(5);
-  console.log(numPages, '나야');
 
   const prev = () => {
     if ((page - 1) % 5 === 0) setPageCnt(pageCnt - pageRange);

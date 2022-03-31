@@ -66,7 +66,6 @@ function AdminList({
           <AdminDeleteModal
             onClose={handleDeleteModal}
             adminIdx={deleteAdminIdx}
-            handleDeleteModal={handleDeleteModal}
             setErrMsg={setErrMsg}
             handleErrModal={handleErrModal}
           />
