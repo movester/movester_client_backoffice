@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+
 import Nav from './components/common/Nav';
 import UserList from './components/user/UserListComponent';
 import UserDetail from './components/user/UserDetailComponent';
@@ -14,9 +15,9 @@ import EventList from './components/event/EventListComponent';
 import EventDetail from './components/event/EventDetail';
 
 import AdminCreate from './components/admin/AdminCreateComponent';
-import UpdatePassword from './components/admin/UpdatePassword';
+import PasswordChangePage from './pages/admin/PasswordChangePage';
 import AdminListPage from './pages/admin/AdminListPage';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/admin/LoginPage';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path="/event/1" element={<EventDetail />} />
         <Route path="/admin" element={<AdminListPage />} />
         <Route path="/admin/create" element={<AdminCreate />} />
-        <Route path="/admin/update" element={<UpdatePassword />} />
+        <Route path="/admin/updatePassword" element={<PasswordChangePage />} />
       </Routes>
     </ThemeProvider>
   );

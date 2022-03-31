@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
 import ModalPortal from './Modal/ModalPortal';
@@ -68,7 +68,9 @@ function Nav() {
     <Wrapper>
       <UserContainer>
         <LogoImage src="/assets/images/logo.png" alt="logo" />
-        <UserInfo>{name}</UserInfo>
+        <Link to='/admin/updatePassword'>
+          <UserInfo>{name}</UserInfo>
+        </Link>
       </UserContainer>
       <MenuContainer>
         {MENU_LIST.map((item, idx) => {

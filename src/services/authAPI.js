@@ -5,7 +5,7 @@ const authAPI = {
     return axios.post('/admins/login', payload);
   },
   fetchLogout() {
-    return axios.get('/admins/logout');
+    return axios.post('/admins/logout');
   },
 };
 

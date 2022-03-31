@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import Login from '../components/login/Login';
-import { fetchLoginThunk } from '../store/auth/authAsyncThunk';
+import Login from '../../components/admin/Login';
+import { fetchLoginThunk } from '../../store/auth/authAsyncThunk';
 
 function LoginPage() {
   const { isAuth } = useSelector(state => state.auth);
