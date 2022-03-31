@@ -50,7 +50,6 @@ function Nav() {
       list: [
         ['관리자 계정 리스트', ''],
         ['관리자 계정 등록', '/create'],
-        ['비밀번호 변경', '/update'],
       ],
     },
   ];
@@ -67,8 +66,10 @@ function Nav() {
   return (
     <Wrapper>
       <UserContainer>
-        <LogoImage src="/assets/images/logo.png" alt="logo" />
-        <Link to='/admin/updatePassword'>
+        <Link to="/">
+          <LogoImage src="/assets/images/logo.png" alt="logo" />
+        </Link>
+        <Link to="/admin/updatePassword">
           <UserInfo>{name}</UserInfo>
         </Link>
       </UserContainer>

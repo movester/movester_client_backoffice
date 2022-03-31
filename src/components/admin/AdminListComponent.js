@@ -11,7 +11,7 @@ import { listHeaders } from '../../dataList/listTableHeaders';
 import Pagination from '../common/Pagination';
 
 function AdminListComponent() {
-  const { admin } = useSelector(({ admin }) => admin);
+  const { admin } = useSelector(state => state.auth.admin?.adminIdx);
   const [admins, setAdmins] = useState([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
