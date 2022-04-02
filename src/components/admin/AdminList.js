@@ -8,26 +8,8 @@ import Content from '../common/Content';
 import UserCount from '../common/elements/UserCount';
 import { listHeaders } from '../../dataList/listTableHeaders';
 import Pagination from '../common/Pagination';
-import ModalPortal from '../common/Modal/ModalPortal';
-import AdminDeleteModal from '../common/Modal/AdminDeleteModal';
-import ConfirmModal from '../common/Modal/ConfirmModal';
 
-function AdminList({
-  admins,
-  adminRank,
-  offset,
-  limit,
-  page,
-  setPage,
-  deleteModalOn,
-  handleDeleteModal,
-  deleteAdminIdx,
-  setDeleteAdminIdx,
-  errModalOn,
-  handleErrModal,
-  errMsg,
-  setErrMsg,
-}) {
+function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDeleteModal, setDeleteAdminIdx }) {
   return (
     <Main>
       <Content title="총 관리자 수" type="half">
@@ -61,21 +43,6 @@ function AdminList({
         </StyledListTable>
         <Pagination total={admins.length} limit={limit} page={page} setPage={setPage} />
       </Content>
-      {deleteModalOn && (
-        <ModalPortal>
-          <AdminDeleteModal
-            onClose={handleDeleteModal}
-            adminIdx={deleteAdminIdx}
-            setErrMsg={setErrMsg}
-            handleErrModal={handleErrModal}
-          />
-        </ModalPortal>
-      )}
-      {errModalOn && (
-        <ModalPortal>
-          <ConfirmModal onClose={handleErrModal} title="비밀번호 변경 실패" content={errMsg} />
-        </ModalPortal>
-      )}
     </Main>
   );
 }
@@ -87,18 +54,8 @@ AdminList.propTypes = {
   limit: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
-  deleteModalOn: PropTypes.bool.isRequired,
   handleDeleteModal: PropTypes.func.isRequired,
-  deleteAdminIdx: PropTypes.number,
   setDeleteAdminIdx: PropTypes.func.isRequired,
-  errModalOn: PropTypes.bool.isRequired,
-  handleErrModal: PropTypes.func.isRequired,
-  errMsg: PropTypes.string.isRequired,
-  setErrMsg: PropTypes.func.isRequired,
-};
-
-AdminList.defaultProps = {
-  deleteAdminIdx: null,
 };
 
 export default AdminList;

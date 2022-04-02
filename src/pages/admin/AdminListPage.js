@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import axios from '../../services/defaultClient';
 
 import AdminList from '../../components/admin/AdminList';
+import ModalPortal from '../../components/common/Modal/ModalPortal';
+import ConfirmModal from '../../components/common/Modal/ConfirmModal';
+import AdminDeleteModal from '../../components/common/Modal/AdminDeleteModal';
 
 function AdminListPage() {
   const adminRank = useSelector(state => state.auth.admin?.rank);
@@ -41,22 +44,29 @@ function AdminListPage() {
   }, [deleteModalOn]);
 
   return (
-    <AdminList
-      admins={admins}
-      adminRank={adminRank}
-      offset={offset}
-      limit={limit}
-      page={page}
-      setPage={setPage}
-      deleteAdminIdx={deleteAdminIdx}
-      setDeleteAdminIdx={setDeleteAdminIdx}
-      deleteModalOn={deleteModalOn}
-      handleDeleteModal={handleDeleteModal}
-      errModalOn={errModalOn}
-      handleErrModal={handleErrModal}
-      errMsg={errMsg}
-      setErrMsg={setErrMsg}
-    />
+    <>
+      <AdminList
+        admins={admins}
+        adminRank={adminRank}
+        offset={offset}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+        setDeleteAdminIdx={setDeleteAdminIdx}
+        handleDeleteModal={handleDeleteModal}
+      />
+      <ModalPortal>
+        {deleteModalOn && (
+          <AdminDeleteModal
+            onClose={handleDeleteModal}
+            adminIdx={deleteAdminIdx}
+            setErrMsg={setErrMsg}
+            handleErrModal={handleErrModal}
+          />
+        )}
+        {errModalOn && <ConfirmModal onClose={handleErrModal} title="비밀번호 변경 실패" content={errMsg} />}
+      </ModalPortal>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ModalPortal from './ModalPortal';
 import axios from '../../../services/defaultClient';
 
-function AdminDeleteModal({ onClose, adminIdx, handleDeleteModal, setErrMsg, handleErrModal }) {
+function AdminDeleteModal({ onClose, adminIdx, setErrMsg, handleErrModal }) {
   const onAdminDelete = async () => {
     try {
       await axios.delete(`/admins/${adminIdx}`);
@@ -25,7 +25,7 @@ function AdminDeleteModal({ onClose, adminIdx, handleDeleteModal, setErrMsg, han
               type="button"
               onClick={() => {
                 onAdminDelete();
-                handleDeleteModal();
+                onClose();
               }}
             >
               예
@@ -43,7 +43,6 @@ function AdminDeleteModal({ onClose, adminIdx, handleDeleteModal, setErrMsg, han
 AdminDeleteModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   adminIdx: PropTypes.number,
-  handleDeleteModal: PropTypes.func.isRequired,
   setErrMsg: PropTypes.func.isRequired,
   handleErrModal: PropTypes.func.isRequired,
 };
