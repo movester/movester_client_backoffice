@@ -14,7 +14,7 @@ import RegisterEventPage from './pages/event/RegisterEventPage';
 import EventList from './components/event/EventListComponent';
 import EventDetail from './components/event/EventDetail';
 
-import AdminCreate from './components/admin/AdminCreateComponent';
+import AdminCreatePage from './pages/admin/AdminCreatePage';
 import PasswordChangePage from './pages/admin/PasswordChangePage';
 import AdminListPage from './pages/admin/AdminListPage';
 import LoginPage from './pages/admin/LoginPage';
@@ -36,7 +36,7 @@ function App() {
         <Route path="/event/create" element={<RegisterEventPage />} />
         <Route path="/event/1" element={<EventDetail />} />
         <Route path="/admin" element={<AdminListPage />} />
-        <Route path="/admin/create" element={<AdminCreate />} />
+        <Route path="/admin/create" element={<AdminCreatePage />} />
         <Route path="/admin/updatePassword" element={<PasswordChangePage />} />
       </Routes>
     </ThemeProvider>
