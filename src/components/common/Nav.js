@@ -11,6 +11,7 @@ import ConfirmModal from './Modal/ConfirmModal';
 function Nav() {
   const isAuth = useSelector(state => state.auth.isAuth);
   const name = useSelector(state => state.auth.admin?.name);
+  const rank = useSelector(state => state.auth.admin?.rank);
 
   const navigate = useNavigate();
 
@@ -25,35 +26,62 @@ function Nav() {
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const MENU_LIST = [
-    { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
-    {
-      title: '스트레칭',
-      path: '/stretching',
-      list: [
-        ['스트레칭 리스트', ''],
-        ['스트레칭 등록', '/create'],
-        ['일주일 추천 리스트', '/weekly'],
-        ['일주일 추천 등록', '/weekly/create'],
-      ],
-    },
-    {
-      title: '이벤트',
-      path: '/event',
-      list: [
-        ['이벤트 리스트', ''],
-        ['이벤트 등록', '/create'],
-      ],
-    },
-    {
-      title: '관리자 계정',
-      path: '/admin',
-      list: [
-        ['관리자 계정 리스트', ''],
-        ['관리자 계정 등록', '/create'],
-      ],
-    },
-  ];
+  const MENU_LIST = rank
+    ? [
+        { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
+        {
+          title: '스트레칭',
+          path: '/stretching',
+          list: [
+            ['스트레칭 리스트', ''],
+            ['스트레칭 등록', '/create'],
+            ['일주일 추천 리스트', '/weekly'],
+            ['일주일 추천 등록', '/weekly/create'],
+          ],
+        },
+        {
+          title: '이벤트',
+          path: '/event',
+          list: [
+            ['이벤트 리스트', ''],
+            ['이벤트 등록', '/create'],
+          ],
+        },
+        {
+          title: '관리자 계정',
+          path: '/admin',
+          list: [
+            ['관리자 계정 리스트', ''],
+            ['관리자 계정 등록', '/create'],
+          ],
+        },
+      ]
+    : [
+        { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
+        {
+          title: '스트레칭',
+          path: '/stretching',
+          list: [
+            ['스트레칭 리스트', ''],
+            ['스트레칭 등록', '/create'],
+            ['일주일 추천 리스트', '/weekly'],
+            ['일주일 추천 등록', '/weekly/create'],
+          ],
+        },
+        {
+          title: '이벤트',
+          path: '/event',
+          list: [
+            ['이벤트 리스트', ''],
+            ['이벤트 등록', '/create'],
+          ],
+        },
+        {
+          title: '관리자 계정',
+          path: '/admin',
+          list: [['관리자 계정 리스트', '']],
+        },
+      ];
 
   useEffect(() => {
     if (!isAuth) {
@@ -95,7 +123,7 @@ function Nav() {
       <Logout onClick={handleLogoutModal}>로그아웃</Logout>
       {logoutModalOn && (
         <ModalPortal>
-          <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal}/>
+          <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal} />
         </ModalPortal>
       )}
       {errModalOn && (
