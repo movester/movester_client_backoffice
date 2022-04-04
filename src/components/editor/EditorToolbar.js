@@ -1,7 +1,9 @@
 /* eslint-disable */
-import React from 'react';
-import { Quill } from 'react-quill';
-
+import React, {useRef} from 'react';
+import ReactQuill from 'react-quill';
+import S3 from 'react-aws-s3';
+// import S3FileUpload from 'react-s3';
+window.Buffer = window.Buffer || require("buffer").Buffer;
 const CustomUndo = () => (
   <svg viewBox="0 0 18 18">
     <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
@@ -23,6 +25,42 @@ function redoChange() {
   this.quill.history.redo();
 }
 
+const ImageHandler = () => {
+  const input = document.createElement('input');
+  input.setAttribute('type', 'file');
+  input.setAttribute('accept', 'image/*');
+  input.click();
+  input.onchange = function () {
+    const file = input.files[0];
+    const fileName = file.name;
+    const config = {
+      bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
+      region: process.env.REACT_APP_S3_REGION,
+      accessKeyId: process.env.REACT_APP_S3_ACCESS_ID,
+      secretAccessKey: process.env.REACT_APP_S3_ACCESS_KEY,
+    };
+    console.log(config)
+    const ReactS3Client = new S3(config);
+
+    ReactS3Client.uploadFile(file, fileName)
+      .then(data => {
+        if (data.status === 204) {
+          console.log('data', data);
+          const range = quillInstance.current.getSelection(true);
+          // 1.현재 커서 위치에 2. 이미지를 3.src="" 로 나타냄.
+          quillInstance.current.insertEmbed(range.index, 'image', `${data.location}`);
+
+          // 이미지 업로드 후 커서 이미지 한칸 옆으로 이동.
+          quillInstance.current.setSelection(range.index + 1);
+        } else {
+          alert('error');
+        }
+      })
+      // .then(data => console.log(data))
+      .catch(e => console.log('err', e));
+  };
+};
+
 // Modules object for setting up the Quill editor
 export const modules = {
   toolbar: {
@@ -30,6 +68,7 @@ export const modules = {
     handlers: {
       undo: undoChange,
       redo: redoChange,
+      image: ImageHandler,
     },
   },
   history: {
