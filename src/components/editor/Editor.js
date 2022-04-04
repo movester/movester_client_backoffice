@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import S3 from 'react-aws-s3';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
-import './styles.css';
+
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
 export const Editor = () => {
@@ -73,7 +73,13 @@ export const Editor = () => {
   const modules = useMemo(
     () => ({
       toolbar: {
-        container: '#toolbar',
+        container: [
+          [{ size: ['small', false, 'large', 'huge'] }, { color: [] }, { background: [] }],
+          ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+          [{ align: [] }, { list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+          ['link', 'image', 'video'],
+          ['undo', 'redo'],
+        ],
         handlers: {
           undo: undoChange,
           redo: redoChange,
@@ -89,24 +95,40 @@ export const Editor = () => {
     [],
   );
 
-  const formats = [
-    'header',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'align',
-    'strike',
-    'script',
-    'blockquote',
-    'background',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'color',
-  ];
+  // const modules = {
+  //   toolbar: {
+  //     container: '#toolbar',
+  //     handlers: {
+  //       undo: undoChange,
+  //       redo: redoChange,
+  //       image: ImageHandler,
+  //     },
+  //   },
+  //   history: {
+  //     delay: 500,
+  //     maxStack: 100,
+  //     userOnly: true,
+  //   },
+  // }
+
+  // const formats = [
+  //   'header',
+  //   'size',
+  //   'bold',
+  //   'italic',
+  //   'underline',
+  //   'align',
+  //   'strike',
+  //   'script',
+  //   'blockquote',
+  //   'background',
+  //   'list',
+  //   'bullet',
+  //   'indent',
+  //   'link',
+  //   'image',
+  //   'color',
+  // ];
 
   const QuillToolbar = () => (
     <div id="toolbar">
@@ -155,7 +177,7 @@ export const Editor = () => {
 
   return (
     <div className="text-editor">
-      <QuillToolbar />
+      {/* <QuillToolbar /> */}
       <QuillWrapper>
         <ReactQuill
           ref={element => {
@@ -168,7 +190,7 @@ export const Editor = () => {
           onChange={handleChange}
           placeholder="Write something awesome..."
           modules={modules}
-          formats={formats}
+          // formats={formats}
         />
       </QuillWrapper>
     </div>
