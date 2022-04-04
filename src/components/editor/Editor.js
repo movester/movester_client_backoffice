@@ -1,18 +1,15 @@
 /* eslint-disable */
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import ReactQuill from 'react-quill';
 import S3 from 'react-aws-s3';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
 
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
-export const Editor = () => {
+export const Editor = ({ value, handleEditor }) => {
   const QuillRef = useRef();
-  const [state, setState] = useState('null');
-  const handleChange = value => {
-    setState({ value });
-  };
 
   const CustomUndo = () => (
     <svg viewBox="0 0 18 18">
@@ -49,7 +46,7 @@ export const Editor = () => {
         accessKeyId: process.env.REACT_APP_S3_ACCESS_ID,
         secretAccessKey: process.env.REACT_APP_S3_ACCESS_KEY,
       };
-      console.log(config);
+
       const ReactS3Client = new S3(config);
 
       ReactS3Client.uploadFile(file, fileName)
@@ -95,89 +92,8 @@ export const Editor = () => {
     [],
   );
 
-  // const modules = {
-  //   toolbar: {
-  //     container: '#toolbar',
-  //     handlers: {
-  //       undo: undoChange,
-  //       redo: redoChange,
-  //       image: ImageHandler,
-  //     },
-  //   },
-  //   history: {
-  //     delay: 500,
-  //     maxStack: 100,
-  //     userOnly: true,
-  //   },
-  // }
-
-  // const formats = [
-  //   'header',
-  //   'size',
-  //   'bold',
-  //   'italic',
-  //   'underline',
-  //   'align',
-  //   'strike',
-  //   'script',
-  //   'blockquote',
-  //   'background',
-  //   'list',
-  //   'bullet',
-  //   'indent',
-  //   'link',
-  //   'image',
-  //   'color',
-  // ];
-
-  const QuillToolbar = () => (
-    <div id="toolbar">
-      <span className="ql-formats">
-        <select className="ql-header" defaultValue="3">
-          <option value="1">Heading</option>
-          <option value="2">Subheading</option>
-          <option value="3">Normal</option>
-          <option value="4">Small</option>
-          <option value="5">Comment</option>
-        </select>
-      </span>
-      <span className="ql-formats">
-        <select className="ql-color" />
-        <select className="ql-background" />
-      </span>
-      <span className="ql-formats">
-        <button className="ql-bold" />
-        <button className="ql-italic" />
-        <button className="ql-underline" />
-        <button className="ql-strike" />
-      </span>
-      <span className="ql-formats">
-        <select className="ql-align" />
-        <button className="ql-list" value="ordered" />
-        <button className="ql-list" value="bullet" />
-        <button className="ql-indent" value="-1" />
-        <button className="ql-indent" value="+1" />
-        <button className="ql-blockquote" />
-      </span>
-      <span className="ql-formats">
-        <button className="ql-link" />
-        <button className="ql-image" />
-        <button className="ql-video" />
-      </span>
-      <span className="ql-formats">
-        <button className="ql-undo">
-          <CustomUndo />
-        </button>
-        <button className="ql-redo">
-          <CustomRedo />
-        </button>
-      </span>
-    </div>
-  );
-
   return (
     <div className="text-editor">
-      {/* <QuillToolbar /> */}
       <QuillWrapper>
         <ReactQuill
           ref={element => {
@@ -186,15 +102,19 @@ export const Editor = () => {
             }
           }}
           theme="snow"
-          value={state.value}
-          onChange={handleChange}
+          value={value}
+          onChange={handleEditor}
           placeholder="Write something awesome..."
           modules={modules}
-          // formats={formats}
         />
       </QuillWrapper>
     </div>
   );
+};
+
+Editor.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleEditor: PropTypes.func.isRequired,
 };
 
 export default Editor;
