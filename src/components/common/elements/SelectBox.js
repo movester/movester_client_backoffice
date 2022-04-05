@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 function SelectBox({ options, color, name, ...rest }) {
   return (
-    <StyledSelectBox name={name} color={color} {...rest}>
-      {options.map(option => (
+    <StyledSelectBox name={name} color={color} {...rest} defaultValue="0">
+      {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.name}
         </option>
@@ -46,7 +46,7 @@ const StyledSelectBox = styled.select`
     padding: 3px 0;
   }
 
-  &+& {
+  & + & {
     margin-left: 30px;
   }
 `;

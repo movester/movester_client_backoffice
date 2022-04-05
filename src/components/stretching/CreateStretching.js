@@ -52,14 +52,14 @@ function CreateStretching({
         <SelectBox options={stretchingTool} name="tool" value={tool} onChange={onSelectChange} />
 
         <InputTitle text="자세" />
-        <SelectBox options={stretchingPosture}name="posture1"  value={posture1} onChange={onSelectChange} />
+        <SelectBox options={stretchingPosture} name="posture1" value={posture1} onChange={onSelectChange} />
         <SelectBox options={stretchingPosture} name="posture2" value={posture2} onChange={onSelectChange} />
         <SelectBox options={stretchingPosture} name="posture3" value={posture3} onChange={onSelectChange} />
 
         <InputTitle text="효과" />
-        <SelectBox options={stretchingEffect}name="effect1"  value={effect1} onChange={onSelectChange} />
+        <SelectBox options={stretchingEffect} name="effect1" value={effect1} onChange={onSelectChange} />
         <SelectBox options={stretchingEffect} name="effect2" value={effect2} onChange={onSelectChange} />
-        <SelectBox options={stretchingEffect}name="effect3"  value={effect3} onChange={onSelectChange} />
+        <SelectBox options={stretchingEffect} name="effect3" value={effect3} onChange={onSelectChange} />
 
         <InputTitle text="설명" />
         <QuillEditor contents={contents} value={contents} handleEditor={handleEditor} />

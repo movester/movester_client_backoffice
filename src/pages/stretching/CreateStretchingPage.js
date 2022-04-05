@@ -56,7 +56,6 @@ function CreateStretchingPage() {
       ...selects,
       [name]: value,
     });
-    console.log(selects);
   };
 
   const onSubmit = async e => {
