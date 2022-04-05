@@ -108,7 +108,7 @@ function CreateStretchingPage() {
         onSelectChange={onSelectChange}
       />
       <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="로그인 실패" content={errMsg} />}
+        {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 등록 실패" content={errMsg} />}
       </ModalPortal>
     </>
   );

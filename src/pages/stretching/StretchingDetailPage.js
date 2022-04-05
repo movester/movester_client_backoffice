@@ -6,12 +6,18 @@ import StretchingDetail from '../../components/stretching/StretchingDetail';
 import ModalPortal from '../../components/common/Modal/ModalPortal';
 import Loading from '../../components/common/elements/Loading';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
+import StretchingDeleteModal from '../../components/common/Modal/StretchingDeleteModal';
 
 function StretchingDetailPage() {
   // const navigate = useNavigate();
   const { idx } = useParams();
   const [loading, setLoading] = useState(null);
   const [stretching, setStretching] = useState([]);
+
+  const [deleteModalOn, setDeleteModalOn] = useState(false);
+  const handleDeleteModal = () => {
+    setDeleteModalOn(prev => !prev);
+  };
 
   const [errModalOn, setErrModalOn] = useState(false);
   const [errMsg, setErrMsg] = useState('');
@@ -33,8 +39,6 @@ function StretchingDetailPage() {
     };
     getStretching();
   }, []);
-
-
 
   // const onSubmit = async e => {
   //   e.preventDefault();
@@ -82,9 +86,18 @@ function StretchingDetailPage() {
         adminIdx={stretching?.adminIdx}
         createAt={stretching?.createAt}
         difficulty={stretching?.difficulty}
+        handleDeleteModal={handleDeleteModal}
       />
       <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="로그인 실패" content={errMsg} />}
+        {deleteModalOn && (
+          <StretchingDeleteModal
+            onClose={handleDeleteModal}
+            stretchingIdx={idx}
+            setErrMsg={setErrMsg}
+            handleErrModal={handleErrModal}
+          />
+        )}
+        {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 상세 조회 실패" content={errMsg} />}
       </ModalPortal>
     </>
   );

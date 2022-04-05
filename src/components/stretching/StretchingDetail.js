@@ -33,6 +33,7 @@ function StretchingDetail({
   difficulty,
   isUpdate,
   onInputChange,
+  handleDeleteModal,
 }) {
   return (
     <Main>
@@ -41,7 +42,7 @@ function StretchingDetail({
         <StyledP>{idx}</StyledP>
 
         <InputTitle text="제목" />
-        <Input name="title" value={title} onChange={onInputChange} readOnly={!isUpdate}/>
+        <Input name="title" value={title} onChange={onInputChange} readOnly={!isUpdate} />
 
         <InputTitle text="신체부위 - 상위 카테고리" />
         <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} readOnly={!isUpdate} />
@@ -82,7 +83,7 @@ function StretchingDetail({
 
         <Center>
           <Button text="수정하기" />
-          <Button text="삭제하기" />
+          <Button text="삭제하기" click={handleDeleteModal}/>
         </Center>
       </Content>
     </Main>
@@ -105,6 +106,7 @@ StretchingDetail.propTypes = {
   difficulty: PropTypes.number,
   isUpdate: PropTypes.bool,
   onInputChange: PropTypes.func,
+  handleDeleteModal: PropTypes.func.isRequired,
 };
 
 StretchingDetail.defaultProps = {
