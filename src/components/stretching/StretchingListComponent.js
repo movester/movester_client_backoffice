@@ -7,9 +7,9 @@ import SelectBox from '../common/elements/SelectBox';
 import TableNumbering from '../common/elements/ListTableNumbering';
 import Button from '../common/button/Button';
 import {
-  stretchingMainCatrgory,
+  stretchingMainBody,
   stretchingSearchOptions,
-  stretchingSubCatrgory,
+  stretchingSubBody,
   stretchingEffect,
   stretchingPosture,
   stretchingTool,
@@ -104,8 +104,8 @@ function StretchingList() {
     <Main>
       <Content title="스트레칭 리스트">
         <StyledStretchingOptionsWrap>
-          <SelectBox options={stretchingMainCatrgory} />
-          <SelectBox options={stretchingSubCatrgory} />
+          <SelectBox options={stretchingMainBody} />
+          <SelectBox options={stretchingSubBody} />
           <SelectBox options={stretchingEffect} />
           <SelectBox options={stretchingPosture} />
           <SelectBox options={stretchingTool} />

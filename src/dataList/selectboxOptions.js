@@ -17,45 +17,49 @@ const userListOptions = [
   { value: 'job', name: '직업' },
 ];
 
-const stretchingMainCatrgory = [
-  { value: 'main_bodypart', name: '부위-대분류' },
-  { value: 'face', name: '얼굴 / 머리' },
-  { value: 'neck', name: '목 / 어깨' },
-  { value: 'arm', name: '팔 / 손목/ 손' },
-  { value: 'efect', name: '도구' },
+const stretchingMainBody = [
+  { value: 1, name: '전신' },
+  { value: 2, name: '상체' },
+  { value: 3, name: '하체' },
+  { value: 4, name: '코어' },
 ];
 
-const stretchingSubCatrgory = [
-  { value: 'sub_bodypart', name: '부위-소분류' },
-  { value: 'leg', name: '무릎 / 다리' },
-  { value: 'foot', name: '발목 / 발' },
+const stretchingSubBody = [
+  { value: 1, name: '얼굴 / 머리' },
+  { value: 2, name: '목 / 어깨' },
+  { value: 3, name: '팔 / 손목 / 손' },
+  { value: 4, name: '등 / 허리' },
+  { value: 5, name: '골반 / 엉덩이' },
+  { value: 6, name: '무릎 / 다리' },
+  { value: 7, name: '발목 / 발' },
 ];
+
 const stretchingPosture = [
-  { value: 'posture', name: '자세' },
-  { value: 'sit', name: '앉아서' },
-  { value: 'chairSit', name: '의자에 앉아서' },
-  { value: 'stand', name: '서서' },
-  { value: 'layDown', name: '누워서' },
-  { value: 'kneelDown', name: '엎드려서' },
+  { value: '', name: '자세 없음' },
+  { value: 1, name: '앉아서' },
+  { value: 2, name: '의자에 앉아서' },
+  { value: 3, name: '일어서서' },
+  { value: 4, name: '누워서' },
+  { value: 5, name: '엎드려서' },
 ];
 
 const stretchingEffect = [
-  { value: 'Effect', name: '효과' },
-  { value: 'turtleNeck', name: '거묵목 개선' },
-  { value: 'roundSholder', name: '라운드숄더 개선' },
-  { value: 'painRelief', name: '통증 완화' },
-  { value: '1', name: '혈액순환 촉진' },
-  { value: '2', name: '근강화' },
-  { value: '3', name: '근이완' },
-  { value: '4', name: '바른자세' },
+  { value: '', name: '효과 없음' },
+  { value: 1, name: '근이완' },
+  { value: 2, name: '근강화' },
+  { value: 3, name: '바른 자세' },
+  { value: 4, name: '통증 완화' },
+  { value: 5, name: '혈액 순환 촉진' },
+  { value: 6, name: '거북목 개션' },
+  { value: 7, name: '라운드숄더 개선' },
 ];
 const stretchingTool = [
-  { value: '0', name: '도구' },
-  { value: '1', name: '폼롤러' },
-  { value: '2', name: '마사지 볼' },
-  { value: '3', name: '라텍스 밴드' },
-  { value: '4', name: '요가 링' },
-  { value: '5', name: '짐볼' },
+  { value: '', name: '도구 없음' },
+  { value: 1, name: '폼롤러' },
+  { value: 2, name: '마사지 볼' },
+  { value: 3, name: '라텍스 밴드' },
+  { value: 4, name: '요가 링' },
+  { value: 5, name: '짐볼' },
 ];
 
 const stretchingSearchOptions = [
@@ -83,8 +87,8 @@ const eventListSearch2 = [
 
 export {
   userListOptions,
-  stretchingMainCatrgory,
-  stretchingSubCatrgory,
+  stretchingMainBody,
+  stretchingSubBody,
   stretchingEffect,
   stretchingPosture,
   stretchingTool,

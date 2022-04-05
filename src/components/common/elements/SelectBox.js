@@ -26,6 +26,7 @@ SelectBox.defaultProps = {
 
 export default SelectBox;
 const StyledSelectBox = styled.select`
+  width: 180px;
   height: 33px;
   ${({ theme, color }) => {
     const selected = theme[color] ? theme[color] : 'white';
@@ -43,5 +44,9 @@ const StyledSelectBox = styled.select`
   font-weight: bold;
   option {
     padding: 3px 0;
+  }
+
+  &+& {
+    margin-left: 30px;
   }
 `;
