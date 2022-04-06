@@ -34,10 +34,11 @@ function StretchingDetail({
   isUpdate,
   onInputChange,
   handleDeleteModal,
+  handleIsUpdate,
 }) {
   return (
     <Main>
-      <Content title="스트레칭 상세">
+      <Content title={isUpdate ? '스트레칭 수정' : '스트레칭 상세'}>
         <InputTitle text="스트레칭 번호" />
         <StyledP>{idx}</StyledP>
 
@@ -82,8 +83,8 @@ function StretchingDetail({
         <StyledP>{difficulty}</StyledP>
 
         <Center>
-          <Button text="수정하기" />
-          <Button text="삭제하기" click={handleDeleteModal}/>
+          <Button text="수정하기" click={handleIsUpdate} />
+          <Button text="삭제하기" click={handleDeleteModal} />
         </Center>
       </Content>
     </Main>
@@ -107,6 +108,7 @@ StretchingDetail.propTypes = {
   isUpdate: PropTypes.bool,
   onInputChange: PropTypes.func,
   handleDeleteModal: PropTypes.func.isRequired,
+  handleIsUpdate: PropTypes.func.isRequired,
 };
 
 StretchingDetail.defaultProps = {

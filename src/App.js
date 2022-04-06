@@ -6,7 +6,7 @@ import theme from './theme';
 import Nav from './components/common/Nav';
 import UserList from './components/user/UserListComponent';
 import UserDetail from './components/user/UserDetailComponent';
-import StretchingList from './components/stretching/StretchingListComponent';
+import StretchingListPage from './pages/stretching/StretchingListPage';
 import StretchingDetailPage from './pages/stretching/StretchingDetailPage';
 import CreateStretchingPage from './pages/stretching/CreateStretchingPage';
 import WeeklyStretchingList from './components/stretching/WeeklyStretchingList';
@@ -28,7 +28,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/:no" element={<UserDetail />} />
-        <Route path="/stretching" element={<StretchingList />} />
+        <Route path="/stretching" element={<StretchingListPage />} />
         <Route path="/stretching/:idx" element={<StretchingDetailPage />} />
         <Route path="/stretching/create" element={<CreateStretchingPage />} />
         <Route path="/stretching/weekly" element={<WeeklyStretchingList />} />

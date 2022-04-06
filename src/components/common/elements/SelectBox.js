@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 function SelectBox({ options, color, name, ...rest }) {
@@ -28,12 +28,7 @@ export default SelectBox;
 const StyledSelectBox = styled.select`
   width: 180px;
   height: 33px;
-  ${({ theme, color }) => {
-    const selected = theme[color] ? theme[color] : 'white';
-    return css`
-      background-color: ${selected};
-    `;
-  }}
+  background-color: #efefef;
   background-size: 20px;
   padding: 5px 30px;
   border-radius: 10px;

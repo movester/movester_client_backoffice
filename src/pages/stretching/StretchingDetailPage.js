@@ -9,9 +9,13 @@ import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 import StretchingDeleteModal from '../../components/common/Modal/StretchingDeleteModal';
 
 function StretchingDetailPage() {
-  // const navigate = useNavigate();
   const { idx } = useParams();
   const [loading, setLoading] = useState(null);
+  const [isUpdate, setIsUpdate] = useState(null);
+  const handleIsUpdate = () => {
+    setIsUpdate(prev => !prev);
+    alert(isUpdate);
+  };
   const [stretching, setStretching] = useState([]);
 
   const [deleteModalOn, setDeleteModalOn] = useState(false);
@@ -87,6 +91,8 @@ function StretchingDetailPage() {
         createAt={stretching?.createAt}
         difficulty={stretching?.difficulty}
         handleDeleteModal={handleDeleteModal}
+        isUpdate={isUpdate}
+        handleIsUpdate={handleIsUpdate}
       />
       <ModalPortal>
         {deleteModalOn && (
