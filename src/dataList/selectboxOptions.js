@@ -18,6 +18,7 @@ const userListOptions = [
 ];
 
 const stretchingMainBody = [
+  { value: '', name: '상위 부위 카테고리' },
   { value: 1, name: '전신' },
   { value: 2, name: '상체' },
   { value: 3, name: '하체' },
@@ -25,6 +26,7 @@ const stretchingMainBody = [
 ];
 
 const stretchingSubBody = [
+  { value: '', name: '하위 부위 카테고리' },
   { value: 1, name: '얼굴 / 머리' },
   { value: 2, name: '목 / 어깨' },
   { value: 3, name: '팔 / 손목 / 손' },
@@ -64,9 +66,6 @@ const stretchingTool = [
 
 const stretchingSearchOptions = [
   { value: 'title', name: '제목' },
-  { value: 'taget', name: '부위' },
-  { value: 'effect', name: '효과' },
-  { value: 'posture', name: '자세' },
 ];
 
 const eventListSearch1 = [

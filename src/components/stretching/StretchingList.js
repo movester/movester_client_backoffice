@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
-import TableNumbering from '../common/elements/ListTableNumbering';
-import Button from '../common/button/Button';
+import Input from '../common/elements/Input';
+import Pagination from '../common/Pagination';
 import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum } from '../../dataList/stretchingEnum';
 import {
   stretchingMainBody,
@@ -18,21 +18,34 @@ import {
 } from '../../dataList/selectboxOptions';
 import { stretchingListHeaders } from '../../dataList/listTableHeaders';
 
-function StretchingList({ stretchings }) {
+function StretchingList({
+  stretchings,
+  title,
+  mainBody,
+  subBody,
+  posture,
+  effect,
+  tool,
+  onTitleChange,
+  onSelectChange,
+  total,
+  page,
+  setPage,
+}) {
+  const offset = (page - 1) * 10;
   return (
     <Main>
       <Content title="스트레칭 리스트">
         <StyledStretchingOptionsWrap>
-          <SelectBox options={stretchingMainBody} />
-          <SelectBox options={stretchingSubBody} />
-          <SelectBox options={stretchingEffect} />
-          <SelectBox options={stretchingPosture} />
-          <SelectBox options={stretchingTool} />
+          <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
+          <SelectBox options={stretchingSubBody} name="subBody" value={subBody} onChange={onSelectChange} />
+          <SelectBox options={stretchingEffect} name="effect" value={effect} onChange={onSelectChange} />
+          <SelectBox options={stretchingPosture} name="posture" value={posture} onChange={onSelectChange} />
+          <SelectBox options={stretchingTool} name="tool" value={tool} onChange={onSelectChange} />
         </StyledStretchingOptionsWrap>
         <StyledListSearch>
           <SelectBox color="white" options={stretchingSearchOptions} />
-          <input />
-          <Button text="검색" type="search" />
+          <Input name="title" value={title} onChange={onTitleChange} />
         </StyledListSearch>
         <StyledListTable>
           <ul>
@@ -40,7 +53,7 @@ function StretchingList({ stretchings }) {
               <li key={header}>{header}</li>
             ))}
           </ul>
-          {stretchings.map(keyword => {
+          {stretchings.slice(offset, offset + 10).map(keyword => {
             const { stretchingIdx, title, mainBody, subBody, effect, posture, difficulty } = keyword;
             return (
               <Link key={stretchingIdx} to={`/stretching/${stretchingIdx}`}>
@@ -58,7 +71,7 @@ function StretchingList({ stretchings }) {
             );
           })}
         </StyledListTable>
-        <TableNumbering />
+        <Pagination total={total} page={page} setPage={setPage} />
       </Content>
     </Main>
   );
@@ -66,6 +79,17 @@ function StretchingList({ stretchings }) {
 
 StretchingList.propTypes = {
   stretchings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+  mainBody: PropTypes.string.isRequired,
+  subBody: PropTypes.string.isRequired,
+  posture: PropTypes.string.isRequired,
+  effect: PropTypes.string.isRequired,
+  tool: PropTypes.string.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
+  onSelectChange: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
 };
 
 export default StretchingList;
