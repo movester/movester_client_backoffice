@@ -35,16 +35,14 @@ function Nav() {
           list: [
             ['스트레칭 리스트', ''],
             ['스트레칭 등록', '/create'],
-            ['일주일 추천 리스트', '/weekly'],
-            ['일주일 추천 등록', '/weekly/create'],
           ],
         },
         {
-          title: '이벤트',
-          path: '/event',
+          title: '일주일 스트레칭',
+          path: '/weekStretching',
           list: [
-            ['이벤트 리스트', ''],
-            ['이벤트 등록', '/create'],
+            ['일주일 추천 리스트', ''],
+            ['일주일 추천 등록', '/create'],
           ],
         },
         {
@@ -64,16 +62,14 @@ function Nav() {
           list: [
             ['스트레칭 리스트', ''],
             ['스트레칭 등록', '/create'],
-            ['일주일 추천 리스트', '/weekly'],
-            ['일주일 추천 등록', '/weekly/create'],
           ],
         },
         {
-          title: '이벤트',
-          path: '/event',
+          title: '일주일 스트레칭',
+          path: '/weekStretching',
           list: [
-            ['이벤트 리스트', ''],
-            ['이벤트 등록', '/create'],
+            ['일주일 추천 리스트', ''],
+            ['일주일 추천 등록', '/create'],
           ],
         },
         {
