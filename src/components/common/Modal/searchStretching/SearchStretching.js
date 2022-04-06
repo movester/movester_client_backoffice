@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Main from '../common/Main';
-import Content from '../common/Content';
-import SelectBox from '../common/elements/SelectBox';
-import Input from '../common/elements/Input';
-import Pagination from '../common/Pagination';
-import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum } from '../../util/stretchingEnum';
+import SelectBox from '../../elements/SelectBox';
+import Input from '../../elements/Input';
+import Pagination from '../../Pagination';
+import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum } from '../../../../util/stretchingEnum';
 import {
   stretchingMainBody,
   stretchingSearchOptions,
@@ -15,10 +13,10 @@ import {
   stretchingEffect,
   stretchingPosture,
   stretchingTool,
-} from '../../util/selectboxOptions';
-import { stretchingListHeaders } from '../../util/listTableHeaders';
+} from '../../../../util/selectboxOptions';
+import { stretchingListHeaders } from '../../../../util/listTableHeaders';
 
-function StretchingList({
+function SearchStretching({
   stretchings,
   title,
   mainBody,
@@ -34,8 +32,7 @@ function StretchingList({
 }) {
   const offset = (page - 1) * 10;
   return (
-    <Main>
-      <Content title="스트레칭 리스트">
+    <>
         <StyledStretchingOptionsWrap>
           <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
           <SelectBox options={stretchingSubBody} name="subBody" value={subBody} onChange={onSelectChange} />
@@ -72,12 +69,11 @@ function StretchingList({
           })}
         </StyledListTable>
         <Pagination total={total} page={page} setPage={setPage} />
-      </Content>
-    </Main>
+        </>
   );
 }
 
-StretchingList.propTypes = {
+SearchStretching.propTypes = {
   stretchings: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
   mainBody: PropTypes.string.isRequired,
@@ -92,7 +88,7 @@ StretchingList.propTypes = {
   setPage: PropTypes.func.isRequired,
 };
 
-export default StretchingList;
+export default SearchStretching;
 
 const StyledListSearch = styled.section`
   width: 100%;
