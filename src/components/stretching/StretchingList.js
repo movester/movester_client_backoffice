@@ -7,7 +7,7 @@ import Content from '../common/Content';
 import SelectBox from '../common/elements/SelectBox';
 import Input from '../common/elements/Input';
 import Pagination from '../common/Pagination';
-import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum } from '../../dataList/stretchingEnum';
+import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum } from '../../util/stretchingEnum';
 import {
   stretchingMainBody,
   stretchingSearchOptions,
@@ -15,8 +15,8 @@ import {
   stretchingEffect,
   stretchingPosture,
   stretchingTool,
-} from '../../dataList/selectboxOptions';
-import { stretchingListHeaders } from '../../dataList/listTableHeaders';
+} from '../../util/selectboxOptions';
+import { stretchingListHeaders } from '../../util/listTableHeaders';
 
 function StretchingList({
   stretchings,

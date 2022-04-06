@@ -6,7 +6,7 @@ import ListTable from '../common/elements/ListTable';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Year from '../common/elements/Year';
-import { listHeaders } from '../../dataList/listTableHeaders';
+import { listHeaders } from '../../util/listTableHeaders';
 import axios from '../../services/defaultClient';
 
 function UserDetail() {

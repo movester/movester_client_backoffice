@@ -14,7 +14,7 @@ import {
   stretchingEffect,
   stretchingPosture,
   stretchingTool,
-} from '../../dataList/selectboxOptions';
+} from '../../util/selectboxOptions';
 import Center from '../common/elements/Center';
 
 function StretchingDetail({

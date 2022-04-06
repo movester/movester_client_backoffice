@@ -4,9 +4,12 @@ import axios from '../../services/defaultClient';
 import WeekStretchingList from '../../components/weekStretching/WeekStretchingList';
 import ModalPortal from '../../components/common/Modal/ModalPortal';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
+import Loading from '../../components/common/elements/Loading';
 
 function WeekStretchingListPage() {
+  const [loading, setLoading] = useState(true);
   const [weekStretchings, setWeekStretchings] = useState([]);
+  const [exposingStretching, setExposingStretching] = useState({});
 
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -18,11 +21,9 @@ function WeekStretchingListPage() {
   };
 
   useEffect(() => {
-    const getStretchingList = async () => {
+    const getWeekStretchingList = async () => {
       try {
-        const result = await axios.get(
-          `/weeks`,
-        );
+        const result = await axios.get(`/weeks`);
 
         setWeekStretchings([...result.data.data]);
         setTotal([...result.data.data].length);
@@ -32,14 +33,29 @@ function WeekStretchingListPage() {
       }
     };
 
-    getStretchingList();
-    setPage(1)
+    const getExposingStretching = async () => {
+      try {
+        const result = await axios.get(`weeks/expose/stretchings`);
+        setExposingStretching(result.data.data);
+      } catch (err) {
+        setErrMsg(err.response.data.error);
+        handleErrModal();
+      }
+    };
+
+    getWeekStretchingList();
+    getExposingStretching();
+    setLoading(false);
+    setPage(1);
   }, []);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <WeekStretchingList
         weekStretchings={weekStretchings}
+        exposingStretching={exposingStretching}
         total={total}
         page={page}
         setPage={setPage}

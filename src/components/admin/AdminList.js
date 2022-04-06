@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import UserCount from '../common/elements/UserCount';
-import { listHeaders } from '../../dataList/listTableHeaders';
+import { listHeaders } from '../../util/listTableHeaders';
 import Pagination from '../common/Pagination';
 
 function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDeleteModal, setDeleteAdminIdx }) {

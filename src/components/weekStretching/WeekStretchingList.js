@@ -4,19 +4,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Main from '../common/Main';
 import Content from '../common/Content';
-import Button from '../common/button/Button';
 import Pagination from '../common/Pagination';
-import { weekStretchingListHeaders } from '../../dataList/listTableHeaders';
+import { weekStretchingListHeaders } from '../../util/listTableHeaders';
 
-function WeekStretchingList({ weekStretchings, total, page, setPage }) {
+function WeekStretchingList({ weekStretchings, exposingStretching, total, page, setPage }) {
   const offset = (page - 1) * 10;
   return (
     <Main>
       <Content title="노출중인 일주일 스트레칭">
-        <ButtonWrapper>
-          <Button type="stretching" text="거북목 효과적인 예" />
-          <Button type="search" text="검색" />
-        </ButtonWrapper>
+        <Link key={exposingStretching.weekIdx} to={`/weekStretching/${exposingStretching.weekIdx}`}>
+          <ExposingStretching>{exposingStretching.title}</ExposingStretching>
+        </Link>
       </Content>
 
       <Content title="일주일 스트레칭 리스트">
@@ -33,7 +31,7 @@ function WeekStretchingList({ weekStretchings, total, page, setPage }) {
                 <ul key={weekIdx} className="column">
                   <li>{weekIdx}</li>
                   <li>{title}</li>
-                  <li>{isExpose ? "O" : "X"}</li>
+                  <li>{isExpose ? 'O' : 'X'}</li>
 
                   <li>{createAt}</li>
                 </ul>
@@ -49,6 +47,7 @@ function WeekStretchingList({ weekStretchings, total, page, setPage }) {
 
 WeekStretchingList.propTypes = {
   weekStretchings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  exposingStretching: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   page: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
@@ -92,13 +91,7 @@ const StyledListTable = styled.section`
   }
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  .stretching {
-    margin: 20px;
-  }
-  .search {
-    margin-left: 20px;
-  }
+const ExposingStretching = styled.p`
+  font-size: 20px;
+  margin-left: 70px;
 `;

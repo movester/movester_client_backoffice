@@ -8,10 +8,9 @@ import Pagination from '../common/Pagination';
 import SelectBox from '../common/elements/SelectBox';
 import Button from '../common/button/Button';
 import UserCount from '../common/elements/UserCount';
-import { selectboxOptions } from '../../dataList/selectboxOptions';
 import Input from '../common/elements/Input';
-
-import { listHeaders } from '../../dataList/listTableHeaders';
+import { selectboxOptions } from '../../util/selectboxOptions';
+import { listHeaders } from '../../util/listTableHeaders';
 
 function UserList() {
   const [users, setUser] = useState([]);
