@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from '../../../../services/defaultClient'
 
 import SearchStretching from './SearchStretching';
 import ModalPortal from '../ModalPortal';
 import ConfirmModal from '../ConfirmModal';
 
-function SearchStretchingPage() {
+function SearchStretchingPage({handleWeekStretching, onClose}) {
   const [stretchings, setStretchings] = useState([]);
   const [title, setTitle] = useState('');
   const onTitleChange = e => {
@@ -73,6 +74,8 @@ function SearchStretchingPage() {
         total={total}
         page={page}
         setPage={setPage}
+        handleWeekStretching={handleWeekStretching}
+        onClose={onClose}
       />
       <ModalPortal>
         {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
@@ -80,5 +83,10 @@ function SearchStretchingPage() {
     </>
   );
 }
+
+SearchStretchingPage.propTypes = {
+  handleWeekStretching: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default SearchStretchingPage;

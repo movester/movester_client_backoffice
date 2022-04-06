@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import SelectBox from '../../elements/SelectBox';
 import Input from '../../elements/Input';
 import Pagination from '../../Pagination';
@@ -29,47 +28,57 @@ function SearchStretching({
   total,
   page,
   setPage,
+  handleWeekStretching,
+  onClose,
 }) {
   const offset = (page - 1) * 10;
   return (
     <>
-        <StyledStretchingOptionsWrap>
-          <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
-          <SelectBox options={stretchingSubBody} name="subBody" value={subBody} onChange={onSelectChange} />
-          <SelectBox options={stretchingEffect} name="effect" value={effect} onChange={onSelectChange} />
-          <SelectBox options={stretchingPosture} name="posture" value={posture} onChange={onSelectChange} />
-          <SelectBox options={stretchingTool} name="tool" value={tool} onChange={onSelectChange} />
-        </StyledStretchingOptionsWrap>
-        <StyledListSearch>
-          <SelectBox color="white" options={stretchingSearchOptions} />
-          <Input name="title" value={title} onChange={onTitleChange} />
-        </StyledListSearch>
-        <StyledListTable>
-          <ul>
-            {stretchingListHeaders.map(header => (
-              <li key={header}>{header}</li>
-            ))}
-          </ul>
-          {stretchings.slice(offset, offset + 10).map(keyword => {
-            const { stretchingIdx, title, mainBody, subBody, effect, posture, difficulty } = keyword;
-            return (
-              <Link key={stretchingIdx} to={`/stretching/${stretchingIdx}`}>
-                <ul key={stretchingIdx} className="column">
-                  <li>{stretchingIdx}</li>
-                  <li>{title}</li>
-                  <li>
-                    {mainBodyEnum[mainBody]} - {subBodyEnum[subBody]}
-                  </li>
-                  <li>{effect.map(v => effectEnum[v]).join(' / ')}</li>
-                  <li>{posture.map(v => postureEnum[v]).join(' / ')}</li>
-                  <li>{difficulty}</li>
-                </ul>
-              </Link>
-            );
-          })}
-        </StyledListTable>
-        <Pagination total={total} page={page} setPage={setPage} />
-        </>
+      <StyledStretchingOptionsWrap>
+        <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
+        <SelectBox options={stretchingSubBody} name="subBody" value={subBody} onChange={onSelectChange} />
+        <SelectBox options={stretchingEffect} name="effect" value={effect} onChange={onSelectChange} />
+        <SelectBox options={stretchingPosture} name="posture" value={posture} onChange={onSelectChange} />
+        <SelectBox options={stretchingTool} name="tool" value={tool} onChange={onSelectChange} />
+      </StyledStretchingOptionsWrap>
+      <StyledListSearch>
+        <SelectBox color="white" options={stretchingSearchOptions} />
+        <Input name="title" value={title} onChange={onTitleChange} />
+      </StyledListSearch>
+      <StyledListTable>
+        <ul>
+          {stretchingListHeaders.map(header => (
+            <li key={header}>{header}</li>
+          ))}
+        </ul>
+        {stretchings.slice(offset, offset + 10).map(keyword => {
+          const { stretchingIdx, title, mainBody, subBody, effect, posture, difficulty } = keyword;
+          return (
+            <ul
+              key={stretchingIdx}
+              className="column"
+              onClick={() => {
+                handleWeekStretching(stretchingIdx,title);
+                onClose();
+              }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') console.log('수정하자');
+              }}
+            >
+              <li>{stretchingIdx}</li>
+              <li>{title}</li>
+              <li>
+                {mainBodyEnum[mainBody]} - {subBodyEnum[subBody]}
+              </li>
+              <li>{effect.map(v => effectEnum[v]).join(' / ')}</li>
+              <li>{posture.map(v => postureEnum[v]).join(' / ')}</li>
+              <li>{difficulty}</li>
+            </ul>
+          );
+        })}
+      </StyledListTable>
+      <Pagination total={total} page={page} setPage={setPage} />
+    </>
   );
 }
 
@@ -86,6 +95,8 @@ SearchStretching.propTypes = {
   page: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
+  handleWeekStretching: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default SearchStretching;

@@ -28,6 +28,7 @@
     "import/prefer-default-export": "off",
     "no-shadow": "off",
     "react/no-array-index-key": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
   }
 }

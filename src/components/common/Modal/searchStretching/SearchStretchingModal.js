@@ -5,22 +5,14 @@ import PropTypes from 'prop-types';
 import ModalPortal from '../ModalPortal';
 import SearchStretchingPage from './SearchStretchingPage';
 
-function SearchStretchingModal({ onClose }) {
-  // const onAdminDelete = async () => {
-  //   try {
-  //     await axios.delete(`/admins/${adminIdx}`);
-  //   } catch (err) {
-  //     setErrMsg(err.response.data.error);
-  //     handleErrModal();
-  //   }
-  // };
+function SearchStretchingModal({ onClose, handleWeekStretching }) {
   return (
     <ModalPortal>
       <Container>
         <Content>
           <Title>스트레칭 검색</Title>
           <CloseButton onClick={onClose}>x</CloseButton>
-          <SearchStretchingPage />
+          <SearchStretchingPage handleWeekStretching={handleWeekStretching} onClose={onClose}/>
         </Content>
       </Container>
     </ModalPortal>
@@ -29,6 +21,7 @@ function SearchStretchingModal({ onClose }) {
 
 SearchStretchingModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  handleWeekStretching: PropTypes.func.isRequired,
 };
 
 export default SearchStretchingModal;

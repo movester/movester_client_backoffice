@@ -3,38 +3,56 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
 import CreateWeekStretching from '../../components/weekStretching/CreateWeekStretching';
-import ModalPortal from '../../components/common/Modal/ModalPortal';
+import SearchStretchingModal from '../../components/common/Modal/searchStretching/SearchStretchingModal';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function CreateWeekStretchingPage() {
   const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState({
-    title: '',
-  });
+  const [title, setTitle] = useState('');
+  const onTitleChange = e => {
+    setTitle(e.target.value);
+  };
 
+  const [activeDay, setActiveDay] = useState(null);
+  const handleActiveDay = day => {
+    setActiveDay(day);
+  };
 
-  const { title } = inputs;
-
-
+  // const [weekStretching, setWeekStretching] = useState([
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  //   { idx: '', title: '' },
+  // ]);
+  const [weekStretching, setWeekStretching] = useState([
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+    { idx: '', title: '' },
+  ]);
+  const handleWeekStretching = (stretchingIdx, title) => {
+    const newWeekStretching = [...weekStretching];
+    newWeekStretching[activeDay] = { idx: stretchingIdx, title };
+    setWeekStretching(newWeekStretching);
+    console.log(weekStretching);
+  };
   const [errModalOn, setErrModalOn] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const handleErrModal = () => {
     setErrModalOn(!errModalOn);
   };
 
-  const onInputChange = e => {
-    const { value, name } = e.target;
-
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
+  const [searchStretchinModalOn, setSearchStretchinModalOn] = useState(false);
+  const handleSearchStretchingModal = () => {
+    setSearchStretchinModalOn(prev => !prev);
   };
-
-  const onSearchStretching = () => {
-    console.log("hello")
-  }
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -42,7 +60,6 @@ function CreateWeekStretchingPage() {
     try {
       const { data } = await axios.post('stretchings', {
         title,
-
       });
 
       if (data.success) {
@@ -59,13 +76,16 @@ function CreateWeekStretchingPage() {
     <>
       <CreateWeekStretching
         title={title}
-        onSearchStretching={onSearchStretching}
-        onInputChange={onInputChange}
+        onTitleChange={onTitleChange}
+        weekStretching={weekStretching}
+        handleSearchStretchingModal={handleSearchStretchingModal}
         onSubmit={onSubmit}
+        handleActiveDay={handleActiveDay}
       />
-      <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="일주일 스트레칭 등록 실패" content={errMsg} />}
-      </ModalPortal>
+      {searchStretchinModalOn && (
+        <SearchStretchingModal onClose={handleSearchStretchingModal} handleWeekStretching={handleWeekStretching} />
+      )}
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="일주일 스트레칭 등록 실패" content={errMsg} />}
     </>
   );
 }

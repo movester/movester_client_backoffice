@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function SelectBox({ options, color, name, ...rest }) {
   return (
-    <StyledSelectBox name={name} color={color} {...rest} defaultValue="0">
+    <StyledSelectBox name={name} color={color} {...rest}>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.name}
