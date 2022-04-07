@@ -23,6 +23,24 @@ function WeekStretchingDetailPage() {
     setErrModalOn(!errModalOn);
   };
 
+  const onExpose = async e => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.patch('weeks/expose', {
+        weekIdx: idx,
+      });
+
+      if (data.success) {
+        setErrMsg("노출 변경 완료!");
+        handleErrModal();
+      }
+    } catch (err) {
+      setErrModalOn(prev => !prev);
+      setErrMsg(err.response.data.error);
+    }
+  };
+
   useEffect(() => {
     const getWeekStretching = async () => {
       try {
@@ -42,7 +60,7 @@ function WeekStretchingDetailPage() {
     <Loading />
   ) : (
     <>
-      <WeekStretchingDetail weekStretching={weekStretching} handleDeleteModal={handleDeleteModal} />
+      <WeekStretchingDetail weekStretching={weekStretching} handleDeleteModal={handleDeleteModal} onExpose={onExpose} />
       {deleteModalOn && (
         <WeekStretchingDeleteModal
           onClose={handleDeleteModal}
@@ -51,7 +69,7 @@ function WeekStretchingDetailPage() {
           handleErrModal={handleErrModal}
         />
       )}
-      {errModalOn && <ConfirmModal onClose={handleErrModal} title="일주일 스트레칭 등록 실패" content={errMsg} />}
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="일주일 스트레칭" content={errMsg} />}
     </>
   );
 }

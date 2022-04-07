@@ -7,7 +7,7 @@ import Button from '../common/button/Button';
 import InputTitle from '../common/elements/InputTitle';
 import Center from '../common/elements/Center';
 
-function WeekStretchingDetail({ weekStretching, handleDeleteModal }) {
+function WeekStretchingDetail({ weekStretching, handleDeleteModal, onExpose }) {
   return (
     <Main>
       <Content title="일주일 스트레칭 상세">
@@ -34,6 +34,7 @@ function WeekStretchingDetail({ weekStretching, handleDeleteModal }) {
         <StyledDiv>{weekStretching.isExpse ? '노출중' : '노출 안함'}</StyledDiv>
 
         <Center>
+          <Button text="노출하기" click={onExpose} />
           <Button text="수정하기" />
           <Button text="삭제하기" click={handleDeleteModal} />
         </Center>
@@ -51,6 +52,7 @@ WeekStretchingDetail.propTypes = {
     ]),
   ).isRequired,
   handleDeleteModal: PropTypes.func.isRequired,
+  onExpose: PropTypes.func.isRequired,
 };
 
 export default React.memo(WeekStretchingDetail);
