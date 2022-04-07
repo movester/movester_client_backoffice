@@ -44,7 +44,7 @@ function UpdateWeekStretching({
         ))}
 
         <Center>
-          <Button text="등록하기" click={onSubmit} />
+          <Button text="수정하기" click={onSubmit} />
         </Center>
       </Content>
     </Main>

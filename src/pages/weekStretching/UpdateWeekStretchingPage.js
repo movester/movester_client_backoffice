@@ -54,10 +54,11 @@ function UpdateWeekStretchingPage() {
     const getWeekStretching = async () => {
       try {
         setLoading(true);
-        const result = await axios.get(`/weeks/${idx}`);
-        setWeekStretching(result.data.data);
-        setTitle(weekStretching?.title);
-        setDailyStretching(weekStretching?.days);
+        const res = await axios.get(`/weeks/${idx}`);
+        const result = res.data.data;
+        setWeekStretching(result);
+        setTitle(result.title);
+        setDailyStretching(result.days);
       } catch (err) {
         setErrMsg(err.response.data.error);
         handleErrModal();
@@ -91,10 +92,7 @@ function UpdateWeekStretchingPage() {
       }
     }
   };
-
-  if (loading && !Object.values(weekStretching).length && !Object.values(dailyStretching).length && title === '')
-    <Loading />;
-
+  
   return loading ? (
     <Loading />
   ) : (
