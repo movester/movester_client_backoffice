@@ -37,6 +37,7 @@ function UpdateStretching({
   handleEditor,
   onInputChange,
   onSubmit,
+  handleFileInput,
 }) {
   return (
     <Main>
@@ -73,7 +74,12 @@ function UpdateStretching({
         <Input name="youtubeUrl" value={youtubeUrl} onChange={onInputChange} />
 
         <InputTitle text="대표 이미지" />
-        <Input name="image" value={image} onChange={onInputChange} />
+        {image ? (
+          <StyledImg src={`https://movester-bucket.s3.ap-northeast-2.amazonaws.com/${image}.png`} alt="대표 이미지" />
+        ) : (
+          ''
+        )}
+        <Input type="file" onChange={handleFileInput} />
 
         <Center>
           <Button text="수정하기" click={onSubmit} />
@@ -108,6 +114,7 @@ UpdateStretching.propTypes = {
   handleEditor: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  handleFileInput: PropTypes.func.isRequired,
 };
 
 export default React.memo(UpdateStretching);
@@ -122,4 +129,10 @@ const StyledP = styled.p`
   & + & {
     margin-top: 10px;
   }
+`;
+
+const StyledImg = styled.img`
+  width: 300px;
+  height: 300px;
+  margin-bottom: 20px;
 `;
