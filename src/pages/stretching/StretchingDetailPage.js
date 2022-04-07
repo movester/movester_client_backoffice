@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
 import StretchingDetail from '../../components/stretching/StretchingDetail';
-import ModalPortal from '../../components/common/Modal/ModalPortal';
 import Loading from '../../components/common/elements/Loading';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 import StretchingDeleteModal from '../../components/common/Modal/StretchingDeleteModal';
 
 function StretchingDetailPage() {
   const { idx } = useParams();
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isUpdate, setIsUpdate] = useState(null);
   const handleIsUpdate = () => {
     setIsUpdate(prev => !prev);
@@ -94,7 +93,6 @@ function StretchingDetailPage() {
         isUpdate={isUpdate}
         handleIsUpdate={handleIsUpdate}
       />
-      <ModalPortal>
         {deleteModalOn && (
           <StretchingDeleteModal
             onClose={handleDeleteModal}
@@ -104,7 +102,6 @@ function StretchingDetailPage() {
           />
         )}
         {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 상세 조회 실패" content={errMsg} />}
-      </ModalPortal>
     </>
   );
 }
