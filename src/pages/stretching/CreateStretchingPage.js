@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import S3 from 'react-aws-s3';
+import { v4 as uuidv4 } from 'uuid';
 import axios from '../../services/defaultClient';
 
 import CreateStretching from '../../components/stretching/CreateStretching';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
+import s3Config from '../../config/s3';
 
 function CreateStretchingPage() {
   const navigate = useNavigate();
@@ -11,7 +14,6 @@ function CreateStretchingPage() {
   const [inputs, setInputs] = useState({
     title: '',
     youtubeUrl: '',
-    image: '',
   });
 
   const [selects, setSelects] = useState({
@@ -26,11 +28,16 @@ function CreateStretchingPage() {
     effect3: '',
   });
 
-  const { title, youtubeUrl, image } = inputs;
+  const { title, youtubeUrl } = inputs;
   const { mainBody, subBody, tool, posture1, posture2, posture3, effect1, effect2, effect3 } = selects;
   const [contents, setContents] = useState('');
   const handleEditor = html => {
     setContents(html);
+  };
+
+  const [image, setImage] = useState('');
+  const handleImage = fileName => {
+    setImage(fileName);
   };
 
   const [errModalOn, setErrModalOn] = useState(false);
@@ -55,6 +62,22 @@ function CreateStretchingPage() {
       ...selects,
       [name]: value,
     });
+  };
+
+  const handleFileInput = e => {
+    const file = e.target.files[0];
+    const newFileName = uuidv4();
+    if (file) {
+      if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
+        const ReactS3Client = new S3(s3Config);
+        ReactS3Client.uploadFile(file, newFileName).catch(() => {
+          alert('업로드 실패');
+        });
+      } else {
+        alert('JPEG, PNG, JPG 파일만 업로드 가능합니다.');
+      }
+    }
+    handleImage(newFileName);
   };
 
   const onSubmit = async e => {
@@ -105,6 +128,7 @@ function CreateStretchingPage() {
         effect2={effect2}
         effect3={effect3}
         onSelectChange={onSelectChange}
+        handleFileInput={handleFileInput}
       />
       {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 등록 실패" content={errMsg} />}
     </>

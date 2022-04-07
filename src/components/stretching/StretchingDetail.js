@@ -24,19 +24,26 @@ function StretchingDetail({ stretching, onLinkUpdate, handleDeleteModal }) {
         <InputTitle text="도구" />
         <StyledP>{toolEnum[stretching.tool]}</StyledP>
         <InputTitle text="자세" />
-        {stretching.posture.map(posture => (
-          <StyledP key={posture}>{postureEnum[posture]}</StyledP>
-        ))}
+        {Object.keys(stretching.posture).length ? (
+          stretching.posture.map(posture => <StyledP key={posture}>{postureEnum[posture]}</StyledP>)
+        ) : (
+          <StyledP />
+        )}
         <InputTitle text="효과" />
-        {stretching.effect.map(effect => (
-          <StyledP key={effect}>{effectEnum[effect]}</StyledP>
-        ))}
+        {Object.keys(stretching.effect).length ? (
+          stretching.effect.map(effect => <StyledP key={effect}>{effectEnum[effect]}</StyledP>)
+        ) : (
+          <StyledP />
+        )}
         <InputTitle text="설명" />
         <StyledPre dangerouslySetInnerHTML={{ __html: stretching.contents }} />
         <InputTitle text="유튜브 링크" />
         <StyledP>{stretching.youtube_url}</StyledP>
         <InputTitle text="대표 이미지" />
-        <StyledP>{stretching.image}</StyledP>
+        <StyledImg
+          src={`https://movester-bucket.s3.ap-northeast-2.amazonaws.com/${stretching.image}.png`}
+          alt="대표 이미지"
+        />
         <InputTitle text="작성자" />
         <StyledP>{stretching.adminIdx}</StyledP>
         <InputTitle text="등록일" />
@@ -83,4 +90,9 @@ const StyledPre = styled.pre`
   border-radius: 10px;
   padding: 10px;
   min-height: 40px;
+`;
+
+const StyledImg = styled.img`
+  width: 300px;
+  height: 300px;
 `;

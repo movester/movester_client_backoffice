@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Main from '../common/Main';
 import Content from '../common/Content';
@@ -17,10 +18,10 @@ import {
 import Center from '../common/elements/Center';
 import QuillEditor from '../editor/Editor';
 
-function UpdateStretching({
+function CreateStretching({
   title,
-  youtubeUrl,
   image,
+  youtubeUrl,
   mainBody,
   subBody,
   tool,
@@ -35,6 +36,7 @@ function UpdateStretching({
   handleEditor,
   onInputChange,
   onSubmit,
+  handleFileInput,
 }) {
   return (
     <Main>
@@ -68,8 +70,12 @@ function UpdateStretching({
         <Input name="youtubeUrl" value={youtubeUrl} onChange={onInputChange} />
 
         <InputTitle text="대표 이미지" />
-        <Input name="image" value={image} onChange={onInputChange} />
-
+        <Input type="file" onChange={handleFileInput} />
+        {image ? (
+          <StyledImg src={`https://movester-bucket.s3.ap-northeast-2.amazonaws.com/${image}.png`} alt="대표 이미지" />
+        ) : (
+          ''
+        )}
         <Center>
           <Button text="등록하기" click={onSubmit} />
         </Center>
@@ -78,10 +84,10 @@ function UpdateStretching({
   );
 }
 
-UpdateStretching.propTypes = {
+CreateStretching.propTypes = {
   title: PropTypes.string.isRequired,
-  youtubeUrl: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  youtubeUrl: PropTypes.string.isRequired,
   contents: PropTypes.string.isRequired,
   mainBody: PropTypes.string.isRequired,
   subBody: PropTypes.string.isRequired,
@@ -96,6 +102,13 @@ UpdateStretching.propTypes = {
   handleEditor: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  handleFileInput: PropTypes.func.isRequired,
 };
 
-export default React.memo(UpdateStretching);
+export default React.memo(CreateStretching);
+
+const StyledImg = styled.img`
+  width: 300px;
+  height: 300px;
+  margin-top: 20px;
+`;

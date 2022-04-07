@@ -5,7 +5,7 @@ import S3 from 'react-aws-s3';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
-
+import s3Config from '../../config/s3'
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
 export const Editor = ({ value, handleEditor }) => {
@@ -40,14 +40,8 @@ export const Editor = ({ value, handleEditor }) => {
     input.onchange = function () {
       const file = input.files[0];
       const fileName = file.name;
-      const config = {
-        bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
-        region: process.env.REACT_APP_S3_REGION,
-        accessKeyId: process.env.REACT_APP_S3_ACCESS_ID,
-        secretAccessKey: process.env.REACT_APP_S3_ACCESS_KEY,
-      };
 
-      const ReactS3Client = new S3(config);
+      const ReactS3Client = new S3(s3Config);
 
       ReactS3Client.uploadFile(file, fileName)
         .then(data => {
