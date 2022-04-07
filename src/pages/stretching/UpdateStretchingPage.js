@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
+import Loading from '../../components/common/elements/Loading';
 import UpdateStretching from '../../components/stretching/UpdateStretching';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function UpdateStretchingPage() {
   const navigate = useNavigate();
+  const { idx } = useParams();
+  const [loading, setLoading] = useState(true);
+
+  const [stretching, setStretching] = useState([]);
 
   const [inputs, setInputs] = useState({
     title: '',
@@ -85,9 +90,45 @@ function UpdateStretchingPage() {
     }
   };
 
-  return (
+  useEffect(() => {
+    const getStretching = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(`/stretchings/${idx}`);
+        const result = res.data.data;
+        setStretching(result);
+        setInputs({
+          title: result.title,
+          youtubeUrl: result.youtube_url,
+          image: result.image,
+        });
+        setSelects({
+          mainBody: result.mainBody,
+          subBody: result.subBody,
+          tool: result.tool,
+          posture1: result.posture[0],
+          posture2: 1,
+          posture3: 2,
+          effect1: 1,
+          effect2: 1,
+          effect3: 1,
+        });
+        setContents(result.contents);
+      } catch (err) {
+        setErrMsg(err.response.data.error);
+        handleErrModal();
+      }
+      setLoading(false);
+    };
+    getStretching();
+  }, []);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <UpdateStretching
+        stretching={stretching}
         title={title}
         youtubeUrl={youtubeUrl}
         image={image}

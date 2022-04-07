@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
 import StretchingDetail from '../../components/stretching/StretchingDetail';
@@ -8,12 +8,10 @@ import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 import StretchingDeleteModal from '../../components/common/Modal/StretchingDeleteModal';
 
 function StretchingDetailPage() {
+  const navigate = useNavigate();
   const { idx } = useParams();
   const [loading, setLoading] = useState(true);
-  const [isUpdate, setIsUpdate] = useState(null);
-  const handleIsUpdate = () => {
-    setIsUpdate(prev => !prev);
-  };
+
   const [stretching, setStretching] = useState([]);
 
   const [deleteModalOn, setDeleteModalOn] = useState(false);
@@ -25,6 +23,10 @@ function StretchingDetailPage() {
   const [errMsg, setErrMsg] = useState('');
   const handleErrModal = () => {
     setErrModalOn(!errModalOn);
+  };
+
+  const onLinkUpdate = () => {
+    navigate(`/stretching/update/${idx}`);
   };
 
   useEffect(() => {
@@ -46,25 +48,7 @@ function StretchingDetailPage() {
     <Loading />
   ) : (
     <>
-      <StretchingDetail
-        stretching={stretching}
-        idx={stretching?.stretchingIdx}
-        title={stretching?.title}
-        youtubeUrl={stretching?.youtubeUrl}
-        image={stretching?.image}
-        contents={stretching?.contents}
-        mainBody={stretching?.mainBody}
-        subBody={stretching?.subBody}
-        tool={stretching?.tool}
-        posture={stretching?.posture}
-        effect={stretching?.effect}
-        adminIdx={stretching?.adminIdx}
-        createAt={stretching?.createAt}
-        difficulty={stretching?.difficulty}
-        handleDeleteModal={handleDeleteModal}
-        isUpdate={isUpdate}
-        handleIsUpdate={handleIsUpdate}
-      />
+      <StretchingDetail stretching={stretching} onLinkUpdate={onLinkUpdate} handleDeleteModal={handleDeleteModal} />
       {deleteModalOn && (
         <StretchingDeleteModal
           onClose={handleDeleteModal}

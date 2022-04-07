@@ -10,6 +10,7 @@ import UserDetail from './components/user/UserDetailComponent';
 import StretchingListPage from './pages/stretching/StretchingListPage';
 import StretchingDetailPage from './pages/stretching/StretchingDetailPage';
 import CreateStretchingPage from './pages/stretching/CreateStretchingPage';
+import UpdateStretchingPage from './pages/stretching/UpdateStretchingPage';
 
 import WeekStretchingListPage from './pages/weekStretching/WeekStretchingListPage';
 import CreateWeekStretchingPage from './pages/weekStretching/CreateWeekStretchingPage';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/stretching" element={<StretchingListPage />} />
         <Route path="/stretching/:idx" element={<StretchingDetailPage />} />
         <Route path="/stretching/create" element={<CreateStretchingPage />} />
+        <Route path="/stretching/update/:idx" element={<UpdateStretchingPage />} />
 
         <Route path="/weekStretching" element={<WeekStretchingListPage />} />
         <Route path="/weekStretching/create" element={<CreateWeekStretchingPage />} />

@@ -9,7 +9,7 @@ import InputTitle from '../common/elements/InputTitle';
 import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum, toolEnum } from '../../util/stretchingEnum';
 import Center from '../common/elements/Center';
 
-function StretchingDetail({ stretching, handleDeleteModal, handleIsUpdate }) {
+function StretchingDetail({ stretching, onLinkUpdate, handleDeleteModal }) {
   return (
     <Main>
       <Content title="스트레칭 상세">
@@ -25,11 +25,11 @@ function StretchingDetail({ stretching, handleDeleteModal, handleIsUpdate }) {
         <StyledP>{toolEnum[stretching.tool]}</StyledP>
         <InputTitle text="자세" />
         {stretching.posture.map(posture => (
-          <StyledP>{postureEnum[posture]}</StyledP>
+          <StyledP key={posture}>{postureEnum[posture]}</StyledP>
         ))}
         <InputTitle text="효과" />
         {stretching.effect.map(effect => (
-          <StyledP>{effectEnum[effect]}</StyledP>
+          <StyledP key={effect}>{effectEnum[effect]}</StyledP>
         ))}
         <InputTitle text="설명" />
         <StyledPre dangerouslySetInnerHTML={{ __html: stretching.contents }} />
@@ -44,7 +44,7 @@ function StretchingDetail({ stretching, handleDeleteModal, handleIsUpdate }) {
         <InputTitle text="난이도" />
         <StyledP>{stretching.difficulty}</StyledP>
         <Center>
-          <Button text="수정하기" click={handleIsUpdate} />
+          <Button text="수정하기" click={onLinkUpdate} />
           <Button text="삭제하기" click={handleDeleteModal} />
         </Center>
       </Content>
@@ -57,11 +57,11 @@ StretchingDetail.propTypes = {
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))),
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     ]),
   ).isRequired,
+  onLinkUpdate: PropTypes.func.isRequired,
   handleDeleteModal: PropTypes.func.isRequired,
-  handleIsUpdate: PropTypes.func.isRequired,
 };
 
 export default React.memo(StretchingDetail);
