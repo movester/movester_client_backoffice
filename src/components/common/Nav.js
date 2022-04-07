@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
-import ModalPortal from './Modal/ModalPortal';
 import LogoutModal from './Modal/LogoutModal';
 import ConfirmModal from './Modal/ConfirmModal';
 
@@ -133,14 +132,10 @@ function Nav() {
       </MenuContainer>
       <Logout onClick={handleLogoutModal}>로그아웃</Logout>
       {logoutModalOn && (
-        <ModalPortal>
           <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal} />
-        </ModalPortal>
       )}
       {errModalOn && (
-        <ModalPortal>
           <ConfirmModal onClose={handleErrModal} title="로그아웃 실패" content={errMsg} />
-        </ModalPortal>
       )}
     </Wrapper>
   );
