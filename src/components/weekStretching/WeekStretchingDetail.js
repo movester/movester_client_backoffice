@@ -11,7 +11,7 @@ function WeekStretchingDetail({ weekStretching, onLinkUpdate, handleDeleteModal,
   return (
     <Main>
       <Content title="일주일 스트레칭 상세">
-        <InputTitle text="인덱스" />
+        <InputTitle text="일주일 스트레칭 번호" />
         <StyledDiv>{weekStretching.weekIdx}</StyledDiv>
 
         <InputTitle text="제목" />

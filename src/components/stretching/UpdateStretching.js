@@ -41,7 +41,7 @@ function UpdateStretching({
   return (
     <Main>
       <Content title="스트레칭 수정">
-        <InputTitle text="인덱스" />
+        <InputTitle text="스트레칭 번호" />
         <StyledP>{stretching.stretchingIdx}</StyledP>
 
         <InputTitle text="제목" />
@@ -76,7 +76,7 @@ function UpdateStretching({
         <Input name="image" value={image} onChange={onInputChange} />
 
         <Center>
-          <Button text="등록하기" click={onSubmit} />
+          <Button text="수정하기" click={onSubmit} />
         </Center>
       </Content>
     </Main>

@@ -26,7 +26,7 @@ SelectBox.defaultProps = {
 
 export default SelectBox;
 const StyledSelectBox = styled.select`
-  width: 180px;
+  width: 200px;
   height: 33px;
   background-color: #efefef;
   background-size: 20px;
