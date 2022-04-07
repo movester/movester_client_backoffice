@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../services/defaultClient';
 
+import Loading from '../../components/common/elements/Loading';
 import StretchingList from '../../components/stretching/StretchingList';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function StretchingListPage() {
+  const [loading, setLoading] = useState(true);
+
   const [stretchings, setStretchings] = useState([]);
   const [title, setTitle] = useState('');
+
   const onTitleChange = e => {
     setTitle(e.target.value);
   };
@@ -41,23 +45,28 @@ function StretchingListPage() {
   useEffect(() => {
     const getStretchingList = async () => {
       try {
-        const result = await axios.get(
+        setLoading(true);
+        const res = await axios.get(
           `/stretchings?title=${title}&mainCategory=${mainBody}&subCategory=${subBody}&posture=${posture}&effect=${effect}&tool=${tool}`,
         );
-
-        setStretchings([...result.data.data]);
-        setTotal([...result.data.data].length);
+        const result = res.data.data;
+          console.log(result)
+        setStretchings(result);
+        setTotal(result.length);
       } catch (err) {
         setErrMsg(err.response.data.error);
         handleErrModal();
       }
+      setLoading(false);
     };
 
     getStretchingList();
     setPage(1);
   }, [title, mainBody, subBody, posture, effect, tool]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <StretchingList
         stretchings={stretchings}

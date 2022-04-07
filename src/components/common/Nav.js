@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
 import ModalPortal from './Modal/ModalPortal';
@@ -14,6 +14,7 @@ function Nav() {
   const rank = useSelector(state => state.auth.admin?.rank);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [errModalOn, setErrModalOn] = useState(false);
   const [errMsg, setErrMsg] = useState('');
@@ -24,7 +25,12 @@ function Nav() {
   const handleLogoutModal = () => {
     setLogoutModalOn(prev => !prev);
   };
-
+  const navEnum = {
+    user: 0,
+    stretching: 1,
+    weekStretching: 2,
+    admin: 3,
+  };
   const [activeIndex, setActiveIndex] = useState(0);
   const MENU_LIST = rank
     ? [
@@ -85,6 +91,15 @@ function Nav() {
     }
     setLogoutModalOn(false);
   }, [isAuth]);
+
+  useEffect(() => {
+    const parsingPath = () => {
+      const path = location.pathname;
+      const menu = path.split('/')[1]
+      setActiveIndex(navEnum[menu])
+    };
+    parsingPath();
+  }, []);
 
   if (window.location.pathname === '/login') return null;
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 function MenuItem({ title, path, list, active, setActiveIndex, idx }) {
   const [activeSubIndex, setActiveSubIndex] = useState(0);
