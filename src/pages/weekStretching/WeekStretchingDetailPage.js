@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
 import Loading from '../../components/common/elements/Loading';
@@ -8,9 +8,9 @@ import WeekStretchingDeleteModal from '../../components/common/Modal/WeekStretch
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function WeekStretchingDetailPage() {
+  const navigate = useNavigate();
   const { idx } = useParams();
   const [loading, setLoading] = useState(true);
-  const [reloading, setReloading] = useState(false);
   const [weekStretching, setWeekStretching] = useState({});
 
   const [deleteModalOn, setDeleteModalOn] = useState(false);
@@ -33,10 +33,8 @@ function WeekStretchingDetailPage() {
       });
 
       if (data.success) {
-        setErrMsg('노출 변경 성공');
-        handleErrModal();
+        navigate('/weekStretching');
       }
-      setReloading(!reloading)
     } catch (err) {
       setErrModalOn(prev => !prev);
       setErrMsg(err.response.data.error);
@@ -50,10 +48,8 @@ function WeekStretchingDetailPage() {
       const { data } = await axios.delete(`weeks/expose/${idx}`);
 
       if (data.success) {
-        setErrMsg('노출 취소 성공');
-        handleErrModal();
+        navigate('/weekStretching');
       }
-      setReloading(!reloading)
     } catch (err) {
       setErrModalOn(prev => !prev);
       setErrMsg(err.response.data.error);
@@ -73,7 +69,7 @@ function WeekStretchingDetailPage() {
       setLoading(false);
     };
     getWeekStretching();
-  }, [reloading]);
+  }, []);
 
   return loading ? (
     <Loading />
