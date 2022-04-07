@@ -9,7 +9,7 @@ import Loading from '../../components/common/elements/Loading';
 function WeekStretchingListPage() {
   const [loading, setLoading] = useState(true);
   const [weekStretchings, setWeekStretchings] = useState([]);
-  const [exposingStretching, setExposingStretching] = useState({});
+  const [exposingStretching, setExposingStretching] = useState({ weekIdx: null, title: '-' });
 
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -36,7 +36,9 @@ function WeekStretchingListPage() {
     const getExposingStretching = async () => {
       try {
         const result = await axios.get(`weeks/expose/stretchings`);
-        setExposingStretching(result.data.data);
+        if (result.data.data) {
+          setExposingStretching(result?.data?.data);
+        }
       } catch (err) {
         setErrMsg(err.response.data.error);
         handleErrModal();

@@ -10,6 +10,7 @@ import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 function WeekStretchingDetailPage() {
   const { idx } = useParams();
   const [loading, setLoading] = useState(true);
+  const [reloading, setReloading] = useState(false);
   const [weekStretching, setWeekStretching] = useState({});
 
   const [deleteModalOn, setDeleteModalOn] = useState(false);
@@ -23,7 +24,7 @@ function WeekStretchingDetailPage() {
     setErrModalOn(!errModalOn);
   };
 
-  const onExpose = async e => {
+  const onUpdateExpose = async e => {
     e.preventDefault();
 
     try {
@@ -32,9 +33,27 @@ function WeekStretchingDetailPage() {
       });
 
       if (data.success) {
-        setErrMsg("노출 변경 완료!");
+        setErrMsg('노출 변경 성공');
         handleErrModal();
       }
+      setReloading(!reloading)
+    } catch (err) {
+      setErrModalOn(prev => !prev);
+      setErrMsg(err.response.data.error);
+    }
+  };
+
+  const onDeleteExpose = async e => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.delete(`weeks/expose/${idx}`);
+
+      if (data.success) {
+        setErrMsg('노출 취소 성공');
+        handleErrModal();
+      }
+      setReloading(!reloading)
     } catch (err) {
       setErrModalOn(prev => !prev);
       setErrMsg(err.response.data.error);
@@ -54,13 +73,18 @@ function WeekStretchingDetailPage() {
       setLoading(false);
     };
     getWeekStretching();
-  }, []);
+  }, [reloading]);
 
   return loading ? (
     <Loading />
   ) : (
     <>
-      <WeekStretchingDetail weekStretching={weekStretching} handleDeleteModal={handleDeleteModal} onExpose={onExpose} />
+      <WeekStretchingDetail
+        weekStretching={weekStretching}
+        handleDeleteModal={handleDeleteModal}
+        onUpdateExpose={onUpdateExpose}
+        onDeleteExpose={onDeleteExpose}
+      />
       {deleteModalOn && (
         <WeekStretchingDeleteModal
           onClose={handleDeleteModal}
