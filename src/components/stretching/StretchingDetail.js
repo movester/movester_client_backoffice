@@ -5,83 +5,44 @@ import styled from 'styled-components';
 import Main from '../common/Main';
 import Content from '../common/Content';
 import Button from '../common/button/Button';
-import Input from '../common/elements/Input';
 import InputTitle from '../common/elements/InputTitle';
-import SelectBox from '../common/elements/SelectBox';
-import {
-  stretchingMainBody,
-  stretchingSubBody,
-  stretchingEffect,
-  stretchingPosture,
-  stretchingTool,
-} from '../../util/selectboxOptions';
+import { mainBodyEnum, subBodyEnum, postureEnum, effectEnum, toolEnum } from '../../util/stretchingEnum';
 import Center from '../common/elements/Center';
 
-function StretchingDetail({
-  idx,
-  title,
-  youtubeUrl,
-  image,
-  mainBody,
-  subBody,
-  tool,
-  posture,
-  effect,
-  contents,
-  adminIdx,
-  createAt,
-  difficulty,
-  isUpdate,
-  onInputChange,
-  handleDeleteModal,
-  handleIsUpdate,
-}) {
+function StretchingDetail({ stretching, handleDeleteModal, handleIsUpdate }) {
   return (
     <Main>
-      <Content title={isUpdate ? '스트레칭 수정' : '스트레칭 상세'}>
+      <Content title="스트레칭 상세">
         <InputTitle text="스트레칭 번호" />
-        <StyledP>{idx}</StyledP>
-
+        <StyledP>{stretching.stretchingIdx}</StyledP>
         <InputTitle text="제목" />
-        <Input name="title" value={title} onChange={onInputChange} readOnly={!isUpdate} />
-
+        <StyledP>{stretching.title}</StyledP>
         <InputTitle text="신체부위 - 상위 카테고리" />
-        <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} readOnly={!isUpdate} />
-
+        <StyledP>{mainBodyEnum[stretching.mainBody]}</StyledP>
         <InputTitle text="신체부위 - 하위 카위고리" />
-        <SelectBox options={stretchingSubBody} name="subBody" value={subBody} readOnly={!isUpdate} />
-
+        <StyledP>{subBodyEnum[stretching.subBody]}</StyledP>
         <InputTitle text="도구" />
-        <SelectBox options={stretchingTool} name="tool" value={tool} readOnly={!isUpdate} />
-
+        <StyledP>{toolEnum[stretching.tool]}</StyledP>
         <InputTitle text="자세" />
-        <SelectBox options={stretchingPosture} name="posture1" value={posture[0]} readOnly={!isUpdate} />
-        <SelectBox options={stretchingPosture} name="posture2" value={posture[1]} readOnly={!isUpdate} />
-        <SelectBox options={stretchingPosture} name="posture3" value={posture[2]} readOnly={!isUpdate} />
-
+        {stretching.posture.map(posture => (
+          <StyledP>{postureEnum[posture]}</StyledP>
+        ))}
         <InputTitle text="효과" />
-        <SelectBox options={stretchingEffect} name="effect1" value={effect[0]} readOnly={!isUpdate} />
-        <SelectBox options={stretchingEffect} name="effect2" value={effect[1]} readOnly={!isUpdate} />
-        <SelectBox options={stretchingEffect} name="effect3" value={effect[2]} readOnly={!isUpdate} />
-
+        {stretching.effect.map(effect => (
+          <StyledP>{effectEnum[effect]}</StyledP>
+        ))}
         <InputTitle text="설명" />
-        <pre dangerouslySetInnerHTML={{ __html: contents }} />
-
+        <StyledPre dangerouslySetInnerHTML={{ __html: stretching.contents }} />
         <InputTitle text="유튜브 링크" />
-        <Input name="youtubeUrl" value={youtubeUrl} onChange={onInputChange} disalbed={!isUpdate} />
-
+        <StyledP>{stretching.youtube_url}</StyledP>
         <InputTitle text="대표 이미지" />
-        <Input name="image" value={image} onChange={onInputChange} disalbed={!isUpdate} />
-
+        <StyledP>{stretching.image}</StyledP>
         <InputTitle text="작성자" />
-        <StyledP>{adminIdx}</StyledP>
-
+        <StyledP>{stretching.adminIdx}</StyledP>
         <InputTitle text="등록일" />
-        <StyledP>{createAt}</StyledP>
-
+        <StyledP>{stretching.createAt}</StyledP>
         <InputTitle text="난이도" />
-        <StyledP>{difficulty}</StyledP>
-
+        <StyledP>{stretching.difficulty}</StyledP>
         <Center>
           <Button text="수정하기" click={handleIsUpdate} />
           <Button text="삭제하기" click={handleDeleteModal} />
@@ -92,50 +53,34 @@ function StretchingDetail({
 }
 
 StretchingDetail.propTypes = {
-  idx: PropTypes.number,
-  title: PropTypes.string,
-  youtubeUrl: PropTypes.string,
-  image: PropTypes.string,
-  contents: PropTypes.string,
-  mainBody: PropTypes.number,
-  subBody: PropTypes.number,
-  tool: PropTypes.number,
-  posture: PropTypes.arrayOf(PropTypes.object),
-  effect: PropTypes.arrayOf(PropTypes.object),
-  adminIdx: PropTypes.number,
-  createAt: PropTypes.string,
-  difficulty: PropTypes.number,
-  isUpdate: PropTypes.bool,
-  onInputChange: PropTypes.func,
+  stretching: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))),
+    ]),
+  ).isRequired,
   handleDeleteModal: PropTypes.func.isRequired,
   handleIsUpdate: PropTypes.func.isRequired,
-};
-
-StretchingDetail.defaultProps = {
-  idx: null,
-  title: '',
-  youtubeUrl: '',
-  image: '',
-  contents: '',
-  mainBody: 0,
-  subBody: 0,
-  tool: 0,
-  posture: [0, 0, 0],
-  effect: [0, 0, 0],
-  adminIdx: null,
-  createAt: '',
-  difficulty: null,
-  isUpdate: false,
-  onInputChange: () => {},
 };
 
 export default React.memo(StretchingDetail);
 
 const StyledP = styled.p`
-  width: 100%;
-  height: 40px;
-  border: 1px solid gray;
+  border: 1px solid black;
   border-radius: 10px;
   padding: 0 10px;
   line-height: 40px;
+  height: 40px;
+
+  & + & {
+    margin-top: 10px;
+  }
+`;
+
+const StyledPre = styled.pre`
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 40px;
 `;

@@ -47,6 +47,7 @@ function StretchingDetailPage() {
   ) : (
     <>
       <StretchingDetail
+        stretching={stretching}
         idx={stretching?.stretchingIdx}
         title={stretching?.title}
         youtubeUrl={stretching?.youtubeUrl}
