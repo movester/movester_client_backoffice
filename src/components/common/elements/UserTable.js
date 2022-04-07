@@ -25,10 +25,10 @@ function UserTable({ headers, columns, link }) {
         ) : (
           <ul key={userIdx}>
             <li>{userIdx}</li>
-            <li>{name || '없음'}</li>
-            <li>{email || '없음'}</li>
-            <li>{kakao_id || '없음'}</li>
-            <li>{isEmailAuth ? '인증 확인' : '인증 필요'}</li>
+            <li>{name || '-'}</li>
+            <li>{email || '-'}</li>
+            <li>{kakao_id || '-'}</li>
+            <li>{isEmailAuth ? '인증 완료' : '미인증'}</li>
             <li>{createAt}</li>
           </ul>
         );

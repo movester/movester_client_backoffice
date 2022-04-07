@@ -19,15 +19,6 @@ function CreateWeekStretchingPage() {
     setActiveDay(day);
   };
 
-  // const [weekStretching, setWeekStretching] = useState([
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  //   { idx: '', title: '' },
-  // ]);
   const [weekStretching, setWeekStretching] = useState([
     { idx: '', title: '' },
     { idx: '', title: '' },
@@ -37,12 +28,13 @@ function CreateWeekStretchingPage() {
     { idx: '', title: '' },
     { idx: '', title: '' },
   ]);
+
   const handleWeekStretching = (stretchingIdx, title) => {
     const newWeekStretching = [...weekStretching];
     newWeekStretching[activeDay] = { idx: stretchingIdx, title };
     setWeekStretching(newWeekStretching);
-    console.log(weekStretching);
   };
+
   const [errModalOn, setErrModalOn] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const handleErrModal = () => {
@@ -57,18 +49,25 @@ function CreateWeekStretchingPage() {
   const onSubmit = async e => {
     e.preventDefault();
 
-    try {
-      const { data } = await axios.post('stretchings', {
-        title,
-      });
-
-      if (data.success) {
-        const newStretchingIdx = data.data.stretchingIdx;
-        navigate(`/stretching/${newStretchingIdx}`);
-      }
-    } catch (err) {
+    const week = weekStretching.map(day => day.idx);
+    if (title === '' || !week.every(day => typeof day === 'number')) {
       setErrModalOn(prev => !prev);
-      setErrMsg(err.response.data.error);
+      setErrMsg('제목 및 모든 요일별 스트레칭을 입력해주세요.');
+    } else {
+      try {
+        const { data } = await axios.post('weeks', {
+          title,
+          week,
+        });
+
+        if (data.success) {
+          const newWeekStretchingIdx = data.data.weekIdx;
+          navigate(`/weekStretching/${newWeekStretchingIdx}`);
+        }
+      } catch (err) {
+        setErrModalOn(prev => !prev);
+        setErrMsg(err.response.data.error);
+      }
     }
   };
 

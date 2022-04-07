@@ -27,7 +27,7 @@ function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDele
               <li>{admin.adminIdx}</li>
               <li>{admin.id}</li>
               <li>{admin.name}</li>
-              <li>{admin.rank}</li>
+              <li>{admin.rank ? "super" : "normal"}</li>
               <li>{admin.createAt}</li>
               {adminRank === 1 ? (
                 <DeleteIcon
