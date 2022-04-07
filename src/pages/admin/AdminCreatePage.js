@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
 import AdminCreate from '../../components/admin/AdminCreate';
-import ModalPortal from '../../components/common/Modal/ModalPortal';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function AdminCreatePage() {
@@ -54,9 +53,7 @@ function AdminCreatePage() {
   return (
     <>
       <AdminCreate id={id} name={name} password={password} onChange={onChange} onSubmit={onSubmit} />
-      <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="로그인 실패" content={errMsg} />}
-      </ModalPortal>
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="로그인 실패" content={errMsg} />}
     </>
   );
 }

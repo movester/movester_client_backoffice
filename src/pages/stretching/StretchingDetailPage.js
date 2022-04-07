@@ -13,7 +13,6 @@ function StretchingDetailPage() {
   const [isUpdate, setIsUpdate] = useState(null);
   const handleIsUpdate = () => {
     setIsUpdate(prev => !prev);
-    alert(isUpdate);
   };
   const [stretching, setStretching] = useState([]);
 
@@ -43,34 +42,6 @@ function StretchingDetailPage() {
     getStretching();
   }, []);
 
-  // const onSubmit = async e => {
-  //   e.preventDefault();
-
-  //   const filterValidValue = arr => arr.filter(v => v);
-
-  //   try {
-  //     const { data } = await axios.post('stretchings', {
-  //       title,
-  //       contents,
-  //       mainBody: +mainBody,
-  //       subBody: +subBody,
-  //       tool: +tool ? +tool : null,
-  //       youtubeUrl,
-  //       image,
-  //       postures: filterValidValue([+posture1, +posture2, +posture3]),
-  //       effects: filterValidValue([+effect1, +effect2, +effect3]),
-  //     });
-
-  //     if (data.success) {
-  //       const newStretchingIdx = data.data.stretchingIdx;
-  //       navigate(`/stretching/${newStretchingIdx}`);
-  //     }
-  //   } catch (err) {
-  //     setErrModalOn(prev => !prev);
-  //     setErrMsg(err.response.data.error);
-  //   }
-  // };
-
   return loading ? (
     <Loading />
   ) : (
@@ -93,15 +64,15 @@ function StretchingDetailPage() {
         isUpdate={isUpdate}
         handleIsUpdate={handleIsUpdate}
       />
-        {deleteModalOn && (
-          <StretchingDeleteModal
-            onClose={handleDeleteModal}
-            stretchingIdx={idx}
-            setErrMsg={setErrMsg}
-            handleErrModal={handleErrModal}
-          />
-        )}
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 상세 조회 실패" content={errMsg} />}
+      {deleteModalOn && (
+        <StretchingDeleteModal
+          onClose={handleDeleteModal}
+          stretchingIdx={idx}
+          setErrMsg={setErrMsg}
+          handleErrModal={handleErrModal}
+        />
+      )}
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 상세 조회 실패" content={errMsg} />}
     </>
   );
 }

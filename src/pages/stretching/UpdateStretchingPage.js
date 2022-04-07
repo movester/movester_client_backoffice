@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../services/defaultClient';
 
-import CreateStretching from '../../components/stretching/CreateStretching';
+import UpdateStretching from '../../components/stretching/UpdateStretching';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
-function CreateStretchingPage() {
+function UpdateStretchingPage() {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
@@ -87,7 +87,7 @@ function CreateStretchingPage() {
 
   return (
     <>
-      <CreateStretching
+      <UpdateStretching
         title={title}
         youtubeUrl={youtubeUrl}
         image={image}
@@ -111,4 +111,4 @@ function CreateStretchingPage() {
   );
 }
 
-export default CreateStretchingPage;
+export default UpdateStretchingPage;

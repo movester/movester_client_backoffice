@@ -17,7 +17,7 @@ import {
 import Center from '../common/elements/Center';
 import QuillEditor from '../editor/Editor';
 
-function CreateStretching({
+function UpdateStretching({
   title,
   youtubeUrl,
   image,
@@ -78,7 +78,7 @@ function CreateStretching({
   );
 }
 
-CreateStretching.propTypes = {
+UpdateStretching.propTypes = {
   title: PropTypes.string.isRequired,
   youtubeUrl: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
@@ -98,4 +98,4 @@ CreateStretching.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default React.memo(CreateStretching);
+export default React.memo(UpdateStretching);

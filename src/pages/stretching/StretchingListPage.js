@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../services/defaultClient';
 
 import StretchingList from '../../components/stretching/StretchingList';
-import ModalPortal from '../../components/common/Modal/ModalPortal';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function StretchingListPage() {
@@ -55,7 +54,7 @@ function StretchingListPage() {
     };
 
     getStretchingList();
-    setPage(1)
+    setPage(1);
   }, [title, mainBody, subBody, posture, effect, tool]);
 
   return (
@@ -74,9 +73,7 @@ function StretchingListPage() {
         page={page}
         setPage={setPage}
       />
-      <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
-      </ModalPortal>
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
     </>
   );
 }

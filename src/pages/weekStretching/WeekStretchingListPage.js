@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../services/defaultClient';
 
 import WeekStretchingList from '../../components/weekStretching/WeekStretchingList';
-import ModalPortal from '../../components/common/Modal/ModalPortal';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 import Loading from '../../components/common/elements/Loading';
 
@@ -62,9 +61,7 @@ function WeekStretchingListPage() {
         page={page}
         setPage={setPage}
       />
-      <ModalPortal>
-        {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
-      </ModalPortal>
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
     </>
   );
 }
