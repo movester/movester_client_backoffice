@@ -68,7 +68,8 @@ function UpdateStretchingPage() {
     const filterValidValue = arr => arr.filter(v => v);
 
     try {
-      const { data } = await axios.post('stretchings', {
+      const { data } = await axios.put('stretchings', {
+        stretchingIdx: idx,
         title,
         contents,
         mainBody: +mainBody,
@@ -79,10 +80,8 @@ function UpdateStretchingPage() {
         postures: filterValidValue([+posture1, +posture2, +posture3]),
         effects: filterValidValue([+effect1, +effect2, +effect3]),
       });
-
       if (data.success) {
-        const newStretchingIdx = data.data.stretchingIdx;
-        navigate(`/stretching/${newStretchingIdx}`);
+        navigate(`/stretching/${idx}`);
       }
     } catch (err) {
       setErrModalOn(prev => !prev);

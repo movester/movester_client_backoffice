@@ -82,7 +82,6 @@ function UpdateWeekStretchingPage() {
           title,
           week,
         });
-
         if (data.success) {
           navigate(`/weekStretching/${idx}`);
         }
@@ -92,7 +91,7 @@ function UpdateWeekStretchingPage() {
       }
     }
   };
-  
+
   return loading ? (
     <Loading />
   ) : (
