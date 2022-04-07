@@ -2,10 +2,11 @@
 import React, { useRef, useMemo } from 'react';
 import ReactQuill from 'react-quill';
 import S3 from 'react-aws-s3';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
-import s3Config from '../../config/s3'
+import s3Config from '../../config/s3';
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
 export const Editor = ({ value, handleEditor }) => {
@@ -39,25 +40,29 @@ export const Editor = ({ value, handleEditor }) => {
     input.click();
     input.onchange = function () {
       const file = input.files[0];
-      const fileName = file.name;
+      const newFileName = uuidv4();
+      if (file) {
+        if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
+          const ReactS3Client = new S3(s3Config);
+          ReactS3Client.uploadFile(file, newFileName)
+            .then(data => {
+              if (data.status === 204) {
+                const range = QuillRef.current?.getEditor().getSelection()?.index;
 
-      const ReactS3Client = new S3(s3Config);
-
-      ReactS3Client.uploadFile(file, fileName)
-        .then(data => {
-          if (data.status === 204) {
-            const range = QuillRef.current?.getEditor().getSelection()?.index;
-
-            if (range !== null && range !== undefined) {
-              let quill = QuillRef.current?.getEditor();
-              quill?.insertEmbed(range, 'image', `${data.location}`);
-              quill?.setSelection(range, 1);
-            }
-          } else {
-            alert('error');
-          }
-        })
-        .catch(e => console.log('err', e));
+                if (range !== null && range !== undefined) {
+                  let quill = QuillRef.current?.getEditor();
+                  quill?.insertEmbed(range, 'image', `${data.location}`);
+                  quill?.setSelection(range, 1);
+                }
+              } else {
+                alert('error');
+              }
+            })
+            .catch(e => console.log('err', e));
+        } else {
+          alert('JPEG, PNG, JPG 파일만 업로드 가능합니다.');
+        }
+      }
     };
   };
 
