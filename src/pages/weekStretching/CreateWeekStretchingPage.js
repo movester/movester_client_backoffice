@@ -60,7 +60,7 @@ function CreateWeekStretchingPage() {
           week,
         });
 
-        if (data.success) {
+        if (!data.success) {
           const newWeekStretchingIdx = data.data.weekIdx;
           navigate(`/weekStretching/${newWeekStretchingIdx}`);
         }
