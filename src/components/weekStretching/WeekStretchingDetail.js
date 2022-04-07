@@ -7,7 +7,7 @@ import Button from '../common/button/Button';
 import InputTitle from '../common/elements/InputTitle';
 import Center from '../common/elements/Center';
 
-function WeekStretchingDetail({ weekStretching, handleDeleteModal, onUpdateExpose, onDeleteExpose }) {
+function WeekStretchingDetail({ weekStretching, onLinkUpdate, handleDeleteModal, onUpdateExpose, onDeleteExpose }) {
   return (
     <Main>
       <Content title="일주일 스트레칭 상세">
@@ -39,7 +39,7 @@ function WeekStretchingDetail({ weekStretching, handleDeleteModal, onUpdateExpos
           ) : (
             <Button text="노출하기" click={onUpdateExpose} />
           )}
-          <Button text="수정하기" />
+          <Button text="수정하기" click={onLinkUpdate} />
           <Button text="삭제하기" click={handleDeleteModal} />
         </Center>
       </Content>
@@ -55,6 +55,7 @@ WeekStretchingDetail.propTypes = {
       PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))),
     ]),
   ).isRequired,
+  onLinkUpdate: PropTypes.func.isRequired,
   handleDeleteModal: PropTypes.func.isRequired,
   onUpdateExpose: PropTypes.func.isRequired,
   onDeleteExpose: PropTypes.func.isRequired,

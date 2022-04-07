@@ -14,6 +14,7 @@ import CreateStretchingPage from './pages/stretching/CreateStretchingPage';
 import WeekStretchingListPage from './pages/weekStretching/WeekStretchingListPage';
 import CreateWeekStretchingPage from './pages/weekStretching/CreateWeekStretchingPage';
 import WeekStretchingDetailPage from './pages/weekStretching/WeekStretchingDetailPage';
+import UpdateWeekStretchingPage from './pages/weekStretching/UpdateWeekStretchingPage';
 
 import RegisterEventPage from './pages/event/RegisterEventPage';
 import EventList from './components/event/EventListComponent';
@@ -41,6 +42,7 @@ function App() {
         <Route path="/weekStretching" element={<WeekStretchingListPage />} />
         <Route path="/weekStretching/create" element={<CreateWeekStretchingPage />} />
         <Route path="/weekStretching/:idx" element={<WeekStretchingDetailPage />} />
+        <Route path="/weekStretching/update/:idx" element={<UpdateWeekStretchingPage />} />
 
 
         <Route path="/event" element={<EventList />} />

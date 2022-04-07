@@ -45,13 +45,9 @@ function WeekStretchingDeleteModal({ onClose, weekStretchingIdx, setErrMsg, hand
 
 WeekStretchingDeleteModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  weekStretchingIdx: PropTypes.number,
+  weekStretchingIdx: PropTypes.string.isRequired,
   setErrMsg: PropTypes.func.isRequired,
   handleErrModal: PropTypes.func.isRequired,
-};
-
-WeekStretchingDeleteModal.defaultProps = {
-  weekStretchingIdx: null,
 };
 
 export default WeekStretchingDeleteModal;

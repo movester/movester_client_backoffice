@@ -24,6 +24,10 @@ function WeekStretchingDetailPage() {
     setErrModalOn(!errModalOn);
   };
 
+  const onLinkUpdate = () => {
+    navigate(`/weekStretching/update/${idx}`);
+  };
+
   const onUpdateExpose = async e => {
     e.preventDefault();
 
@@ -77,6 +81,7 @@ function WeekStretchingDetailPage() {
     <>
       <WeekStretchingDetail
         weekStretching={weekStretching}
+        onLinkUpdate={onLinkUpdate}
         handleDeleteModal={handleDeleteModal}
         onUpdateExpose={onUpdateExpose}
         onDeleteExpose={onDeleteExpose}
