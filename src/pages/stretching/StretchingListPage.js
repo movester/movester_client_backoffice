@@ -50,7 +50,6 @@ function StretchingListPage() {
           `/stretchings?title=${title}&mainCategory=${mainBody}&subCategory=${subBody}&posture=${posture}&effect=${effect}&tool=${tool}`,
         );
         const result = res.data.data;
-          console.log(result)
         setStretchings(result);
         setTotal(result.length);
       } catch (err) {

@@ -7,6 +7,8 @@ import MenuItem from './MenuItem';
 import LogoutModal from './Modal/LogoutModal';
 import ConfirmModal from './Modal/ConfirmModal';
 
+import { navMainEnum, adminMenuList, normalMenuList } from '../../util/navEnum';
+
 function Nav() {
   const isAuth = useSelector(state => state.auth.isAuth);
   const name = useSelector(state => state.auth.admin?.name);
@@ -24,65 +26,9 @@ function Nav() {
   const handleLogoutModal = () => {
     setLogoutModalOn(prev => !prev);
   };
-  const navEnum = {
-    user: 0,
-    stretching: 1,
-    weekStretching: 2,
-    admin: 3,
-  };
+
   const [activeIndex, setActiveIndex] = useState(0);
-  const MENU_LIST = rank
-    ? [
-        { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
-        {
-          title: '스트레칭',
-          path: '/stretching',
-          list: [
-            ['스트레칭 리스트', ''],
-            ['스트레칭 등록', '/create'],
-          ],
-        },
-        {
-          title: '일주일 스트레칭',
-          path: '/weekStretching',
-          list: [
-            ['일주일 추천 리스트', ''],
-            ['일주일 추천 등록', '/create'],
-          ],
-        },
-        {
-          title: '관리자 계정',
-          path: '/admin',
-          list: [
-            ['관리자 계정 리스트', ''],
-            ['관리자 계정 등록', '/create'],
-          ],
-        },
-      ]
-    : [
-        { title: '사용자', path: '/user', list: [['사용자 리스트', '']] },
-        {
-          title: '스트레칭',
-          path: '/stretching',
-          list: [
-            ['스트레칭 리스트', ''],
-            ['스트레칭 등록', '/create'],
-          ],
-        },
-        {
-          title: '일주일 스트레칭',
-          path: '/weekStretching',
-          list: [
-            ['일주일 추천 리스트', ''],
-            ['일주일 추천 등록', '/create'],
-          ],
-        },
-        {
-          title: '관리자 계정',
-          path: '/admin',
-          list: [['관리자 계정 리스트', '']],
-        },
-      ];
+  const MENU_LIST = rank ? adminMenuList : normalMenuList;
 
   useEffect(() => {
     if (!isAuth) {
@@ -94,8 +40,8 @@ function Nav() {
   useEffect(() => {
     const parsingPath = () => {
       const path = location.pathname;
-      const menu = path.split('/')[1]
-      setActiveIndex(navEnum[menu])
+      const mainMenu = path.split('/')[1];
+      setActiveIndex(navMainEnum[mainMenu]);
     };
     parsingPath();
   }, []);
@@ -132,11 +78,9 @@ function Nav() {
       </MenuContainer>
       <Logout onClick={handleLogoutModal}>로그아웃</Logout>
       {logoutModalOn && (
-          <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal} />
+        <LogoutModal onClose={handleLogoutModal} setErrMsg={setErrMsg} handleErrModal={handleErrModal} />
       )}
-      {errModalOn && (
-          <ConfirmModal onClose={handleErrModal} title="로그아웃 실패" content={errMsg} />
-      )}
+      {errModalOn && <ConfirmModal onClose={handleErrModal} title="로그아웃 실패" content={errMsg} />}
     </Wrapper>
   );
 }

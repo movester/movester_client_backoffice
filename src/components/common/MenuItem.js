@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function MenuItem({ title, path, list, active, setActiveIndex, idx }) {
   const [activeSubIndex, setActiveSubIndex] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const parsingPath = () => {
+      const path = location.pathname;
+      const tempSubMenu = path.split('/')[2];
+      const subMenu = tempSubMenu === 'create' ? 1 : 0;
+      setActiveSubIndex(subMenu);
+    };
+    parsingPath();
+  }, []);
 
   const handleClick = (_, menuPath) => {
     setActiveIndex(idx);
@@ -37,21 +48,12 @@ function MenuItem({ title, path, list, active, setActiveIndex, idx }) {
 }
 
 MenuItem.propTypes = {
-  title: PropTypes.string,
-  path: PropTypes.string,
-  list: PropTypes.arrayOf(PropTypes.array),
-  active: PropTypes.string,
-  setActiveIndex: PropTypes.func,
-  idx: PropTypes.number,
-};
-
-MenuItem.defaultProps = {
-  title: '이름 없음',
-  path: '/',
-  list: [[]],
-  active: null,
-  setActiveIndex: () => {},
-  idx: 0,
+  title: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  list: PropTypes.arrayOf(PropTypes.array).isRequired,
+  active: PropTypes.string.isRequired,
+  setActiveIndex: PropTypes.func.isRequired,
+  idx: PropTypes.number.isRequired,
 };
 
 export default React.memo(MenuItem);
