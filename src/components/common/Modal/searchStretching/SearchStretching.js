@@ -70,8 +70,8 @@ function SearchStretching({
               <li>
                 {mainBodyEnum[mainBody]} - {subBodyEnum[subBody]}
               </li>
-              <li>{effect.map(v => effectEnum[v]).join(' / ')}</li>
-              <li>{posture.map(v => postureEnum[v]).join(' / ')}</li>
+              <li>{effect ? effect.map(v => effectEnum[v]).join(' / ') : "-"}</li>
+              <li>{posture ? posture.map(v => postureEnum[v]).join(' / ') : "-"}</li>
               <li>{difficulty}</li>
             </ul>
           );
