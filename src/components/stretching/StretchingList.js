@@ -127,15 +127,16 @@ const StyledStretchingOptionsWrap = styled.section`
 `;
 
 const StyledListTable = styled.section`
-  margin-top: 20px;
-  height: 400px;
+  margin: 20px 0 40px 0;
+  min-height: 400px;
+  height: auto;
   ul {
     display: flex;
     border-bottom: 1px solid #c4c4c4;
   }
   li {
     flex-grow: 1;
-    width: 10%;
+    width: 20%;
     padding: 10px 5px;
     text-align: center;
   }

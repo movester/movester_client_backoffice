@@ -129,11 +129,11 @@ function UpdateStretchingPage() {
           subBody: result.subBody,
           tool: result.tool,
           posture1: result.posture[0],
-          posture2: 1,
-          posture3: 2,
-          effect1: 1,
-          effect2: 1,
-          effect3: 1,
+          posture2: result.posture[1],
+          posture3: result.posture[2],
+          effect1: result.effect[0],
+          effect2: result.effect[1],
+          effect3: result.effect[2],
         });
         setContents(result.contents);
       } catch (err) {
