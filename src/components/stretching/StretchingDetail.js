@@ -90,6 +90,7 @@ const StyledPre = styled.pre`
   border-radius: 10px;
   padding: 10px;
   min-height: 40px;
+  line-height: 25px;
 `;
 
 const StyledImg = styled.img`
