@@ -21,8 +21,8 @@ const stretchingMainBody = [
   { value: '', name: '상위 부위 카테고리' },
   { value: 1, name: '전신' },
   { value: 2, name: '상체' },
-  { value: 3, name: '하체' },
-  { value: 4, name: '코어' },
+  { value: 3, name: '코어' },
+  { value: 4, name: '하체' },
 ];
 
 const stretchingSubBody = [
@@ -64,9 +64,7 @@ const stretchingTool = [
   { value: 5, name: '짐볼' },
 ];
 
-const stretchingSearchOptions = [
-  { value: 'title', name: '제목' },
-];
+const stretchingSearchOptions = [{ value: 'title', name: '제목' }];
 
 const eventListSearch1 = [
   { value: 'name', name: '당첨자 유무' },

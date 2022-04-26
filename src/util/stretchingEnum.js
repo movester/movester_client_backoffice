@@ -1,8 +1,8 @@
 const mainBodyEnum = {
   1: '전신',
   2: '상체',
-  3: '하체',
-  4: '코어',
+  3: '코어',
+  4: '하체',
 };
 
 const subBodyEnum = {
