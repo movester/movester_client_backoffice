@@ -15,7 +15,7 @@ function AdminListPage() {
   const [limit] = useState(10);
 
   const offset = (page - 1) * limit;
-
+  const [isDelete, setIsDelete] = useState(false)
   const [deleteModalOn, setDeleteModalOn] = useState(false);
   const handleDeleteModal = () => {
     setDeleteModalOn(prev => !prev);
@@ -39,8 +39,11 @@ function AdminListPage() {
   };
 
   useEffect(() => {
-    getAdminList();
-  }, [deleteModalOn]);
+    if(isDelete){
+      getAdminList();
+      setIsDelete(() => false)
+    }
+  }, [isDelete]);
 
   return (
     <>
@@ -60,6 +63,7 @@ function AdminListPage() {
           adminIdx={deleteAdminIdx}
           setErrMsg={setErrMsg}
           handleErrModal={handleErrModal}
+          setIsDelete={setIsDelete}
         />
       )}
       {errModalOn && <ConfirmModal onClose={handleErrModal} title="비밀번호 변경 실패" content={errMsg} />}
