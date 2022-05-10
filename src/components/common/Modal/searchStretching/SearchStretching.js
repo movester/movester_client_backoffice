@@ -135,7 +135,7 @@ const StyledStretchingOptionsWrap = styled.section`
 
 const StyledListTable = styled.section`
   margin-top: 20px;
-  height: 400px;
+  height: auto;
   ul {
     display: flex;
     border-bottom: 1px solid #c4c4c4;

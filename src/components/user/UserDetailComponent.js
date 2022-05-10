@@ -34,7 +34,7 @@ function UserDetail() {
   const getRecord = async () => {
     const record = await (await axios.get(`users/records/${no}?year=${recordYear}`)).data.data;
     const recordParsing = month.map((el, idx) => {
-      const data = { month: el, sholder: record[idx][0] ?? 'X', leg: record[idx][1] ?? 'X' };
+      const data = { month: el, sholder: record[idx][0] ?? '-', leg: record[idx][1] ?? '-' };
       return data;
     });
     setRecordArr(recordParsing);

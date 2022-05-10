@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from '../../../../services/defaultClient'
 
 import SearchStretching from './SearchStretching';
-import ModalPortal from '../ModalPortal';
 import ConfirmModal from '../ConfirmModal';
 
 function SearchStretchingPage({handleWeekStretching, onClose}) {
@@ -77,9 +76,7 @@ function SearchStretchingPage({handleWeekStretching, onClose}) {
         handleWeekStretching={handleWeekStretching}
         onClose={onClose}
       />
-      <ModalPortal>
         {errModalOn && <ConfirmModal onClose={handleErrModal} title="스트레칭 리스트 응답 실패" content={errMsg} />}
-      </ModalPortal>
     </>
   );
 }
