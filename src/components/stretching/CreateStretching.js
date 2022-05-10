@@ -20,7 +20,7 @@ import QuillEditor from '../editor/Editor';
 
 function CreateStretching({
   title,
-  image,
+  titleMessage,
   youtubeUrl,
   mainBody,
   subBody,
@@ -43,6 +43,7 @@ function CreateStretching({
       <Content title="스트레칭 등록">
         <InputTitle text="제목" />
         <Input name="title" value={title} onChange={onInputChange} />
+        <StyledP>{titleMessage}</StyledP>
 
         <InputTitle text="신체부위 - 상위 카테고리" />
         <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
@@ -71,11 +72,6 @@ function CreateStretching({
 
         <InputTitle text="대표 이미지" />
         <Input type="file" onChange={handleFileInput} />
-        {image ? (
-          <StyledImg src={`https://movester-bucket.s3.ap-northeast-2.amazonaws.com/${image}.png`} alt="대표 이미지" />
-        ) : (
-          ''
-        )}
         <Center>
           <Button text="등록하기" click={onSubmit} />
         </Center>
@@ -86,7 +82,7 @@ function CreateStretching({
 
 CreateStretching.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  titleMessage: PropTypes.string,
   youtubeUrl: PropTypes.string.isRequired,
   contents: PropTypes.string.isRequired,
   mainBody: PropTypes.string.isRequired,
@@ -105,10 +101,16 @@ CreateStretching.propTypes = {
   handleFileInput: PropTypes.func.isRequired,
 };
 
+CreateStretching.defaultProps = {
+  titleMessage: '',
+};
+
 export default React.memo(CreateStretching);
 
-const StyledImg = styled.img`
-  width: 300px;
-  height: 300px;
-  margin-top: 20px;
+const StyledP = styled.p`
+  font-size: 12px;
+  color: red;
+  padding-left: 12px;
+  margin: 5px 0 20px 0;
+  text-align: left;
 `;

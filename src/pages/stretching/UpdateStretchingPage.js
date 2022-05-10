@@ -21,6 +21,8 @@ function UpdateStretchingPage() {
     youtubeUrl: '',
   });
 
+  const [titleMessage, setTitleMessage] = useState('');
+
   const [selects, setSelects] = useState({
     mainBody: '',
     subBody: '',
@@ -58,6 +60,10 @@ function UpdateStretchingPage() {
       ...inputs,
       [name]: value,
     });
+
+    if (name === 'title') {
+      setTitleMessage(title.length < 2 || title.length > 20 ? '제목은 2글자 이상 20글자 이하로 입력해주세요.' : '');
+    }
   };
 
   const onSelectChange = e => {
@@ -152,6 +158,7 @@ function UpdateStretchingPage() {
       <UpdateStretching
         stretching={stretching}
         title={title}
+        titleMessage={titleMessage}
         youtubeUrl={youtubeUrl}
         image={image}
         contents={contents}

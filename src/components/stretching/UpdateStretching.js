@@ -21,6 +21,7 @@ import QuillEditor from '../editor/Editor';
 function UpdateStretching({
   stretching,
   title,
+  titleMessage,
   youtubeUrl,
   image,
   mainBody,
@@ -47,6 +48,7 @@ function UpdateStretching({
 
         <InputTitle text="제목" />
         <Input name="title" value={title} onChange={onInputChange} />
+        <StyledMessage>{titleMessage}</StyledMessage>
 
         <InputTitle text="신체부위 - 상위 카테고리" />
         <SelectBox options={stretchingMainBody} name="mainBody" value={mainBody} onChange={onSelectChange} />
@@ -98,6 +100,7 @@ UpdateStretching.propTypes = {
     ]),
   ).isRequired,
   title: PropTypes.string.isRequired,
+  titleMessage: PropTypes.string,
   youtubeUrl: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   contents: PropTypes.string.isRequired,
@@ -115,6 +118,10 @@ UpdateStretching.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   handleFileInput: PropTypes.func.isRequired,
+};
+
+UpdateStretching.defaultProps = {
+  titleMessage: '',
 };
 
 export default React.memo(UpdateStretching);
@@ -135,4 +142,12 @@ const StyledImg = styled.img`
   width: 300px;
   height: 300px;
   margin-bottom: 20px;
+`;
+
+const StyledMessage = styled.p`
+  font-size: 12px;
+  color: red;
+  padding-left: 12px;
+  margin: 5px 0 20px 0;
+  text-align: left;
 `;

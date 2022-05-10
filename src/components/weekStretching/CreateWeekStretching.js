@@ -10,6 +10,7 @@ import Center from '../common/elements/Center';
 
 function CreateWeekStretching({
   title,
+  titleMessage,
   onTitleChange,
   weekStretching,
   onSubmit,
@@ -21,6 +22,7 @@ function CreateWeekStretching({
       <Content title="일주일 스트레칭 등록">
         <InputTitle text="제목" />
         <Input name="title" value={title} onChange={onTitleChange} />
+        <StyledP>{titleMessage}</StyledP>
 
         {['월', '화', '수', '목', '금', '토', '일'].map((day, index) => (
           <>
@@ -49,11 +51,16 @@ function CreateWeekStretching({
 
 CreateWeekStretching.propTypes = {
   title: PropTypes.string.isRequired,
+  titleMessage: PropTypes.string,
   onTitleChange: PropTypes.func.isRequired,
   weekStretching: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSubmit: PropTypes.func.isRequired,
   handleSearchStretchingModal: PropTypes.func.isRequired,
   handleActiveDay: PropTypes.func.isRequired,
+};
+
+CreateWeekStretching.defaultProps = {
+  titleMessage: '',
 };
 
 export default React.memo(CreateWeekStretching);
@@ -76,4 +83,12 @@ const StyledDiv = styled.div`
   border-radius: 10px;
   padding: 0 10px;
   line-height: 40px;
+`;
+
+const StyledP = styled.p`
+  font-size: 12px;
+  color: red;
+  padding-left: 12px;
+  margin: 5px 0 20px 0;
+  text-align: left;
 `;

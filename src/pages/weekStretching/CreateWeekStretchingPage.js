@@ -10,8 +10,10 @@ function CreateWeekStretchingPage() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
+  const [titleMessage, setTitleMessage] = useState('');
   const onTitleChange = e => {
     setTitle(e.target.value);
+    setTitleMessage(title.length < 2 || title.length > 20 ? '제목은 2글자 이상 20글자 이하로 입력해주세요.' : '');
   };
 
   const [activeDay, setActiveDay] = useState(null);
@@ -75,6 +77,7 @@ function CreateWeekStretchingPage() {
     <>
       <CreateWeekStretching
         title={title}
+        titleMessage={titleMessage}
         onTitleChange={onTitleChange}
         weekStretching={weekStretching}
         handleSearchStretchingModal={handleSearchStretchingModal}
