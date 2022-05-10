@@ -46,7 +46,7 @@ function LoginPage() {
         id: '',
         password: '',
       });
-      const errMsg = isError.error || '잘못된 이메일, 혹은 비밀번호입니다.';
+      const errMsg ='잘못된 이메일, 혹은 비밀번호입니다.';
 
       setErrModalOn(prev => !prev);
       setErrMsg(errMsg);
