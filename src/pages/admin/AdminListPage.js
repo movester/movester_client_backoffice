@@ -15,7 +15,7 @@ function AdminListPage() {
   const [limit] = useState(10);
 
   const offset = (page - 1) * limit;
-  const [isDelete, setIsDelete] = useState(false)
+  const [isDelete, setIsDelete] = useState(false);
   const [deleteModalOn, setDeleteModalOn] = useState(false);
   const handleDeleteModal = () => {
     setDeleteModalOn(prev => !prev);
@@ -39,9 +39,13 @@ function AdminListPage() {
   };
 
   useEffect(() => {
-    if(isDelete){
+    getAdminList();
+  }, []);
+
+  useEffect(() => {
+    if (isDelete) {
       getAdminList();
-      setIsDelete(() => false)
+      setIsDelete(() => false);
     }
   }, [isDelete]);
 
