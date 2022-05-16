@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import axios from '../../services/defaultClient';
@@ -11,8 +12,10 @@ import UserCount from '../common/elements/UserCount';
 import Input from '../common/elements/Input';
 import { selectboxOptions } from '../../util/selectboxOptions';
 import { listHeaders } from '../../util/listTableHeaders';
+import readOnlyBlur from '../../util/readOnlyBlur';
 
 function UserList() {
+  const adminRank = useSelector(state => state.auth.admin?.rank);
   const [users, setUser] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -107,8 +110,8 @@ function UserList() {
               <Link key={userIdx} to={`/user/${userIdx}`}>
                 <ul key={userIdx} className="column">
                   <li>{userIdx}</li>
-                  <li>{name}</li>
-                  <li>{email}</li>
+                  <li>{readOnlyBlur(name, adminRank)}</li>
+                  <li>{readOnlyBlur(email, adminRank)}</li>
                   <li>{createAt}</li>
                   <li>{attendPoint}</li>
                 </ul>

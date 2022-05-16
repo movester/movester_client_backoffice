@@ -8,6 +8,7 @@ import Content from '../common/Content';
 import UserCount from '../common/elements/UserCount';
 import { listHeaders } from '../../util/listTableHeaders';
 import Pagination from '../common/Pagination';
+import readOnlyBlur from '../../util/readOnlyBlur';
 
 function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDeleteModal, setDeleteAdminIdx }) {
   return (
@@ -25,11 +26,11 @@ function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDele
           {admins.slice(offset, offset + limit).map(admin => (
             <ul key={admin.adminIdx}>
               <li>{admin.adminIdx}</li>
-              <li>{admin.id}</li>
-              <li>{admin.name}</li>
-              <li>{admin.rank ? "super" : "normal"}</li>
+              <li>{readOnlyBlur(admin.id, adminRank)}</li>
+              <li>{readOnlyBlur(admin.name, adminRank)}</li>
+              <li>{admin.rank === 1 ? 'super' : admin.rank === 2 ? 'read only' : 'normal'}</li>
               <li>{admin.createAt}</li>
-              {adminRank === 1 ? (
+              {adminRank === 1 && (
                 <DeleteIcon
                   style={{ cursor: 'pointer', color: 'tomato' }}
                   onClick={() => {
@@ -37,7 +38,7 @@ function AdminList({ admins, adminRank, offset, limit, page, setPage, handleDele
                     handleDeleteModal();
                   }}
                 />
-              ) : null}
+              )}
             </ul>
           ))}
         </StyledListTable>

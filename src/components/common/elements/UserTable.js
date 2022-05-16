@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import readOnlyBlur from '../../../util/readOnlyBlur';
 
 function UserTable({ headers, columns, link }) {
+  const adminRank = useSelector(state => state.auth.admin?.rank);
   return (
     <StyledUserTable>
       <ul>
@@ -25,9 +28,9 @@ function UserTable({ headers, columns, link }) {
         ) : (
           <ul key={userIdx}>
             <li>{userIdx}</li>
-            <li>{name || '-'}</li>
-            <li>{email || '-'}</li>
-            <li>{kakaoId || '-'}</li>
+            <li>{readOnlyBlur(name, adminRank) || '-'}</li>
+            <li>{readOnlyBlur(email, adminRank) || '-'}</li>
+            <li>{readOnlyBlur(kakaoId, adminRank) || '-'}</li>
             <li>{isEmailAuth ? '인증 완료' : '미인증'}</li>
             <li>{createAt}</li>
           </ul>
