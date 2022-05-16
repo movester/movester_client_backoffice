@@ -12,7 +12,7 @@ function UserTable({ headers, columns, link }) {
         ))}
       </ul>
       {columns.map(column => {
-        const { userIdx, email, name, kakao_id, isEmailAuth, createAt } = column;
+        const { userIdx, email, name, kakaoId, isEmailAuth, createAt } = column;
 
         return link ? (
           <Link key={userIdx} to={`/${link}/${userIdx}`}>
@@ -27,7 +27,7 @@ function UserTable({ headers, columns, link }) {
             <li>{userIdx}</li>
             <li>{name || '-'}</li>
             <li>{email || '-'}</li>
-            <li>{kakao_id || '-'}</li>
+            <li>{kakaoId || '-'}</li>
             <li>{isEmailAuth ? '인증 완료' : '미인증'}</li>
             <li>{createAt}</li>
           </ul>
