@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../services/defaultClient';
 
-import Loading from '../../components/common/elements/Loading';
 import StretchingList from '../../components/stretching/StretchingList';
 import ConfirmModal from '../../components/common/Modal/ConfirmModal';
 
 function StretchingListPage() {
-  const [loading, setLoading] = useState(true);
-
   const [stretchings, setStretchings] = useState([]);
   const [title, setTitle] = useState('');
 
@@ -45,7 +42,6 @@ function StretchingListPage() {
   useEffect(() => {
     const getStretchingList = async () => {
       try {
-        setLoading(true);
         const res = await axios.get(
           `/stretchings?title=${title}&mainCategory=${mainBody}&subCategory=${subBody}&posture=${posture}&effect=${effect}&tool=${tool}`,
         );
@@ -56,16 +52,13 @@ function StretchingListPage() {
         setErrMsg(err.response.data.error);
         handleErrModal();
       }
-      setLoading(false);
     };
 
     getStretchingList();
     setPage(1);
   }, [title, mainBody, subBody, posture, effect, tool]);
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <>
       <StretchingList
         stretchings={stretchings}
