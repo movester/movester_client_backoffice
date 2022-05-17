@@ -1,43 +1,61 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import NavComponent from './components/utils/NavComponent';
-import MainComponent from './components/utils/MainComponent';
-import ContentComponent from './components/utils/ContentComponent';
+import { Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
 
-const ExampleContent = styled.div`
-  width: 100%;
-  height: 160px;
-  background-color: #c4c4c4;
-`;
+import Nav from './components/common/Nav';
+import UserList from './components/user/UserListComponent';
+import UserDetail from './components/user/UserDetailComponent';
 
-// TODO: palette 적용
+import StretchingListPage from './pages/stretching/StretchingListPage';
+import StretchingDetailPage from './pages/stretching/StretchingDetailPage';
+import CreateStretchingPage from './pages/stretching/CreateStretchingPage';
+import UpdateStretchingPage from './pages/stretching/UpdateStretchingPage';
+
+import WeekStretchingListPage from './pages/weekStretching/WeekStretchingListPage';
+import CreateWeekStretchingPage from './pages/weekStretching/CreateWeekStretchingPage';
+import WeekStretchingDetailPage from './pages/weekStretching/WeekStretchingDetailPage';
+import UpdateWeekStretchingPage from './pages/weekStretching/UpdateWeekStretchingPage';
+
+import RegisterEventPage from './pages/event/RegisterEventPage';
+import EventList from './components/event/EventListComponent';
+import EventDetail from './components/event/EventDetail';
+
+import AdminCreatePage from './pages/admin/AdminCreatePage';
+import PasswordChangePage from './pages/admin/PasswordChangePage';
+import AdminListPage from './pages/admin/AdminListPage';
+import LoginPage from './pages/admin/LoginPage';
+
 function App() {
   return (
-    <ThemeProvider
-      theme={{
-        palette: {
-          lightPurple: '#948fbf',
-          darkPulple: '#2a1598',
-          lightGray: '#efefef',
-          darkGray: '#c4c4c4',
-          black: '#000000',
-        },
-      }}
-    >
-      <div className="App">
-        {/* util 컴포넌트 사용 예시 */}
-        <NavComponent />
-        <MainComponent>
-          <ContentComponent title="사용자 리스트">
-            <ExampleContent />
-          </ContentComponent>
-          <ContentComponent title="사용자 리스트">
-            <ExampleContent />
-          </ContentComponent>
-        </MainComponent>
-      </div>
+    <ThemeProvider theme={theme}>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/user" element={<UserList />} />
+        <Route path="/user/:no" element={<UserDetail />} />
+
+        <Route path="/stretching" element={<StretchingListPage />} />
+        <Route path="/stretching/:idx" element={<StretchingDetailPage />} />
+        <Route path="/stretching/create" element={<CreateStretchingPage />} />
+        <Route path="/stretching/update/:idx" element={<UpdateStretchingPage />} />
+
+        <Route path="/weekStretching" element={<WeekStretchingListPage />} />
+        <Route path="/weekStretching/create" element={<CreateWeekStretchingPage />} />
+        <Route path="/weekStretching/:idx" element={<WeekStretchingDetailPage />} />
+        <Route path="/weekStretching/update/:idx" element={<UpdateWeekStretchingPage />} />
+
+
+        <Route path="/event" element={<EventList />} />
+        <Route path="/event/create" element={<RegisterEventPage />} />
+        <Route path="/event/1" element={<EventDetail />} />
+        <Route path="/admin" element={<AdminListPage />} />
+        <Route path="/admin/create" element={<AdminCreatePage />} />
+        <Route path="/admin/updatePassword" element={<PasswordChangePage />} />
+      </Routes>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default React.memo(App);
