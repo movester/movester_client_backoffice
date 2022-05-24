@@ -57,7 +57,7 @@ function UserDetail() {
 
   return (
     <Main>
-      <Content title={`사용자자 상세 #${user[0]?.userIdx}`}>
+      <Content title={`사용자 상세 #${user[0]?.userIdx}`}>
         <UserTable headers={listHeaders.userHeader} columns={user} />
       </Content>
       <StyledUserDetail>
